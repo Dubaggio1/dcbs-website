@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+// GitHub Pages SPA redirect: extracts path and redirects to index.html with query param
+var path = location.pathname.replace(/^\//, '').replace(/\/$/, '');
+if (path) {
+  location.replace('/?p=' + encodeURIComponent(path));
+} else {
+  location.replace('/');
+}
+</script>
+</head>
+<body></body>
+</html>

@@ -3012,6 +3012,25 @@ go = function(p) {
   }
 };
 
+// URL path ↔ page key mapping
+var PATH_TO_KEY = { "": "home", "over-ons": "over", "diensten": "diensten", "cases": "cases", "nieuws": "nieuws", "contact": "contact" };
+var KEY_TO_PATH = { "home": "", "over": "over-ons", "diensten": "diensten", "cases": "cases", "nieuws": "nieuws", "contact": "contact" };
+// English variants
+(function() {
+  var keys = Object.keys(PATH_TO_KEY);
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    if (k) { PATH_TO_KEY["en/" + k] = "en-" + PATH_TO_KEY[k]; }
+    else { PATH_TO_KEY["en"] = "en-home"; }
+  }
+  var keys2 = Object.keys(KEY_TO_PATH);
+  for (var j = 0; j < keys2.length; j++) {
+    var k2 = keys2[j];
+    KEY_TO_PATH["en-" + k2] = KEY_TO_PATH[k2] ? "en/" + KEY_TO_PATH[k2] : "en";
+  }
+})();
+
+var _skipPush = false;
 function go(p) {
   document.getElementById("app").innerHTML = (P[p] || P["home"])();
   window.scrollTo(0,0);
@@ -3019,7 +3038,28 @@ function go(p) {
     document.querySelectorAll(".rev,.rev2,.rev3").forEach(function(e){e.classList.add("on");});
     renderCustomNews();
   },80);
+  // Update browser URL
+  if (!_skipPush) {
+    var urlPath = KEY_TO_PATH[p];
+    if (urlPath !== undefined) {
+      history.pushState({ page: p }, "", "/" + urlPath);
+    }
+  }
 }
+
+// Handle browser back/forward
+window.addEventListener("popstate", function(e) {
+  var key = "home";
+  if (e.state && e.state.page) {
+    key = e.state.page;
+  } else {
+    var path = location.pathname.replace(/^\//, "").replace(/\/$/, "");
+    key = PATH_TO_KEY[path] || "home";
+  }
+  _skipPush = true;
+  go(key);
+  _skipPush = false;
+});
 
 function mopen() {
   document.getElementById("mobile-menu").classList.add("open");
@@ -3047,7 +3087,6 @@ function setLang(l) {
     nl.textContent="Home"; nl.setAttribute("onclick","go('home')");
     document.getElementById("nl-over").textContent="Over ons";    document.getElementById("nl-over").setAttribute("onclick","go('over');cm()");
     document.getElementById("nl-cases").textContent="Cases"; document.getElementById("nl-cases").setAttribute("onclick","go('cases');cm()");
-    document.getElementById("nl-cases").textContent="Cases"; document.getElementById("nl-cases").setAttribute("onclick","go('en-cases');cm()");
     document.getElementById("nl-diensten").textContent="Diensten"; document.getElementById("nl-diensten").setAttribute("onclick","go('diensten');cm()");
     document.getElementById("nl-nieuws").textContent="Nieuws";    document.getElementById("nl-nieuws").setAttribute("onclick","go('nieuws');cm()");
     document.getElementById("nl-contact").textContent="Gratis consult"; document.getElementById("nl-contact").setAttribute("onclick","go('contact');cm()");
@@ -3055,7 +3094,6 @@ function setLang(l) {
   } else {
     nl.textContent="Home"; nl.setAttribute("onclick","go('en-home');cm()");
     document.getElementById("nl-over").textContent="About Us";   document.getElementById("nl-over").setAttribute("onclick","go('en-over');cm()");
-    document.getElementById("nl-cases").textContent="Cases"; document.getElementById("nl-cases").setAttribute("onclick","go('cases');cm()");
     document.getElementById("nl-cases").textContent="Cases"; document.getElementById("nl-cases").setAttribute("onclick","go('en-cases');cm()");
     document.getElementById("nl-diensten").textContent="Services"; document.getElementById("nl-diensten").setAttribute("onclick","go('en-diensten');cm()");
     document.getElementById("nl-nieuws").textContent="News";      document.getElementById("nl-nieuws").setAttribute("onclick","go('en-nieuws');cm()");
@@ -3272,7 +3310,28 @@ window.addEventListener("scroll", function(){
     initHamburger();
   }
 })();
-go("home");
+// Route based on URL: check ?p= param (from 404.html redirect) or pathname
+(function() {
+  var params = new URLSearchParams(location.search);
+  var p = params.get("p");
+  if (p) {
+    var key = PATH_TO_KEY[p] || PATH_TO_KEY[p.replace(/\/$/, "")] || "home";
+    var urlPath = KEY_TO_PATH[key];
+    if (urlPath !== undefined) history.replaceState({ page: key }, "", "/" + urlPath);
+    if (key.startsWith("en-")) { curLang = "en"; }
+    go(key);
+  } else {
+    var path = location.pathname.replace(/^\//, "").replace(/\/$/, "");
+    var key2 = PATH_TO_KEY[path];
+    if (key2 && key2 !== "home") {
+      history.replaceState({ page: key2 }, "", "/" + path);
+      if (key2.startsWith("en-")) { curLang = "en"; }
+      go(key2);
+    } else {
+      go("home");
+    }
+  }
+})();
 
 
 (function() {
