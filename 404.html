@@ -1,16 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl-NL">
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pagina niet gevonden | The Data Compliance Builders</title>
+<meta name="robots" content="noindex,follow">
+<link rel="stylesheet" href="/assets/css/main.css">
 <script>
-// GitHub Pages SPA redirect: extracts path and redirects to index.html with query param
-var path = location.pathname.replace(/^\//, '').replace(/\/$/, '');
-if (path) {
-  location.replace('/?p=' + encodeURIComponent(path));
-} else {
-  location.replace('/');
-}
+// Legacy redirect-map: oude SPA paths -> nieuwe multi-file URLs.
+// Wordt geraakt op zowel echte 404 (GitHub Pages serveert dit bestand) als
+// op de bestaande ?p=key fallback uit oude index.html.
+(function () {
+  var REDIRECTS = {
+    '/privacy':                '/privacybeleid/',
+    '/privacy/':               '/privacybeleid/',
+    '/en/privacy':             '/en/privacy-statement/',
+    '/en/privacy/':            '/en/privacy-statement/',
+    '/nl':                     '/',
+    '/nl/':                    '/',
+    '/nl/home':                '/',
+    '/nl/home/':               '/',
+    '/en/home':                '/en/',
+    '/en/home/':               '/en/',
+    // Oude art-keys uit SPA -> nieuwe slugs
+    '/art-vodafone':           '/nieuws/vodafone-boete-45-miljoen/',
+    '/art-fria':               '/nieuws/fria-fundamental-rights-impact-assessment/',
+    '/art-ailliteracy':        '/nieuws/ai-literacy-verplichting/',
+    '/art-claude':             '/nieuws/claude-ai-governance-discipline/',
+    '/art-genai':              '/nieuws/risicos-generatieve-ai/',
+    '/art-tesla':              '/nieuws/tesla-robotaxi-privacy/',
+    '/art-gdpr7':              '/nieuws/zeven-jaar-avg-handhaving-nederland/',
+    '/art-ai2027':             '/nieuws/ai2027-superintelligente-ai/',
+    '/art-bc5701':             '/nieuws/bc-5701-privacy-keurmerk/'
+  };
+
+  var path = location.pathname;
+  var stripped = path.replace(/\/+$/, '');
+
+  if (REDIRECTS[path]) { location.replace(REDIRECTS[path]); return; }
+  if (REDIRECTS[stripped]) { location.replace(REDIRECTS[stripped]); return; }
+
+  // Oude SPA ?p=key fallback uit vorige 404.html
+  var params = new URLSearchParams(location.search);
+  var p = params.get('p');
+  if (p) {
+    var bare = p.replace(/^\//, '').replace(/\/+$/, '');
+    var KEY_MAP = {
+      'home':         '/',
+      'over':         '/over-ons/',
+      'diensten':     '/diensten/',
+      'cases':        '/cases/',
+      'nieuws':       '/nieuws/',
+      'contact':      '/contact/',
+      'privacy':      '/privacybeleid/',
+      'en-home':      '/en/',
+      'en-over':      '/en/over-ons/',
+      'en-diensten':  '/en/diensten/',
+      'en-cases':     '/en/cases/',
+      'en-nieuws':    '/en/nieuws/',
+      'en-contact':   '/en/contact/',
+      'en-privacy':   '/en/privacy-statement/',
+      'art-vodafone':    '/nieuws/vodafone-boete-45-miljoen/',
+      'art-fria':        '/nieuws/fria-fundamental-rights-impact-assessment/',
+      'art-ailliteracy': '/nieuws/ai-literacy-verplichting/',
+      'art-claude':      '/nieuws/claude-ai-governance-discipline/',
+      'art-genai':       '/nieuws/risicos-generatieve-ai/',
+      'art-tesla':       '/nieuws/tesla-robotaxi-privacy/',
+      'art-gdpr7':       '/nieuws/zeven-jaar-avg-handhaving-nederland/',
+      'art-ai2027':      '/nieuws/ai2027-superintelligente-ai/',
+      'art-bc5701':      '/nieuws/bc-5701-privacy-keurmerk/'
+    };
+    if (KEY_MAP[bare]) { location.replace(KEY_MAP[bare]); return; }
+  }
+
+  // Geen mapping bekend — toon nette 404 + link naar homepage
+  document.addEventListener('DOMContentLoaded', function () {
+    document.body.innerHTML =
+      '<main style="max-width:680px;margin:6rem auto;padding:0 1.5rem;font-family:HN,Helvetica,sans-serif">' +
+      '<p style="font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mu);margin-bottom:1rem">404</p>' +
+      '<h1 style="font-size:2.2rem;font-weight:900;margin:0 0 1rem;color:var(--wh)">Pagina niet gevonden</h1>' +
+      '<p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:1.5rem">Deze pagina bestaat niet (meer). Mogelijk is de URL gewijzigd. Probeer de homepage of het overzicht.</p>' +
+      '<p><a href="/" style="color:var(--tl);font-weight:700;text-decoration:none">&larr; Terug naar homepage</a></p>' +
+      '</main>';
+  });
+})();
 </script>
 </head>
-<body></body>
+<body style="background:var(--bg);color:var(--wh);min-height:100vh">
+<noscript>
+  <main style="max-width:680px;margin:6rem auto;padding:0 1.5rem;font-family:sans-serif">
+    <h1>Pagina niet gevonden</h1>
+    <p><a href="/">&larr; Terug naar homepage</a></p>
+  </main>
+</noscript>
+</body>
 </html>
