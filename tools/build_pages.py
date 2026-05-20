@@ -2069,6 +2069,75 @@ PLAUSIBLE_PRIVACY_PARAGRAPH_EN = (
 )
 
 
+def fix_privacy_factual_errors(html: str, lang: str) -> str:
+    """Corrigeer feitelijke onjuistheden in privacy-pagina's.
+
+    NL: 'gehost via Netlify (VS)' -> 'gehost via GitHub Pages (GitHub Inc., VS)'
+        met aanvulling over technische logs + link naar GitHub privacy.
+    EN: voeg ontbrekende sectie 6 'Third Parties' toe met GitHub Pages tekst.
+        Renummering subsequent sections (6 Your rights -> 7, 7 Changes -> 8).
+    Idempotent: detecteert eerdere fix via 'docs.github.com/site-policy' string.
+    """
+    if "docs.github.com/site-policy" in html:
+        return html
+
+    if lang == NL:
+        # Pattern: sectie 6 Derden paragraaf met Netlify (VS) tekst
+        new_text = (
+            "Wij delen uw persoonsgegevens niet met derden, tenzij dit noodzakelijk is "
+            "voor de uitvoering van onze dienstverlening en wij daarvoor een verwerkers"
+            "overeenkomst hebben gesloten. De website wordt gehost via GitHub Pages "
+            "(GitHub Inc., VS). GitHub kan in zijn rol als hosting-provider technische "
+            "logs bijhouden (zoals IP-adressen en user-agent). Zie het privacy-statement "
+            "van GitHub voor meer informatie: "
+            "<a href=\"https://docs.github.com/site-policy/privacy-policies\" "
+            "target=\"_blank\" rel=\"noopener\" "
+            "style=\"color:var(--tl);text-decoration:none\">"
+            "docs.github.com/site-policy/privacy-policies</a>."
+        )
+        pattern = re.compile(
+            r'(<h3[^>]*>6\.[^<]*Derden[^<]*</h3>\s*<p class="abody">)'
+            r'[^<]*Netlify[\s\S]*?(</p>)',
+            re.IGNORECASE,
+        )
+        html = pattern.sub(r'\1' + new_text + r'\2', html, count=1)
+        return html
+
+    # EN: invoegen sectie 6 Third Parties + renumber 6->7, 7->8
+    third_parties_section = (
+        '<h3 style="font-size:1.1rem;font-weight:900;text-transform:uppercase;color:var(--wh);margin:2rem 0 .8rem">6. Third parties</h3>\n'
+        '    <p class="abody">We do not share your personal data with third parties '
+        'unless this is necessary for the performance of our services and a data '
+        'processing agreement is in place. The website is hosted via GitHub Pages '
+        '(GitHub Inc., USA). In its role as hosting provider, GitHub may keep '
+        'technical logs (such as IP addresses and user-agent). See the GitHub '
+        'privacy statement for more information: '
+        '<a href="https://docs.github.com/site-policy/privacy-policies" '
+        'target="_blank" rel="noopener" '
+        'style="color:var(--tl);text-decoration:none">'
+        'docs.github.com/site-policy/privacy-policies</a>.</p>\n'
+        '    '
+    )
+    # Renumber 6. Your rights -> 7., 7. Changes -> 8.
+    html = re.sub(
+        r'(<h3[^>]*>)6\.(\s+Your rights[^<]*</h3>)',
+        r'\g<1>7.\g<2>',
+        html, count=1,
+    )
+    html = re.sub(
+        r'(<h3[^>]*>)7\.(\s+Changes[^<]*</h3>)',
+        r'\g<1>8.\g<2>',
+        html, count=1,
+    )
+    # Insert new section 6 BEFORE the (now-renumbered) section 7 Your rights
+    html = re.sub(
+        r'(<h3[^>]*>7\.\s+Your rights[^<]*</h3>)',
+        third_parties_section + r'\1',
+        html, count=1,
+    )
+    return html
+
+
 def inject_plausible_privacy_paragraph(html: str, lang: str) -> str:
     """Voeg Plausible-paragraaf toe na de bestaande Cookies-paragraaf in
     de privacy-statement-pagina's. Idempotent."""
@@ -2288,8 +2357,9 @@ def main() -> None:
         html = build_page(cfg)
         # Plausible event-classes injecteren op final HTML
         html = add_plausible_events(html)
-        # Privacy-pagina's: Plausible-paragraaf toevoegen
+        # Privacy-pagina's: factual fixes + Plausible-paragraaf
         if cfg.get("template") in ("privacy", "en-privacy"):
+            html = fix_privacy_factual_errors(html, cfg["lang"])
             html = inject_plausible_privacy_paragraph(html, cfg["lang"])
         outpath.write_text(html, encoding="utf-8")
         size_kb = outpath.stat().st_size / 1024
