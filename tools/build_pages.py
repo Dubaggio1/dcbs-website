@@ -2047,6 +2047,232 @@ def build_page(cfg: dict) -> str:
 #  MAIN
 # ─────────────────────────────────────────────────────────────────────
 
+PLAUSIBLE_PRIVACY_PARAGRAPH_NL = (
+    '<p class="abody">'
+    'Voor geanonimiseerde bezoekersstatistieken wordt Plausible Analytics '
+    'gebruikt. Plausible plaatst geen cookies, slaat geen IP-adressen op en '
+    'deelt geen data met derden. De servers staan in de Europese Unie '
+    '(Duitsland). Meer informatie: '
+    '<a href="https://plausible.io/data-policy" target="_blank" rel="noopener" '
+    'style="color:var(--tl);text-decoration:none">plausible.io/data-policy</a>.'
+    '</p>'
+)
+PLAUSIBLE_PRIVACY_PARAGRAPH_EN = (
+    '<p class="abody">'
+    'For anonymised visitor statistics, Plausible Analytics is used. '
+    'Plausible does not place cookies, does not store IP addresses, and does '
+    'not share data with third parties. Servers are located in the European '
+    'Union (Germany). For more information: '
+    '<a href="https://plausible.io/data-policy" target="_blank" rel="noopener" '
+    'style="color:var(--tl);text-decoration:none">plausible.io/data-policy</a>.'
+    '</p>'
+)
+
+
+def inject_plausible_privacy_paragraph(html: str, lang: str) -> str:
+    """Voeg Plausible-paragraaf toe na de bestaande Cookies-paragraaf in
+    de privacy-statement-pagina's. Idempotent."""
+    if "plausible.io/data-policy" in html:
+        return html
+    para = PLAUSIBLE_PRIVACY_PARAGRAPH_NL if lang == NL else PLAUSIBLE_PRIVACY_PARAGRAPH_EN
+    # Match closing </p> direct na "Google Analytics of vergelijkbare ..."
+    # / "Google Analytics or similar ..." — beide hebben dezelfde structuur.
+    pattern = re.compile(
+        r'(<h3[^>]*>5\.[^<]*Cookies[^<]*</h3>\s*<p class="abody">[^<]*Google Analytics[^<]*</p>)',
+        re.IGNORECASE,
+    )
+    return pattern.sub(r'\1\n    ' + para, html, count=1)
+
+
+def add_plausible_events(html: str) -> str:
+    """Voeg Plausible custom-event classes toe aan bekende patronen.
+
+    - calendly.com link  -> Calendly+Click
+    - mailto:contact@dcbs.nl  -> Email+Click
+    - tel:+31615234409 of variant  -> Phone+Click
+
+    Idempotent: bestaande plausible-event-name classes worden niet
+    gedupliceerd.
+    """
+    def add_class(match: re.Match, event_name: str) -> str:
+        attrs = match.group(1)
+        if f"plausible-event-name={event_name}" in attrs:
+            return match.group(0)
+        cls_match = re.search(r'class="([^"]*)"', attrs)
+        if cls_match:
+            existing = cls_match.group(1)
+            new_cls = f'class="{existing} plausible-event-name={event_name}"'
+            attrs = attrs[:cls_match.start()] + new_cls + attrs[cls_match.end():]
+        else:
+            attrs = attrs.rstrip() + f' class="plausible-event-name={event_name}"'
+        return f'<a{attrs}>'
+
+    html = re.sub(
+        r'<a([^>]*?href="https?://calendly\.com/[^"]*"[^>]*?)>',
+        lambda m: add_class(m, "Calendly+Click"),
+        html, flags=re.IGNORECASE,
+    )
+    html = re.sub(
+        r'<a([^>]*?href="mailto:contact@dcbs\.nl"[^>]*?)>',
+        lambda m: add_class(m, "Email+Click"),
+        html, flags=re.IGNORECASE,
+    )
+    html = re.sub(
+        r'<a([^>]*?href="tel:\+?[0-9\s\-()]+"[^>]*?)>',
+        lambda m: add_class(m, "Phone+Click"),
+        html, flags=re.IGNORECASE,
+    )
+
+    # Contact form submit button (NL + EN): <button class="btn bp" type="submit">
+    def add_button_class(match: re.Match) -> str:
+        attrs = match.group(1)
+        if "plausible-event-name=Contact+Form+Submit" in attrs:
+            return match.group(0)
+        cls_match = re.search(r'class="([^"]*)"', attrs)
+        if cls_match:
+            existing = cls_match.group(1)
+            new_cls = f'class="{existing} plausible-event-name=Contact+Form+Submit"'
+            attrs = attrs[:cls_match.start()] + new_cls + attrs[cls_match.end():]
+        else:
+            attrs = attrs + ' class="plausible-event-name=Contact+Form+Submit"'
+        return f'<button{attrs}>'
+
+    # Match alleen het submit-button binnen <form onsubmit="sf(event)">
+    html = re.sub(
+        r'(?<=<form onsubmit="sf\(event\)">)([\s\S]*?)<button([^>]*type="submit"[^>]*)>',
+        lambda m: m.group(1) + add_button_class(re.match(r'<button([^>]*)>', '<button' + m.group(2) + '>')),
+        html,
+    )
+
+    # Nav-CTA "Gratis consult" / "Free consult" — anchor in nav met class="ncta"
+    def add_ncta(match: re.Match) -> str:
+        attrs = match.group(1)
+        if "plausible-event-name=Gratis+Consult+Click" in attrs:
+            return match.group(0)
+        cls_match = re.search(r'class="([^"]*\bncta\b[^"]*)"', attrs)
+        if cls_match:
+            existing = cls_match.group(1)
+            new_cls = f'class="{existing} plausible-event-name=Gratis+Consult+Click"'
+            attrs = attrs[:cls_match.start()] + new_cls + attrs[cls_match.end():]
+        return f'<a{attrs}>'
+
+    html = re.sub(
+        r'<a([^>]*\bclass="[^"]*\bncta\b[^"]*"[^>]*)>',
+        add_ncta,
+        html,
+    )
+    return html
+
+
+# ─────────────────────────────────────────────────────────────────────
+#  PHASE 6: sitemap.xml + robots.txt
+# ─────────────────────────────────────────────────────────────────────
+
+BASE_URL = "https://www.dcbs.nl"
+
+# Per URL: priority + changefreq
+SITEMAP_META: dict[str, tuple[str, str]] = {
+    # NL core
+    "/":                       ("1.0", "weekly"),
+    "/over-ons/":              ("0.7", "monthly"),
+    "/diensten/":              ("0.9", "monthly"),
+    "/cases/":                 ("0.6", "monthly"),
+    "/nieuws/":                ("0.6", "weekly"),
+    "/contact/":               ("0.5", "yearly"),
+    "/privacybeleid/":         ("0.3", "yearly"),
+    # Service NL
+    "/diensten/dpo-as-a-service/":      ("0.8", "monthly"),
+    "/diensten/avg-compliance/":        ("0.8", "monthly"),
+    "/diensten/ai-act-compliance/":     ("0.8", "monthly"),
+    "/diensten/data-management/":       ("0.8", "monthly"),
+    # EN core
+    "/en/":                       ("1.0", "weekly"),
+    "/en/over-ons/":              ("0.7", "monthly"),
+    "/en/diensten/":              ("0.9", "monthly"),
+    "/en/cases/":                 ("0.6", "monthly"),
+    "/en/nieuws/":                ("0.6", "weekly"),
+    "/en/contact/":               ("0.5", "yearly"),
+    "/en/privacy-statement/":     ("0.3", "yearly"),
+    # Service EN
+    "/en/diensten/dpo-as-a-service/":      ("0.8", "monthly"),
+    "/en/diensten/gdpr-compliance/":       ("0.8", "monthly"),
+    "/en/diensten/ai-act-compliance/":     ("0.8", "monthly"),
+    "/en/diensten/data-management/":       ("0.8", "monthly"),
+}
+# Articles (NL + EN-stubs): default prio + changefreq
+ARTICLE_PRIO = ("0.5", "yearly")
+
+
+def reverse_hreflang_pairs() -> dict[str, str]:
+    """EN -> NL omkering van HREFLANG_PAIRS."""
+    return {v: k for k, v in HREFLANG_PAIRS.items()}
+
+
+def build_sitemap() -> str:
+    """Produceer sitemap.xml met hreflang-alternates per URL-paar.
+
+    Verzamelt URLs uit: PAGES, build_article_pages(), build_service_pages().
+    Per pair (NL+EN): drie <xhtml:link>'s (nl-NL, en-GB, x-default→NL).
+    """
+    today = "2026-05-20"
+
+    # Verzamel alle pagina-URLs (NL+EN), dedup
+    all_urls: list[str] = [cfg["url"] for cfg in PAGES]
+    for cfg in build_article_pages():
+        all_urls.append(cfg["url"])
+    for cfg in build_service_pages():
+        all_urls.append(cfg["url"])
+
+    rev = reverse_hreflang_pairs()
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"',
+        '        xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ]
+
+    for url in all_urls:
+        # Determine nl_url + en_url voor deze pagina
+        if url in HREFLANG_PAIRS:
+            nl_url, en_url = url, HREFLANG_PAIRS[url]
+        elif url in rev:
+            nl_url, en_url = rev[url], url
+        else:
+            # Geen hreflang-pair bekend (zou niet moeten, maar fallback)
+            nl_url, en_url = url, url
+
+        prio, freq = SITEMAP_META.get(
+            url,
+            ARTICLE_PRIO if "/nieuws/" in url else ("0.5", "monthly"),
+        )
+
+        lines.append("  <url>")
+        lines.append(f"    <loc>{BASE_URL}{url}</loc>")
+        lines.append(f"    <lastmod>{today}</lastmod>")
+        lines.append(f"    <changefreq>{freq}</changefreq>")
+        lines.append(f"    <priority>{prio}</priority>")
+        lines.append(
+            f'    <xhtml:link rel="alternate" hreflang="nl-NL" href="{BASE_URL}{nl_url}"/>'
+        )
+        lines.append(
+            f'    <xhtml:link rel="alternate" hreflang="en-GB" href="{BASE_URL}{en_url}"/>'
+        )
+        lines.append(
+            f'    <xhtml:link rel="alternate" hreflang="x-default" href="{BASE_URL}{nl_url}"/>'
+        )
+        lines.append("  </url>")
+
+    lines.append("</urlset>")
+    return "\n".join(lines) + "\n"
+
+
+ROBOTS_TXT = """User-agent: *
+Allow: /
+
+Sitemap: https://www.dcbs.nl/sitemap.xml
+"""
+
+
 def main() -> None:
     all_pages = list(PAGES) + build_article_pages() + build_service_pages()
     for cfg in all_pages:
@@ -2060,9 +2286,20 @@ def main() -> None:
             outpath = ROOT / rel / "index.html"
         outpath.parent.mkdir(parents=True, exist_ok=True)
         html = build_page(cfg)
+        # Plausible event-classes injecteren op final HTML
+        html = add_plausible_events(html)
+        # Privacy-pagina's: Plausible-paragraaf toevoegen
+        if cfg.get("template") in ("privacy", "en-privacy"):
+            html = inject_plausible_privacy_paragraph(html, cfg["lang"])
         outpath.write_text(html, encoding="utf-8")
         size_kb = outpath.stat().st_size / 1024
         print(f"  WROTE {url:35s} -> {outpath.relative_to(ROOT)} ({size_kb:.1f} KB)")
+
+    # Sitemap + robots
+    (ROOT / "sitemap.xml").write_text(build_sitemap(), encoding="utf-8")
+    print(f"  WROTE /sitemap.xml ({(ROOT / 'sitemap.xml').stat().st_size} bytes)")
+    (ROOT / "robots.txt").write_text(ROBOTS_TXT, encoding="utf-8")
+    print(f"  WROTE /robots.txt ({(ROOT / 'robots.txt').stat().st_size} bytes)")
 
 
 if __name__ == "__main__":
