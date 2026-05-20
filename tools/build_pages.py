@@ -379,6 +379,48 @@ SERVICE_PAGES_DATA = [
         "service_type_nl": "DPO as a Service",
         "service_type_en": "DPO as a Service",
     },
+    # ── 2. AVG / GDPR Compliance ─────────────────────────────────────
+    {
+        "slug": "avg-compliance",
+        "nl_slug_path": "/diensten/avg-compliance/",
+        "en_slug_path": "/en/diensten/gdpr-compliance/",
+        "nl_title": "AVG Compliance, DPIA's en BC 5701 Certificering | DCBS",
+        "nl_desc": "AVG-audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-certificeringstrajecten. DCBS bouwt aantoonbare AVG-compliance — niet alleen op papier, ook in de praktijk.",
+        "nl_keywords": "AVG consultancy, AVG advies bedrijf, privacy compliance advies, privacy audit, DPIA uitvoeren, DPIA privacy impact assessment, datalek meldprocedure, verwerkingsregister opstellen, privacybeleid opstellen, Autoriteit Persoonsgegevens advies, BC 5701 certificering, BC 5701 implementatie, BC 5701 gap analyse",
+        "en_title": "GDPR Compliance, DPIAs and BC 5701 Certification | DCBS Netherlands",
+        "en_desc": "GDPR audits, DPIAs, processing records, breach procedures and BC 5701 certification trajectories. DCBS builds demonstrable GDPR compliance — not just on paper, but in practice.",
+        "en_keywords": "GDPR consultancy, GDPR advice, privacy compliance advice, privacy audit, DPIA execution, Data Protection Impact Assessment, breach procedure, processing records, privacy policy, Dutch DPA advice, BC 5701 certification, BC 5701 implementation, BC 5701 gap analysis",
+        "service_type_nl": "AVG / GDPR Compliance",
+        "service_type_en": "GDPR Compliance",
+    },
+    # ── 3. EU AI Act Compliance ──────────────────────────────────────
+    {
+        "slug": "ai-act-compliance",
+        "nl_slug_path": "/diensten/ai-act-compliance/",
+        "en_slug_path": "/en/diensten/ai-act-compliance/",
+        "nl_title": "EU AI Act Compliance en AI Governance | DCBS",
+        "nl_desc": "Bereid uw organisatie voor op de EU AI Act. Risicoclassificatie van AI-systemen, AI governance frameworks, FRIA-impactbeoordelingen en ISO 42001-implementatie. Praktisch en juridisch onderbouwd.",
+        "nl_keywords": "EU AI Act consultancy, EU AI Act naleving, AI Act advies, AI compliance advies, AI governance framework, risicoclassificatie AI systeem, impactbeoordeling AI hoog risico, FRIA fundamental rights AI, ISO 42001 AI managementsysteem, ISO 42001 implementatie, AI Act high-risk classificatie",
+        "en_title": "EU AI Act Compliance and AI Governance | DCBS Netherlands",
+        "en_desc": "Prepare your organisation for the EU AI Act. AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.",
+        "en_keywords": "EU AI Act consultancy, EU AI Act compliance, AI Act advice, AI compliance advice, AI governance framework, AI system risk classification, high-risk AI impact assessment, FRIA fundamental rights AI, ISO 42001 AI management system, ISO 42001 implementation, AI Act high-risk classification",
+        "service_type_nl": "EU AI Act Compliance",
+        "service_type_en": "EU AI Act Compliance",
+    },
+    # ── 4. Data Management ───────────────────────────────────────────
+    {
+        "slug": "data-management",
+        "nl_slug_path": "/diensten/data-management/",
+        "en_slug_path": "/en/diensten/data-management/",
+        "nl_title": "Data Management en Data Governance | DCBS",
+        "nl_desc": "Data governance frameworks, datavolwassenheidsassessments en data quality management. DCBS bouwt structuur in uw data-organisatie volgens DAMA-DMBOK en sluit aan op AVG- en AI-compliance.",
+        "nl_keywords": "data management consultancy, data governance advies, data governance framework, datavolwassenheid assessment, data maturity assessment, data quality management, DAMA DMBOK implementatie, data strategie advies, master data management consultant",
+        "en_title": "Data Management and Data Governance | DCBS Netherlands",
+        "en_desc": "Data governance frameworks, data maturity assessments and data quality management. DCBS structures your data organisation along DAMA-DMBOK and aligns with GDPR and AI compliance.",
+        "en_keywords": "data management consultancy, data governance advice, data governance framework, data maturity assessment, data quality management, DAMA DMBOK implementation, data strategy advice, master data management consultant",
+        "service_type_nl": "Data Management",
+        "service_type_en": "Data Management",
+    },
 ]
 
 
@@ -392,7 +434,7 @@ def service_body_dpo_nl() -> str:
 <section class="sec rev">
   <div style="max-width:780px">
     <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">Een Functionaris Gegevensbescherming (FG) &mdash; ook wel Data Protection Officer (DPO) &mdash; is voor veel organisaties wettelijk verplicht onder de AVG. Maar de functie intern beleggen is vaak duur en de juiste expertise is schaars. DCBS levert een <strong>externe DPO</strong> of <strong>interim FG</strong> die direct operationeel inzetbaar is, met ervaring bij toezichthouders, gemeentes, nutsbedrijven en private organisaties.</p>
-    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">Onze externe DPO werkt vanuit volledige onafhankelijkheid, zoals de AVG voorschrijft. U krijgt geen consultancy-trechter met juniors, maar &eacute;&eacute;n vast aanspreekpunt dat uw organisatie kent &mdash; en blijft kennen, ook als de samenstelling van uw team verandert.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">Een externe DPO van DCBS werkt vanuit volledige onafhankelijkheid, zoals de AVG voorschrijft. Geen consultancy-trechter met juniors, maar &eacute;&eacute;n vast aanspreekpunt dat uw organisatie kent &mdash; en blijft kennen, ook als de samenstelling van uw team verandert.</p>
   </div>
 </section>
 
@@ -459,15 +501,15 @@ def service_body_dpo_nl() -> str:
 </section>
 
 <section class="sec rev">
-  <span class="ew">05 &mdash; Recent uitgevoerd voor</span>
-  <h2 class="sh" style="margin-top:.8rem">DPO- en FG-opdrachten in <span class="g">de praktijk</span></h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS heeft externe DPO- en interim FG-rollen ingevuld bij (semi-)publieke organisaties, gemeentes, nutsbedrijven, financi&euml;le dienstverleners en internationale corporates. Een aantal recent zichtbare opdrachten: <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Gemeente Amsterdam</a>, <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Evides Waterbedrijf</a>, <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Athlon</a> en <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">SCOR</a>. Voor de volledige praktijkbeschrijvingen: zie de <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">cases-pagina</a>.</p>
+  <span class="ew">05 &mdash; Voor wie</span>
+  <h2 class="sh" style="margin-top:.8rem">Sectoren waar DCBS <span class="g">DPO-rollen vervult</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor toezichthouders, gemeentes, nutsbedrijven, verzekeraars en private organisaties. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
 </section>
 
 <section class="sec rev2" style="padding-bottom:5rem">
   <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
     <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Externe DPO inzetten?</h2>
-    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. Wij beoordelen of er een match is, en zo ja, hoe een externe DPO of interim FG-traject er voor uw organisatie uit zou kunnen zien.</p>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. In het gesprek wordt beoordeeld of er een match is, en zo ja, hoe een externe DPO of interim FG-traject er voor uw organisatie uit zou kunnen zien.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
       <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Plan kennismaking &rarr;</a>
       <a href="/contact/" class="btn bg">Contact via formulier</a>
@@ -486,7 +528,7 @@ def service_body_dpo_en() -> str:
 <section class="sec rev">
   <div style="max-width:780px">
     <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">A Data Protection Officer (DPO) &mdash; in Dutch &lsquo;Functionaris Gegevensbescherming&rsquo; or FG &mdash; is legally required under the GDPR for many organisations. Filling the role internally is often expensive, and the right expertise is scarce. DCBS delivers an <strong>external DPO</strong> or <strong>interim Data Protection Officer</strong> who is operational from day one, with experience at supervisory authorities, municipalities, utilities and private organisations.</p>
-    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">Our external DPO operates with the full independence the GDPR requires. You don't get a consultancy funnel staffed with juniors, but a single point of contact who actually learns your organisation &mdash; and stays with you, even when your internal team changes.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">An external DPO from DCBS operates with the full independence the GDPR requires. No consultancy funnel staffed with juniors, but a single point of contact who actually learns your organisation &mdash; and stays with you, even when your internal team changes.</p>
   </div>
 </section>
 
@@ -553,15 +595,617 @@ def service_body_dpo_en() -> str:
 </section>
 
 <section class="sec rev">
-  <span class="ew">05 &mdash; Recent engagements</span>
-  <h2 class="sh" style="margin-top:.8rem">DPO and interim DPO engagements <span class="g">in practice</span></h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS has filled external DPO and interim DPO roles at public sector organisations, municipalities, utilities, financial services firms and international corporates. Recent visible engagements include <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">City of Amsterdam</a>, <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Evides Waterbedrijf</a>, <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Athlon</a> and <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">SCOR</a>. Full case descriptions on the <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">cases page</a>.</p>
+  <span class="ew">05 &mdash; For whom</span>
+  <h2 class="sh" style="margin-top:.8rem">Sectors where DCBS <span class="g">fills DPO roles</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for regulators, municipalities, utilities, insurers and private organisations. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
 </section>
 
 <section class="sec rev2" style="padding-bottom:5rem">
   <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
     <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Engage an external DPO?</h2>
-    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. We assess whether there is a match and, if so, what an external DPO or interim DPO engagement could look like for your organisation.</p>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. The conversation assesses whether there is a match and, if so, what an external DPO or interim DPO engagement could look like for your organisation.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Book intake &rarr;</a>
+      <a href="/en/contact/" class="btn bg">Contact via form</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_avg_nl() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/diensten/" style="color:var(--mu);text-decoration:none">Diensten</a> / AVG Compliance</p>
+  <h2>AVG Compliance, DPIA's en <span class="g">BC 5701 Certificering</span></h2>
+  <p class="sub">Aantoonbare AVG-compliance &mdash; niet alleen op papier, ook in de praktijk. Audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-trajecten.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">De AVG werkt pas wanneer beleid, processen en techniek samen sluiten. Een verwerkingsregister dat niet aansluit op werkelijke verwerkingen, een datalekprotocol dat alleen op papier bestaat, of een DPIA-archief zonder follow-up &mdash; dat zijn de bevindingen waarmee de Autoriteit Persoonsgegevens een handhavingstraject opent.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS bouwt aan privacy-managementsystemen die werken in de praktijk: documentatie die klopt met operatie, controles die daadwerkelijk worden uitgevoerd, en bewijslast die overeind blijft tijdens een inspectie.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; Wat het inhoudt</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">AVG-bouwstenen <span class="g">in samenhang</span></h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Vijf onderdelen die elkaar versterken: DPIA, datalekbeheer, verwerkingsregister, BC 5701-certificering en privacy audits. Geen losse projecten, maar een samenhangend managementsysteem.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" id="dpia" style="cursor:default"><div class="sct">DPIA uitvoeren</div><p class="scb">Data Protection Impact Assessment (privacy impact assessment) voor hoog-risico verwerkingen: nieuwe AI-toepassingen, biometrie, profiling, grootschalige monitoring. Methodisch onderbouwd, met concrete mitigerende maatregelen en een toetsbaar restrisico-oordeel.</p></div>
+      <div class="sc" id="datalek" style="cursor:default"><div class="sct">Datalek meldprocedure en afhandeling</div><p class="scb">Datalek meldprocedure die de 72-uurs termijn van AVG art. 33 haalbaar maakt: triagepad, beslisbomen voor wel/niet melden, vaste rolverdeling tussen FG, juridisch en business. Inclusief tabletop-oefening om de procedure te testen.</p></div>
+      <div class="sc" id="verwerkingsregister" style="cursor:default"><div class="sct">Verwerkingsregister opstellen</div><p class="scb">Verwerkingsregister opstellen volgens AVG art. 30 dat actueel blijft: gekoppeld aan business-processen, met een vaste cyclus voor bijwerken en review. Geen Excel-document dat na vier maanden achterhaald is.</p></div>
+      <div class="sc" id="bc-5701" style="cursor:default"><div class="sct">BC 5701 implementatie en gap-analyse</div><p class="scb">Implementatiepartner voor het BC 5701 Privacy Keurmerk &mdash; de eerste Nederlandse AVG-certificeringsstandaard, ontwikkeld door Brand Compliance en goedgekeurd door de Autoriteit Persoonsgegevens onder AVG art. 42. DCBS begeleidt het traject; de certificering zelf wordt uitgevoerd door Brand Compliance.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Privacy audit en privacybeleid</div><p class="scb">Onafhankelijke privacy audit van bestaande processen, beleid en documentatie. Privacybeleid opstellen of herzien zodat het aansluit op de werkelijke verwerkingen &mdash; en stand houdt bij toetsing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; Wanneer DCBS voor u relevant is</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Nieuwe hoog-risico verwerking</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Een nieuwe verwerking (AI-systeem, biometrie, profiling, grootschalige monitoring) staat in de pijplijn en vereist een DPIA voor go-live. De interne capaciteit ontbreekt of de methodiek is niet eerder toegepast in dit type traject.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AVG-handhavingstraject of audit</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">De Autoriteit Persoonsgegevens heeft een informatieverzoek gestuurd, een klacht is in behandeling, of een interne audit toonde gaten in beleid en documentatie. Snel een verdedigbare bewijslast nodig.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Marktvraag om BC 5701-keurmerk</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Opdrachtgevers vragen om een aantoonbare AVG-certificering bij aanbestedingen of leveranciersaudits. BC 5701 is daar de Nederlandse marktstandaard voor &mdash; alleen de implementatie ontbreekt.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <span class="ew">03 &mdash; Wat u krijgt</span>
+      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
+      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
+        <li style="margin-bottom:.6rem">DPIA-rapport met methodische onderbouwing en restrisico-oordeel</li>
+        <li style="margin-bottom:.6rem">Datalek meldprocedure inclusief tabletop-test en draaiboek</li>
+        <li style="margin-bottom:.6rem">Verwerkingsregister gekoppeld aan business-processen, met onderhoudscyclus</li>
+        <li style="margin-bottom:.6rem">BC 5701 gap-analyse + implementatieplan + audit-readiness</li>
+        <li style="margin-bottom:.6rem">Privacybeleid opgesteld of herzien en intern goedgekeurd</li>
+        <li>Adviesnotities voor specifieke AP-vragen of -inspecties</li>
+      </ul>
+    </div>
+    <div>
+      <span class="ew">04 &mdash; Werkwijze</span>
+      <h2 class="sh" style="margin-top:.8rem">Vier <span class="g">stappen</span></h2>
+      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Nulmeting &amp; scope</strong> &mdash; gesprek met opdrachtgever, juridisch en privacy-eigenaren. Bepalen welk onderdeel (DPIA, datalek, register, BC 5701) als eerste opgepakt wordt.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Inventarisatie &amp; analyse</strong> &mdash; bestaande documentatie, processen en techniek doorlichten. Gat tussen huidige situatie en AVG-vereisten in kaart brengen, met prioritering op risico.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Implementatie &amp; vastlegging</strong> &mdash; documentatie wordt gebouwd, processen worden ingericht en getest, sleutelfiguren krijgen training. Audit-trail blijft compleet.</li>
+        <li><strong style="color:var(--wh)">Borging &amp; overdracht</strong> &mdash; jaarcyclus, review-momenten en eigenaarschap belegd intern. Opvolging bij toetsing of certificering.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">05 &mdash; Voor wie</span>
+  <h2 class="sh" style="margin-top:.8rem">Sectoren waar DCBS <span class="g">AVG-trajecten uitvoert</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor toezichthouders, gemeentes, nutsbedrijven, verzekeraars, retail-organisaties en internationale productiebedrijven. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Aan de slag met AVG-compliance?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. In het gesprek wordt verkend welk onderdeel het meeste oplevert &mdash; en welk traject voor uw organisatie haalbaar is.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Plan kennismaking &rarr;</a>
+      <a href="/contact/" class="btn bg">Contact via formulier</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_avg_en() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/en/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/en/diensten/" style="color:var(--mu);text-decoration:none">Services</a> / GDPR Compliance</p>
+  <h2>GDPR Compliance, DPIAs and <span class="g">BC 5701 Certification</span></h2>
+  <p class="sub">Demonstrable GDPR compliance &mdash; not just on paper, but in practice. Audits, DPIAs, processing records, breach procedures and BC 5701 certification.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">The GDPR only works when policy, processes and technology line up. A processing record that doesn't match actual processing activities, a breach protocol that exists only on paper, or a DPIA archive without follow-up &mdash; these are the findings that open an enforcement track at the Dutch Data Protection Authority.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS builds privacy management systems that work in practice: documentation that matches operations, controls that are actually executed, and audit evidence that holds up during inspection.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; What it covers</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">GDPR building blocks <span class="g">in concert</span></h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Five components that reinforce each other: DPIA, breach management, processing records, BC 5701 certification and privacy audits. Not separate projects, but a coherent management system.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" id="dpia" style="cursor:default"><div class="sct">DPIA execution</div><p class="scb">Data Protection Impact Assessment for high-risk processing: new AI applications, biometrics, profiling, large-scale monitoring. Methodologically grounded, with concrete mitigations and a defensible residual-risk judgement.</p></div>
+      <div class="sc" id="datalek" style="cursor:default"><div class="sct">Breach notification procedure and handling</div><p class="scb">A breach notification procedure that makes the 72-hour deadline of GDPR Art. 33 actually workable: triage path, decision trees for notify/no-notify, and clear role allocation between DPO, legal and business. Includes a tabletop exercise to test the procedure.</p></div>
+      <div class="sc" id="verwerkingsregister" style="cursor:default"><div class="sct">Processing records (Art. 30)</div><p class="scb">A processing record under GDPR Art. 30 that stays current: linked to business processes, with a fixed cycle for updates and review. Not an Excel document that goes stale within four months.</p></div>
+      <div class="sc" id="bc-5701" style="cursor:default"><div class="sct">BC 5701 implementation and gap analysis</div><p class="scb">Implementation partner for the BC 5701 Privacy Seal &mdash; the first Dutch GDPR certification standard, developed by Brand Compliance and approved by the Dutch DPA under GDPR Art. 42. DCBS guides the implementation track; the certification itself is performed by Brand Compliance.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Privacy audit and policy</div><p class="scb">Independent privacy audit of existing processes, policy and documentation. Privacy policy drafted or revised so that it actually matches the processing activities &mdash; and holds up under scrutiny.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; When DCBS is relevant to you</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">New high-risk processing activity</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">A new processing activity (AI system, biometrics, profiling, large-scale monitoring) is in the pipeline and requires a DPIA before go-live. Internal capacity is missing or the methodology has not been applied to this type of project before.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Supervisory enforcement or audit</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">The Dutch DPA has issued an information request, a complaint is in process, or an internal audit revealed gaps in policy and documentation. Defensible evidence needed quickly.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Market demand for BC 5701 seal</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Clients are asking for demonstrable GDPR certification in tenders and vendor audits. BC 5701 is the Dutch market standard for this &mdash; only the implementation is missing.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <span class="ew">03 &mdash; What you get</span>
+      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
+      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
+        <li style="margin-bottom:.6rem">DPIA report with methodological grounding and residual-risk judgement</li>
+        <li style="margin-bottom:.6rem">Breach notification procedure including tabletop test and runbook</li>
+        <li style="margin-bottom:.6rem">Processing record linked to business processes, with maintenance cycle</li>
+        <li style="margin-bottom:.6rem">BC 5701 gap analysis + implementation plan + audit-readiness</li>
+        <li style="margin-bottom:.6rem">Privacy policy drafted or revised and internally approved</li>
+        <li>Advisory notes for specific supervisory inquiries or inspections</li>
+      </ul>
+    </div>
+    <div>
+      <span class="ew">04 &mdash; Approach</span>
+      <h2 class="sh" style="margin-top:.8rem">Four <span class="g">steps</span></h2>
+      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Baseline &amp; scope</strong> &mdash; conversation with the client, legal and privacy owners. Determining which component (DPIA, breach, record, BC 5701) is tackled first.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Inventory &amp; analysis</strong> &mdash; existing documentation, processes and technology reviewed. Gap between current state and GDPR requirements mapped, with prioritisation by risk.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Implementation &amp; documentation</strong> &mdash; documentation is built, processes are set up and tested, key staff receive training. Audit trail remains complete.</li>
+        <li><strong style="color:var(--wh)">Embedding &amp; handover</strong> &mdash; annual cycle, review moments and ownership assigned internally. Follow-up on assessment or certification.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">05 &mdash; For whom</span>
+  <h2 class="sh" style="margin-top:.8rem">Sectors where DCBS <span class="g">runs GDPR engagements</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for regulators, municipalities, utilities, insurers, retail organisations and international manufacturers. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Start a GDPR compliance track?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. The conversation explores which component delivers the most value &mdash; and what a realistic track for your organisation looks like.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Book intake &rarr;</a>
+      <a href="/en/contact/" class="btn bg">Contact via form</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_aiact_nl() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/diensten/" style="color:var(--mu);text-decoration:none">Diensten</a> / EU AI Act</p>
+  <h2>EU AI Act Compliance en <span class="g">AI Governance</span></h2>
+  <p class="sub">Risicoclassificatie van AI-systemen, AI governance frameworks, FRIA-impactbeoordelingen en ISO 42001-implementatie. Praktisch en juridisch onderbouwd.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">De EU AI Act is van kracht en de eerste verplichtingen zijn al actief. Een AI-portfolio inventariseren, risico's classificeren, een AI governance framework neerzetten en &mdash; voor hoog-risico systemen &mdash; een Fundamental Rights Impact Assessment uitvoeren: dat is geen optioneel projectplan, maar de wettelijke realiteit voor organisaties die AI inzetten of leveren.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS combineert juridische analyse van de AI Act-tekst met operationele implementatie via ISO 42001 als managementsysteem. Inhoudelijke verdieping: bekijk het artikel over <a href="/nieuws/fria-fundamental-rights-impact-assessment/" style="color:var(--tl);text-decoration:none;font-weight:700">FRIA-uitvoering onder de EU AI Act</a>.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; Wat het inhoudt</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">AI Act <span class="g">in de praktijk</span></h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Vijf bouwstenen: risicoclassificatie, AI governance framework, FRIA, ISO 42001-managementsysteem en doorlopend AI compliance advies. Aansluitend op uw bestaande AVG- en data-governance structuur.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" style="cursor:default"><div class="sct">Risicoclassificatie AI-systeem</div><p class="scb">Systematische classificatie van AI-systemen onder AI Act: verboden, hoog-risico, beperkt risico of minimaal risico. Inclusief AI Act high-risk classificatie voor systemen in Annex III en GPAI-beoordeling voor general-purpose AI.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">AI governance framework opzetten</div><p class="scb">AI governance framework met beleid, rolverdeling (AI-owner, technische verantwoordelijke, FG), inventarisatieprocessen en escalatiepaden. Schaalbaar van &eacute;&eacute;n AI-systeem tot een portfolio van tientallen.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">FRIA: impactbeoordeling AI hoog risico</div><p class="scb">Fundamental Rights Impact Assessment voor hoog-risico AI-systemen: identificatie van getroffen grondrechten, risicobeoordeling, mitigaties en verantwoording. Conform AI Act art. 27.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">ISO 42001 implementatie</div><p class="scb">ISO 42001 AI-managementsysteem &mdash; het internationale managementsysteem voor verantwoorde AI. Implementatie aansluitend op ISO 27001 of bestaande management-cyclus. Audit-ready zonder dubbele documentatie-trajecten.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">AI compliance advies en monitoring</div><p class="scb">Doorlopend AI compliance advies bij nieuwe AI-implementaties: leveranciersbeoordeling, contractanalyse, gebruiks-impact en verantwoording naar toezicht. Inclusief voorbereiding op AI Act-handhaving.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; Wanneer DCBS voor u relevant is</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AI-portfolio niet geclassificeerd</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Een groeiend aantal AI-systemen wordt ingezet in operatie, maar er is geen inventarisatie, geen risicoclassificatie en geen helder zicht op welke systemen onder welke AI Act-categorie vallen.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Hoog-risico AI-systeem voor go-live</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Een AI-systeem onder Annex III (kritieke infrastructuur, onderwijs, werkgelegenheid, toegang tot publieke diensten, rechtshandhaving) gaat live en vereist een FRIA + voldoen aan de hoog-risico verplichtingen v&oacute;&oacute;r marktintroductie.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">ISO 42001-traject overwogen</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Opdrachtgevers of de organisatie zelf willen een aantoonbaar AI-managementsysteem. ISO 42001-implementatie is de richting, maar er is hulp nodig bij de gap-analyse en aansluiting op bestaande ISO 27001-structuur.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <span class="ew">03 &mdash; Wat u krijgt</span>
+      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
+      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
+        <li style="margin-bottom:.6rem">AI-portfolio inventarisatie met risicoclassificatie per systeem</li>
+        <li style="margin-bottom:.6rem">AI governance framework: beleid, rolverdeling, escalatiepaden</li>
+        <li style="margin-bottom:.6rem">FRIA-rapport voor hoog-risico systemen, conform AI Act art. 27</li>
+        <li style="margin-bottom:.6rem">ISO 42001 gap-analyse + implementatie-roadmap</li>
+        <li style="margin-bottom:.6rem">Trainingsmateriaal AI-geletterdheid voor sleutelfunctionarissen</li>
+        <li>Doorlopend adviespad bij nieuwe AI-implementaties</li>
+      </ul>
+    </div>
+    <div>
+      <span class="ew">04 &mdash; Werkwijze</span>
+      <h2 class="sh" style="margin-top:.8rem">Vier <span class="g">stappen</span></h2>
+      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Discovery &amp; portfolio-scan</strong> &mdash; AI-systemen in gebruik inventariseren, inclusief shadow-AI (productiviteitstools, embedded AI in SaaS). Eerste classificatie onder AI Act-categorie&euml;n.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Risicoclassificatie &amp; prioritering</strong> &mdash; per systeem een definitieve classificatie, met bijbehorende verplichtingen. Prioritering op basis van risico en go-live datum.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Implementatie governance &amp; FRIA's</strong> &mdash; governance framework opzetten, FRIA's uitvoeren voor hoog-risico systemen, ISO 42001-controles inrichten.</li>
+        <li><strong style="color:var(--wh)">Borging &amp; AI-geletterdheid</strong> &mdash; doorlopende monitoring, AI-geletterdheidstraining voor relevante medewerkers, voorbereiding op AI Act-handhaving en eventuele audits.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">05 &mdash; Voor wie</span>
+  <h2 class="sh" style="margin-top:.8rem">Organisaties die <span class="g">AI inzetten of leveren</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor organisaties met AI-systemen in productie of pijplijn: financi&euml;le instellingen, (semi-)publieke organisaties, kritieke infrastructuur en internationale corporates. AI-aanbieders en AI-deployers met verplichtingen onder de EU AI Act vinden hier de combinatie van juridische analyse en operationele implementatie. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">AI Act-compliance opzetten?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. In het gesprek wordt verkend waar uw AI-portfolio staat onder de Act &mdash; en welke prioriteiten haalbaar zijn.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Plan kennismaking &rarr;</a>
+      <a href="/contact/" class="btn bg">Contact via formulier</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_aiact_en() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/en/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/en/diensten/" style="color:var(--mu);text-decoration:none">Services</a> / EU AI Act</p>
+  <h2>EU AI Act Compliance and <span class="g">AI Governance</span></h2>
+  <p class="sub">AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">The EU AI Act is in force and the first obligations are already active. Inventorying an AI portfolio, classifying risks, putting an AI governance framework in place and &mdash; for high-risk systems &mdash; running a Fundamental Rights Impact Assessment: this is no longer optional. It is the legal reality for organisations that deploy or supply AI.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS combines legal analysis of the AI Act text with operational implementation through ISO 42001 as a management system. For further reading: see the article on <a href="/en/nieuws/fria-fundamental-rights-impact-assessment/" style="color:var(--tl);text-decoration:none;font-weight:700">FRIA execution under the EU AI Act</a>.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; What it covers</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">AI Act <span class="g">in practice</span></h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Five building blocks: risk classification, AI governance framework, FRIA, ISO 42001 management system and ongoing AI compliance advice. Designed to align with your existing GDPR and data governance structure.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" style="cursor:default"><div class="sct">AI system risk classification</div><p class="scb">Systematic classification of AI systems under the AI Act: prohibited, high-risk, limited risk or minimal risk. Includes AI Act high-risk classification for Annex III systems and GPAI assessment for general-purpose AI.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">AI governance framework setup</div><p class="scb">AI governance framework with policy, role allocation (AI owner, technical lead, DPO), inventory processes and escalation paths. Scalable from one AI system to a portfolio of dozens.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">FRIA: high-risk AI impact assessment</div><p class="scb">Fundamental Rights Impact Assessment for high-risk AI systems: identification of affected fundamental rights, risk assessment, mitigations and accountability. In line with AI Act Article 27.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">ISO 42001 implementation</div><p class="scb">ISO 42001 AI management system &mdash; the international management system for responsible AI. Implementation that builds on ISO 27001 or existing management cycles. Audit-ready without duplicate documentation tracks.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">AI compliance advice and monitoring</div><p class="scb">Ongoing AI compliance advice on new AI implementations: vendor assessment, contract review, deployment-impact and accountability towards supervision. Includes preparation for AI Act enforcement.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; When DCBS is relevant to you</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AI portfolio not classified</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">A growing number of AI systems are deployed in operations, but there is no inventory, no risk classification and no clear view of which systems fall under which AI Act category.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">High-risk AI system before go-live</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">An AI system under Annex III (critical infrastructure, education, employment, access to public services, law enforcement) is approaching go-live and requires a FRIA plus high-risk obligations met before market introduction.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">ISO 42001 track under consideration</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Clients or the organisation itself want a demonstrable AI management system. ISO 42001 implementation is the direction, but help is needed on gap analysis and alignment with existing ISO 27001 structure.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <span class="ew">03 &mdash; What you get</span>
+      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
+      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
+        <li style="margin-bottom:.6rem">AI portfolio inventory with per-system risk classification</li>
+        <li style="margin-bottom:.6rem">AI governance framework: policy, role allocation, escalation paths</li>
+        <li style="margin-bottom:.6rem">FRIA report for high-risk systems, in line with AI Act Article 27</li>
+        <li style="margin-bottom:.6rem">ISO 42001 gap analysis + implementation roadmap</li>
+        <li style="margin-bottom:.6rem">AI literacy training material for key staff</li>
+        <li>Ongoing advisory line for new AI deployments</li>
+      </ul>
+    </div>
+    <div>
+      <span class="ew">04 &mdash; Approach</span>
+      <h2 class="sh" style="margin-top:.8rem">Four <span class="g">steps</span></h2>
+      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Discovery &amp; portfolio scan</strong> &mdash; inventory of AI systems in use, including shadow AI (productivity tools, embedded AI in SaaS). First-pass classification under AI Act categories.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Risk classification &amp; prioritisation</strong> &mdash; final per-system classification with corresponding obligations. Prioritisation by risk and go-live date.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Governance implementation &amp; FRIAs</strong> &mdash; setting up the governance framework, executing FRIAs for high-risk systems, deploying ISO 42001 controls.</li>
+        <li><strong style="color:var(--wh)">Embedding &amp; AI literacy</strong> &mdash; ongoing monitoring, AI literacy training for relevant staff, preparation for AI Act enforcement and possible audits.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">05 &mdash; For whom</span>
+  <h2 class="sh" style="margin-top:.8rem">Organisations that <span class="g">deploy or supply AI</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for organisations with AI systems in production or in the pipeline: financial institutions, public sector organisations, critical infrastructure and international corporates. AI providers and AI deployers with obligations under the EU AI Act find here the combination of legal analysis and operational implementation. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Set up AI Act compliance?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. The conversation explores where your AI portfolio stands under the Act &mdash; and which priorities are feasible.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Book intake &rarr;</a>
+      <a href="/en/contact/" class="btn bg">Contact via form</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_datamgmt_nl() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/diensten/" style="color:var(--mu);text-decoration:none">Diensten</a> / Data Management</p>
+  <h2>Data Management en <span class="g">Data Governance</span></h2>
+  <p class="sub">De brug tussen privacy en AI compliance. Data governance frameworks, datavolwassenheidsassessments en data quality management volgens DAMA-DMBOK.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">Zonder schone datahuishouding geen AVG-naleving en geen werkbare AI governance. Een DPIA of FRIA bouwt op data lineage die u moet kennen, een verwerkingsregister steunt op een datacatalogus die actueel is, en ISO 42001 vereist dat AI-systemen op gecontroleerde data draaien. Data management is daarmee niet een naast-traject &mdash; het is de basis waarop privacy- en AI-compliance functioneren.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS bouwt aan deze basis volgens internationale standaarden (DAMA-DMBOK) en verbindt het expliciet met uw AVG- en AI Act-trajecten. Niet als losse data-strategie-exercitie, maar als compliance-enabler.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; Wat het inhoudt</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">Data governance <span class="g">in samenhang</span></h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Vier inhoudelijke gebieden: data governance framework, datavolwassenheid, data quality en data strategie. Aansluitend op uw privacy- en AI-compliance, niet als parallel spoor.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" style="cursor:default"><div class="sct">Data governance framework</div><p class="scb">Data governance framework met data-eigenaarschap, stewards, beleid en besluitvormingsstructuur. Aansluitend op DAMA-DMBOK domeinen en gekoppeld aan privacy- en AI-governance.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Datavolwassenheid assessment</div><p class="scb">Data maturity assessment volgens een gevalideerd model (CMMI for Data Management of vergelijkbaar). Resultaat: scorekaart per DAMA-domein met concrete prioriteiten voor de komende 12&ndash;24 maanden.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Data quality management</div><p class="scb">Data quality management programma: dimensies (volledigheid, juistheid, consistentie, tijdigheid), meetcadans, dashboards en escalatiepaden. Voor datasets die AVG- of AI Act-impact hebben.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">DAMA-DMBOK implementatie</div><p class="scb">DAMA-DMBOK implementatie als gemeenschappelijke taal en structuur. Niet een 1-op-1 boekvertaling, maar selectieve toepassing van de domeinen die voor uw organisatie waarde leveren.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Master data management consultant</div><p class="scb">Master data management consultancy voor organisaties met meerdere systemen die kritieke entiteiten (klant, leverancier, product) niet eenduidig benoemen. Vaak een blokkade voor AVG-rechten-uitvoering (inzage, vergetelheid) en AI-trainingsdata-kwaliteit.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; Wanneer DCBS voor u relevant is</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Verwerkingsregister leunt op data die niemand bezit</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Het AVG-verwerkingsregister noemt verwerkingen op datasets waarvoor geen duidelijke eigenaar bekend is, geen kwaliteits-bewaking bestaat en geen lineage gedocumenteerd is. Privacy en data management lopen uit elkaar.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AI-systeem op ongecontroleerde data</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Een AI-systeem (in productie of in ontwikkeling) draait op datasets waarvan de herkomst, kwaliteit en governance niet sluitend zijn. ISO 42001 of een FRIA brengt dit aan het licht en vereist een fix.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Data governance is gestart, maar stokt</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Een data governance-initiatief is enkele jaren geleden opgestart, maar is blijven hangen op presentatie-niveau zonder operationele inbedding. Externe versterking nodig om het over de finish te krijgen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">03 &mdash; Typische opdrachtvormen</span>
+  <h2 class="sh" style="margin-top:.8rem">Data management <span class="g">is maatwerk</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px;margin-bottom:2rem">Data management leent zich slecht voor een SKU-lijst. De vorm volgt uit volwassenheidsniveau, organisatie-omvang en de bottleneck die geadresseerd wordt. Een paar typische opdrachtvormen:</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Data governance framework opzetten</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Greenfield-traject: data-eigenaren benoemen, stewards aanwijzen, beleid en besluitvormings-structuur ontwerpen, eerste data-domeinen onder governance brengen. Typisch 4&ndash;6 maanden.</p>
+    </div>
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Datavolwassenheidsassessment</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Gestructureerde scan van bestaande data-organisatie: scorekaart per DAMA-domein, prioriteiten voor de komende 12&ndash;24 maanden, business case voor opvolging. Typisch 4&ndash;8 weken.</p>
+    </div>
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">DAMA-DMBOK implementatie-traject</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Selectieve implementatie van DAMA-DMBOK-domeinen die het meeste waarde leveren voor uw organisatie. Geen boekvertaling, wel methodische onderbouwing. Typisch een meerjarig traject met faseplanning.</p>
+    </div>
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Compliance-gedreven data quality programma</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Programma met focus op datasets die directe AVG- of AI Act-impact hebben: kwaliteits-dimensies definiëren, meetcadans inrichten, dashboards en escalatiepaden bouwen. Maakt audit-trail mogelijk. Typisch 6&ndash;12 maanden.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">04 &mdash; Werkwijze</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">1. Discovery</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Gesprek met business-, IT- en privacy-stakeholders. Bepalen waar de pijn zit: AVG, AI compliance, audit-bevindingen, of strategische ambitie.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">2. Assessment</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Volwassenheidsmeting op de relevante DAMA-domeinen, met scorekaart en gap-rapport. Geen open-einde studie &mdash; vaste doorlooptijd.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">3. Implementatie</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Roadmap-uitvoering met heldere mijlpalen. Stuurgroep, eigenaarschap intern belegd, externe versterking waar de capaciteit te kort schiet.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">4. Borging</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Doorlopende monitoring, jaarcyclus, koppeling aan privacy- en AI-governance. Externe rol bouwt zichzelf gefaseerd af.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">05 &mdash; Voor wie</span>
+  <h2 class="sh" style="margin-top:.8rem">Organisaties waar data <span class="g">de bottleneck is</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor organisaties waar data management een blokkade vormt voor AVG- of AI-compliance: financi&euml;le instellingen, (semi-)publieke organisaties, kritieke infrastructuur en internationale corporates met complexe data-landschappen. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Data management op orde krijgen?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. In het gesprek wordt verkend of een assessment, een framework of een specifieker traject de meeste impact heeft.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Plan kennismaking &rarr;</a>
+      <a href="/contact/" class="btn bg">Contact via formulier</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_datamgmt_en() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/en/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/en/diensten/" style="color:var(--mu);text-decoration:none">Services</a> / Data Management</p>
+  <h2>Data Management and <span class="g">Data Governance</span></h2>
+  <p class="sub">The bridge between privacy and AI compliance. Data governance frameworks, data maturity assessments and data quality management along DAMA-DMBOK.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">Without a clean data foundation, there is no working GDPR compliance and no defensible AI governance. A DPIA or FRIA depends on data lineage that you actually know; a processing record relies on a current data catalogue; ISO 42001 requires AI systems to run on controlled data. Data management is therefore not a parallel track &mdash; it is the foundation that lets privacy and AI compliance function.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS builds that foundation along international standards (DAMA-DMBOK) and ties it explicitly to your GDPR and AI Act tracks. Not as a standalone data strategy exercise, but as a compliance enabler.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; What it covers</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">Data governance <span class="g">in concert</span></h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Four substantive areas: data governance framework, data maturity, data quality and data strategy. Aligned with your privacy and AI compliance, not as a parallel programme.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" style="cursor:default"><div class="sct">Data governance framework</div><p class="scb">Data governance framework with data ownership, stewards, policy and decision-making structure. Aligned with DAMA-DMBOK domains and linked to privacy and AI governance.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Data maturity assessment</div><p class="scb">Data maturity assessment against a validated model (CMMI for Data Management or equivalent). Output: scorecard per DAMA domain with concrete priorities for the next 12&ndash;24 months.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Data quality management</div><p class="scb">Data quality management programme: dimensions (completeness, accuracy, consistency, timeliness), measurement cadence, dashboards and escalation paths. For datasets with GDPR or AI Act impact.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">DAMA-DMBOK implementation</div><p class="scb">DAMA-DMBOK implementation as a shared language and structure. Not a one-to-one book translation, but selective adoption of the domains that deliver value for your organisation.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Master data management consultancy</div><p class="scb">Master data management consultancy for organisations with multiple systems that do not consistently identify critical entities (customer, supplier, product). Often the blocker for GDPR rights execution (access, erasure) and for AI training-data quality.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; When DCBS is relevant to you</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Processing record relies on unowned data</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">The GDPR processing record refers to datasets that have no clear owner, no quality oversight and no documented lineage. Privacy and data management have drifted apart.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AI system on uncontrolled data</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">An AI system (in production or in development) runs on datasets whose provenance, quality and governance do not hold up. ISO 42001 or a FRIA surfaces this and requires a fix.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Data governance started, then stalled</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">A data governance initiative started some years ago but has remained at presentation level without operational embedding. External reinforcement needed to bring it across the line.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">03 &mdash; Typical engagement shapes</span>
+  <h2 class="sh" style="margin-top:.8rem">Data management <span class="g">is bespoke work</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px;margin-bottom:2rem">Data management does not lend itself to an SKU list. The shape follows from maturity level, organisation size and the bottleneck being addressed. A few typical engagement shapes:</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem">
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Stand up a data governance framework</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Greenfield track: name data owners, assign stewards, design policy and decision-making structure, bring the first data domains under governance. Typically 4&ndash;6 months.</p>
+    </div>
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Data maturity assessment</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Structured scan of the existing data organisation: scorecard per DAMA domain, priorities for the next 12&ndash;24 months, business case for follow-up. Typically 4&ndash;8 weeks.</p>
+    </div>
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">DAMA-DMBOK implementation track</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Selective implementation of the DAMA-DMBOK domains that deliver the most value for your organisation. Not a book translation, but methodological grounding. Typically a multi-year programme with phased planning.</p>
+    </div>
+    <div style="background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);padding:1.5rem;border-radius:8px">
+      <h3 style="font-size:1.05rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Compliance-driven data quality programme</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Programme focused on datasets with direct GDPR or AI Act impact: define quality dimensions, set up measurement cadence, build dashboards and escalation paths. Enables audit trail. Typically 6&ndash;12 months.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">04 &mdash; Approach</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">1. Discovery</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Conversation with business, IT and privacy stakeholders. Locating the pain: GDPR, AI compliance, audit findings, or strategic ambition.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">2. Assessment</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Maturity scoring on the relevant DAMA domains, with scorecard and gap report. Not an open-ended study &mdash; fixed lead time.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">3. Implementation</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Roadmap execution with clear milestones. Steering committee, ownership assigned internally, external reinforcement where capacity falls short.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1rem;font-weight:900;color:var(--wh);margin:0 0 .6rem">4. Embedding</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.93rem">Ongoing monitoring, annual cycle, linkage with privacy and AI governance. External role phases itself out gradually.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">05 &mdash; For whom</span>
+  <h2 class="sh" style="margin-top:.8rem">Organisations where data <span class="g">is the bottleneck</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for organisations where data management is a blocker for GDPR or AI compliance: financial institutions, public sector organisations, critical infrastructure and international corporates with complex data landscapes. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Get data management in order?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. The conversation explores whether an assessment, a framework or a more specific track delivers the most impact.</p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
       <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Book intake &rarr;</a>
       <a href="/en/contact/" class="btn bg">Contact via form</a>
@@ -571,7 +1215,10 @@ def service_body_dpo_en() -> str:
 
 
 SERVICE_BODY_BUILDERS = {
-    "dpo-as-a-service": (service_body_dpo_nl, service_body_dpo_en),
+    "dpo-as-a-service":    (service_body_dpo_nl,      service_body_dpo_en),
+    "avg-compliance":      (service_body_avg_nl,      service_body_avg_en),
+    "ai-act-compliance":   (service_body_aiact_nl,    service_body_aiact_en),
+    "data-management":     (service_body_datamgmt_nl, service_body_datamgmt_en),
 }
 
 
