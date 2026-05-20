@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News and Insights | Privacy, AI Act, GDPR Case Law | DCBS</title>
+<meta name="description" content="Analyses and updates on GDPR, EU AI Act, GDPR case law and data governance. Written by Jeroen Dubach.">
+<meta name="keywords" content="GDPR news, EU AI Act updates, privacy case law, GDPR analyses">
+<meta name="author" content="Jeroen Dubach, The Data Compliance Builders">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.dcbs.nl/en/nieuws/">
+
+<!-- Hreflang -->
+<link rel="alternate" hreflang="nl-NL" href="https://www.dcbs.nl/nieuws/">
+<link rel="alternate" hreflang="en-GB" href="https://www.dcbs.nl/en/nieuws/">
+<link rel="alternate" hreflang="x-default" href="https://www.dcbs.nl/nieuws/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="News | DCBS">
+<meta property="og:description" content="Analyses on GDPR, EU AI Act, case law and data governance.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.dcbs.nl/en/nieuws/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="The Data Compliance Builders">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="News | DCBS">
+<meta name="twitter:description" content="Analyses on GDPR, EU AI Act, case law and data governance.">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
+
+<!-- Stylesheet -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!-- JSON-LD -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "The Data Compliance Builders",
+  "url": "https://www.dcbs.nl",
+  "publisher": {
+    "@type": "ProfessionalService",
+    "name": "The Data Compliance Builders"
+  }
+}
+</script>
+
+<!-- Plausible Analytics (cookieless, EU-hosted) -->
+<script defer data-domain="dcbs.nl" src="https://plausible.io/js/script.js"></script>
+</head>
+<body>
+<nav>
+  <a href="/en/" class="nlogo" style="cursor:pointer;text-decoration:none">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:44px;width:auto;display:block">
+  <defs>
+    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6b6ef5"/>
+      <stop offset="100%" stop-color="#1de9d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="90" height="90" rx="18" fill="url(#lg)"/>
+  <rect class="lb" style="animation-delay:0s"    x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
+  <rect class="lb" style="animation-delay:.18s"  x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
+  <rect class="lb" style="animation-delay:.36s"  x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
+  <rect class="lb" style="animation-delay:.54s"  x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
+  <rect class="lb" style="animation-delay:.72s"  x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
+  <rect class="lb" style="animation-delay:.90s"  x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
+  <rect class="lb" style="animation-delay:1.08s" x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
+  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
+  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
+  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
+</svg>
+  </a>
+
+  <!-- Desktop navigatie -->
+  <div class="nav-inner" style="margin-left:auto;align-items:center;gap:2rem">
+    <div class="nav-links" id="nav-links">
+      <a href="/en/" data-path="/en/">Home</a>
+      <a href="/en/over-ons/" data-path="/en/over-ons/">About Us</a>
+      <a href="/en/diensten/" data-path="/en/diensten/">Services</a>
+      <a href="/en/cases/" data-path="/en/cases/">Cases</a>
+      <a href="/en/nieuws/" data-path="/en/nieuws/">News</a>
+      <a href="/en/contact/" data-path="/en/contact/" class="ncta">Free consult</a>
+    </div>
+    <div class="lang-sw">
+      <button class="lbtn " id="btn-nl" onclick="setLang('nl')">NL</button>
+      <button class="lbtn act" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+
+  <!-- Hamburger knop (mobiel) -->
+  <button class="hamburger" id="hamburger" type="button" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobiel menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/en/" data-path="/en/">Home</a>
+  <a href="/en/over-ons/" data-path="/en/over-ons/">About Us</a>
+  <a href="/en/diensten/" data-path="/en/diensten/">Services</a>
+  <a href="/en/cases/" data-path="/en/cases/">Cases</a>
+  <a href="/en/nieuws/" data-path="/en/nieuws/">News</a>
+  <a href="/en/contact/" data-path="/en/contact/" style="color:var(--tl)">Free consult &rarr;</a>
+  <div class="mob-lang">
+    <button class="lbtn " id="mob-btn-nl" onclick="setLang('nl')">NL</button>
+    <button class="lbtn act" id="mob-btn-en" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<main id="news-content" style="padding-top:72px">
+
+<div class="ph rev">
+  <p class="crumb"><span href="/en/">Home</span> / News</p>
+  <h2>News &amp; <span class="g">Insights</span></h2>
+  <p class="sub">Current analysis of privacy, AI and data regulation by Jeroen Dubach &mdash; founder of The Data Compliance Builders. From the advisory practice, not an ivory tower.</p>
+</div>
+<section class="sec rev">
+  <div class="g3">
+    <div class="nc rev" href="/nieuws/">
+      <span class="ntag tai">AI Compliance</span><div class="ndate">March 2025</div>
+      <h3>AI2027: Superintelligent AI within two years &mdash; are we ready?</h3>
+      <p>The AI2027 scenario describes a plausible path to transformative AI. What are the governance and compliance implications for organisations deploying AI today?</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/vodafone-boete-45-miljoen/">
+      <span class="ntag tpr">Privacy</span><div class="ndate">2025</div>
+      <h3>Record fine for Vodafone Germany: &euro;45 million &mdash; lessons for your compliance programme</h3>
+      <p>One of the largest GDPR fines in Germany&apos;s enforcement history. What went wrong and what concrete steps can your organisation take?</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/fria-fundamental-rights-impact-assessment/">
+      <span class="ntag tai">AI Compliance</span><div class="ndate">2025</div>
+      <h3>AI &amp; Fundamental Rights: a structured approach under the EU AI Act</h3>
+      <p>The EU AI Act requires Fundamental Rights Impact Assessments for certain high-risk AI systems. We explain the FRIA framework and when you need one.</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/">
+      <span class="ntag tpr">Privacy</span><div class="ndate">2025</div>
+      <h3>Seven years of GDPR enforcement in the Netherlands: what have we learned?</h3>
+      <p>Seven years of GDPR enforcement by the Dutch DPA. Which sectors were hit hardest and what does this mean for your compliance programme?</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/">
+      <span class="ntag tai">AI Compliance</span><div class="ndate">2025</div>
+      <h3>When Claude gets bold: turning AI curiosity into governance discipline</h3>
+      <p>An unexpected interaction with Claude reveals something fundamental about AI governance: unpredictable behaviour is exactly why management systems are essential.</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/">
+      <span class="ntag tai">AI Compliance</span><div class="ndate">2024</div>
+      <h3>The risks of Generative AI: what your organisation needs to know</h3>
+      <p>Generative AI tools proliferate in the workplace. We outline the legal, privacy and operational risks &mdash; and how to manage them.</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/ai-literacy-verplichting/">
+      <span class="ntag tai">AI Compliance</span><div class="ndate">2024</div>
+      <h3>AI literacy and prohibited AI practices under the EU AI Act</h3>
+      <p>The EU AI Act introduces an AI literacy obligation alongside a list of prohibited practices. What both mean for your organisation.</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/">
+      <span class="ntag tpr">Privacy</span><div class="ndate">2024</div>
+      <h3>Why the BC 5701 Privacy Seal is essential for data processors</h3>
+      <p>The BC 5701 Privacy Seal has become the market standard for trustworthy data processors. Everything about the seal, requirements and certification process.</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div class="nc rev" href="/nieuws/">
+      <span class="ntag tpr">Privacy</span><div class="ndate">2025</div>
+      <h3>Tesla Robotaxi public pilot launches &mdash; but what about your privacy?</h3>
+      <p>Autonomous vehicles collect unprecedented amounts of data. What does GDPR say about biometric data in public spaces?</p>
+      <span class="nm">Read article &rarr;</span>
+    </div>
+    <div id="custom-news-en"></div>
+  </div>
+</section>
+<footer>
+  <div class="fi">
+    <div class="fb">
+      <div class="fbr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:38px;width:auto;display:block">
+  <defs><linearGradient id="lgf2" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#6b6ef5"/><stop offset="100%" stop-color="#1de9d4"/>
+  </linearGradient></defs>
+  <rect width="90" height="90" rx="18" fill="url(#lgf2)"/>
+  <rect x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
+  <rect x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
+  <rect x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
+  <rect x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
+  <rect x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
+  <rect x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
+  <rect x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
+  <text x="106" y="34" font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
+  <text x="106" y="61" font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
+  <text x="106" y="87" font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
+</svg></div>
+      <p>Independent specialist consultancy for Privacy, AI and Data Management compliance. Based in Utrecht, the Netherlands.</p>
+    </div>
+    <div class="fcol"><h4>Services</h4><ul>
+      <li><a href="/en/diensten/">Privacy Compliance</a></li>
+      <li><a href="/en/diensten/">AI Compliance</a></li>
+      <li><a href="/en/diensten/">Data Management</a></li>
+      <li><a href="/en/diensten/">DPO as a Service</a></li>
+    </ul></div>
+    <div class="fcol"><h4>Company</h4><ul>
+      <li><a href="/en/over-ons/">About Us</a></li>
+      <li><a href="/en/cases/">Cases</a></li>
+      <li><a href="/en/nieuws/">News</a></li>
+      <li><a href="/en/contact/">Contact</a></li>
+      <li><a href="https://calendly.com/dubach-legal/30min" target="_blank">Schedule a Call</a></li>
+    </ul></div>
+    <div class="fcol"><h4>Contact</h4><ul>
+      <li><a href="mailto:contact@dcbs.nl">contact@dcbs.nl</a></li>
+      <li><a href="tel:+31615234409">+31 (0)6 15 23 44 09</a></li>
+      <li><a>Bakemastraat 48, Utrecht</a></li>
+      <li><a>KVK: 66569346</a></li>
+      <li><a href="https://linkedin.com/company/the-data-compliance-builders/" target="_blank">LinkedIn &rarr;</a></li>
+    </ul></div>
+  </div>
+  <div class="fbot">
+    <span class="fcp">&copy; 2025 The Data Compliance Builders B.V. &middot; Utrecht &middot; <a href="/privacybeleid/" style="color:var(--mu);text-decoration:none;cursor:pointer">Privacybeleid</a></span>
+    <span class="fcp">Privacy &amp; AI compliance, built on trust</span>
+  </div>
+</footer>
+</main>
+
+<!-- admin: triple-click bottom-right corner to open --><div id="admin-trigger" style="position:fixed;bottom:0;right:0;width:40px;height:40px;z-index:300;cursor:default"></div>
+<div class="modal-bg" id="modal-bg" onclick="closeAdmin(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-hd">
+      <h3>&#128221; Add new article</h3>
+      <button class="modal-close" onclick="closeAdmin()">&times;</button>
+    </div>
+    <div class="modal-tip">
+      <strong>How does this work?</strong> Fill in the form and click Save. The article appears immediately on the News page. Articles are stored in your browser (localStorage) &mdash; they persist across reloads.
+    </div>
+    <form onsubmit="saveArticle(event)">
+      <div class="fg"><label>Article language (the other language is auto-translated)</label>
+        <select id="a-lang"><option value="en">English</option><option value="nl">Nederlands</option></select>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Category</label>
+          <select id="a-cat">
+            <option value="Privacy">Privacy</option>
+            <option value="AI Compliance">AI Compliance</option>
+            <option value="Data Management">Data Management</option>
+          </select>
+        </div>
+        <div class="fg"><label>Date</label><input id="a-date" type="text" placeholder="e.g. March 2026" required></div>
+      </div>
+      <div class="fg"><label>Title</label><input id="a-title" type="text" placeholder="Article title" required></div>
+      <div class="fg">
+        <label>LinkedIn URL <span style="font-weight:400;color:var(--mu);font-size:.8rem">(optional — link to LinkedIn post)</span></label>
+        <input type="url" id="a-li" placeholder="https://www.linkedin.com/posts/the-data-compliance-builders-...">
+      </div>
+      <div class="fg"><label>Summary (short, shown on the news overview)</label>
+        <textarea id="a-exc" style="min-height:80px" placeholder="Short summary..." required></textarea>
+      </div>
+      <div class="fg"><label>Full text (separate paragraphs with a blank line)</label>
+        <textarea id="a-body" style="min-height:200px" placeholder="Write the full article here..."></textarea>
+      </div>
+      <button class="btn bp" type="submit">Save article &rarr;</button>
+    </form>
+  </div>
+</div>
+
+<div id="cookie-banner" role="dialog" aria-label="Cookie notice">
+  <p>We don't use tracking or advertising cookies. Only functionally necessary cookies for the website to operate. <a href="/en/privacy-statement/" style="cursor:pointer">More information</a></p>
+  <div class="cookie-btns">
+    <button class="cookie-decline" onclick="cookieDecline()">Only necessary</button>
+    <button class="cookie-accept" onclick="cookieAccept()">Accept</button>
+  </div>
+</div>
+
+<script src="/assets/js/main.js" defer></script>
+<script src="/assets/js/nieuws-form.js" defer></script>
+</body>
+</html>
