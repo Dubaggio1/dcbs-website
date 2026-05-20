@@ -51,6 +51,7 @@ PAGES = [
         "keywords": "diensten DCBS, AVG advies, DPO uitbesteden, EU AI Act consultancy, data governance Nederland",
         "og_title": "Diensten | DCBS",
         "og_description": "Privacy, DPO, EU AI Act en data management — vier expertisegebieden.",
+        "inject_hub_cards": True,
     },
     {
         "url": "/cases/", "lang": NL, "template": "cases",
@@ -112,6 +113,7 @@ PAGES = [
         "keywords": "DCBS services, GDPR advice, outsource DPO, EU AI Act consultancy, data governance Netherlands",
         "og_title": "Services | DCBS",
         "og_description": "Privacy, DPO, EU AI Act and data management — four areas of expertise.",
+        "inject_hub_cards": True,
     },
     {
         "url": "/en/cases/", "lang": EN, "template": "en-cases",
@@ -879,7 +881,7 @@ def service_body_aiact_nl() -> str:
 <section class="sec rev">
   <span class="ew">05 &mdash; Voor wie</span>
   <h2 class="sh" style="margin-top:.8rem">Organisaties die <span class="g">AI inzetten of leveren</span></h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor organisaties met AI-systemen in productie of pijplijn: financi&euml;le instellingen, (semi-)publieke organisaties, kritieke infrastructuur en internationale corporates. AI-aanbieders en AI-deployers met verplichtingen onder de EU AI Act vinden hier de combinatie van juridische analyse en operationele implementatie. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor organisaties met AI-systemen in productie of pijplijn: financi&euml;le instellingen, (semi-)publieke organisaties, organisaties met AI in klantprocessen, en internationale corporates. AI-aanbieders en AI-deployers met verplichtingen onder de EU AI Act vinden hier de combinatie van juridische analyse en operationele implementatie. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
 </section>
 
 <section class="sec rev2" style="padding-bottom:5rem">
@@ -973,7 +975,7 @@ def service_body_aiact_en() -> str:
 <section class="sec rev">
   <span class="ew">05 &mdash; For whom</span>
   <h2 class="sh" style="margin-top:.8rem">Organisations that <span class="g">deploy or supply AI</span></h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for organisations with AI systems in production or in the pipeline: financial institutions, public sector organisations, critical infrastructure and international corporates. AI providers and AI deployers with obligations under the EU AI Act find here the combination of legal analysis and operational implementation. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for organisations with AI systems in production or in the pipeline: financial institutions, (semi-)public sector organisations, organisations deploying AI in customer-facing processes, and international corporates. AI providers and AI deployers with obligations under the EU AI Act find here the combination of legal analysis and operational implementation. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
 </section>
 
 <section class="sec rev2" style="padding-bottom:5rem">
@@ -1220,6 +1222,122 @@ SERVICE_BODY_BUILDERS = {
     "ai-act-compliance":   (service_body_aiact_nl,    service_body_aiact_en),
     "data-management":     (service_body_datamgmt_nl, service_body_datamgmt_en),
 }
+
+
+# ─────────────────────────────────────────────────────────────────────
+#  HUB CARDS (Phase 5)
+# ─────────────────────────────────────────────────────────────────────
+# 4-kaart grid voor /diensten/ en /en/diensten/. Bevat link naar elk
+# van de vier dienst-sub-pagina's. Wordt geinjecteerd ná de .ph header
+# van het bestaande P[diensten]-template — zonder de rest van de hub
+# (uitgebreide service-secties) te wijzigen.
+
+# Samenvattingen zijn .sub paragraphs uit de eigen dienst-sub-pagina's
+# (Phase 4a/4b) — NIET verzonnen.
+
+DIENSTEN_HUB_CARDS_NL = [
+    {
+        "url": "/diensten/dpo-as-a-service/",
+        "title": "Externe DPO en Interim FG",
+        "summary": "Een onafhankelijke DPO die uw organisatie kent &mdash; direct operationeel, zonder consultancy-trechter. Voor mkb, corporates en (semi-)publieke organisaties.",
+        "cta": "Meer over Externe DPO",
+    },
+    {
+        "url": "/diensten/avg-compliance/",
+        "title": "AVG Compliance, DPIA's en BC 5701",
+        "summary": "Aantoonbare AVG-compliance &mdash; niet alleen op papier, ook in de praktijk. Audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-trajecten.",
+        "cta": "Meer over AVG Compliance",
+    },
+    {
+        "url": "/diensten/ai-act-compliance/",
+        "title": "EU AI Act en AI Governance",
+        "summary": "Risicoclassificatie van AI-systemen, AI governance frameworks, FRIA-impactbeoordelingen en ISO 42001-implementatie. Praktisch en juridisch onderbouwd.",
+        "cta": "Meer over EU AI Act",
+    },
+    {
+        "url": "/diensten/data-management/",
+        "title": "Data Management en Data Governance",
+        "summary": "De brug tussen privacy en AI compliance. Data governance frameworks, datavolwassenheidsassessments en data quality management volgens DAMA-DMBOK.",
+        "cta": "Meer over Data Management",
+    },
+]
+
+DIENSTEN_HUB_CARDS_EN = [
+    {
+        "url": "/en/diensten/dpo-as-a-service/",
+        "title": "External DPO and Interim DPO",
+        "summary": "An independent DPO who actually knows your organisation &mdash; operational from day one, no consultancy funnel. For SMEs, corporates and public sector organisations.",
+        "cta": "More on External DPO",
+    },
+    {
+        "url": "/en/diensten/gdpr-compliance/",
+        "title": "GDPR Compliance, DPIAs and BC 5701",
+        "summary": "Demonstrable GDPR compliance &mdash; not just on paper, but in practice. Audits, DPIAs, processing records, breach procedures and BC 5701 certification.",
+        "cta": "More on GDPR Compliance",
+    },
+    {
+        "url": "/en/diensten/ai-act-compliance/",
+        "title": "EU AI Act and AI Governance",
+        "summary": "AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.",
+        "cta": "More on EU AI Act",
+    },
+    {
+        "url": "/en/diensten/data-management/",
+        "title": "Data Management and Data Governance",
+        "summary": "The bridge between privacy and AI compliance. Data governance frameworks, data maturity assessments and data quality management along DAMA-DMBOK.",
+        "cta": "More on Data Management",
+    },
+]
+
+
+def build_hub_cards_grid(lang: str) -> str:
+    """Build 4-card grid HTML — invoegen tussen .ph en eerste .sec van
+    de hub-pagina. Hergebruikt .sc/.sct/.scb visual identity."""
+    cards = DIENSTEN_HUB_CARDS_NL if lang == NL else DIENSTEN_HUB_CARDS_EN
+    eyebrow = "Overzicht" if lang == NL else "Overview"
+    heading = "Vier expertisegebieden" if lang == NL else "Four areas of expertise"
+    intro = (
+        "Klik door naar de specifieke dienst voor entry-, exit- en deliverable-details."
+        if lang == NL
+        else "Click through to a specific service for entry, exit and deliverable details."
+    )
+    cards_html = []
+    for i, c in enumerate(cards, start=1):
+        cards_html.append(
+            f"""    <a href="{c['url']}" class="sc" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:8px;cursor:pointer;transition:border-color .2s">
+      <div class="scn" style="font-size:.78rem;color:var(--mu);letter-spacing:.1em">0{i}</div>
+      <h3 class="sct" style="font-size:1.15rem;font-weight:900;color:var(--wh);margin:0;line-height:1.3">{c['title']}</h3>
+      <p class="scb" style="color:var(--bd);line-height:1.7;font-size:.93rem;margin:0;flex:1">{c['summary']}</p>
+      <span style="color:var(--tl);font-weight:700;font-size:.85rem;letter-spacing:.04em;margin-top:.4rem">{c['cta']} &rarr;</span>
+    </a>"""
+        )
+    cards_block = "\n".join(cards_html)
+    return f"""
+<section class="sec rev2" id="dienst-overzicht">
+  <span class="ew">{eyebrow}</span>
+  <h2 class="sh" style="margin-top:.8rem">{heading}</h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">{intro}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:2.5rem">
+{cards_block}
+  </div>
+</section>
+"""
+
+
+def inject_hub_cards(body_html: str, lang: str) -> str:
+    """Plaats hub-card-grid direct ná de <div class="ph"> sectie.
+
+    De .ph wrapper is altijd het eerste element van een hub-page body
+    (breadcrumb + h2 + sub). We zoeken de close `</div>` van die eerste
+    .ph en injecteren de grid daarna.
+    """
+    # Match: <div class="ph ..."> ... </div>  (eerste voorkomen, non-greedy)
+    pattern = re.compile(
+        r'(<div class="ph[^"]*"[^>]*>[\s\S]*?</div>)',
+        re.IGNORECASE,
+    )
+    grid = build_hub_cards_grid(lang)
+    return pattern.sub(lambda m: m.group(1) + grid, body_html, count=1)
 
 
 def build_service_pages() -> list[dict]:
@@ -1774,6 +1892,9 @@ def build_page(cfg: dict) -> str:
         # EN-stub: prepend Engelse samenvatting + disclaimer voor NL-template
         if cfg.get("en_stub_prefix"):
             body_html = cfg["en_stub_prefix"] + body_html
+        # Hub-cards injection: 4-kaart grid na de .ph header sectie
+        if cfg.get("inject_hub_cards"):
+            body_html = inject_hub_cards(body_html, lang)
 
     # JSON-LD: homepage krijgt ProfessionalService
     is_home = url in ("/", "/en/")
