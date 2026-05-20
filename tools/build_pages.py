@@ -169,6 +169,11 @@ HREFLANG_PAIRS = {
     "/nieuws/zeven-jaar-avg-handhaving-nederland/":    "/en/nieuws/zeven-jaar-avg-handhaving-nederland/",
     "/nieuws/ai2027-superintelligente-ai/":            "/en/nieuws/ai2027-superintelligente-ai/",
     "/nieuws/bc-5701-privacy-keurmerk/":               "/en/nieuws/bc-5701-privacy-keurmerk/",
+    # Service landing pages (phase 4)
+    "/diensten/dpo-as-a-service/":                     "/en/diensten/dpo-as-a-service/",
+    "/diensten/avg-compliance/":                       "/en/diensten/gdpr-compliance/",
+    "/diensten/ai-act-compliance/":                    "/en/diensten/ai-act-compliance/",
+    "/diensten/data-management/":                      "/en/diensten/data-management/",
 }
 
 # ─────────────────────────────────────────────────────────────────────
@@ -349,6 +354,267 @@ ARTICLES = [
         ),
     },
 ]
+
+
+# ─────────────────────────────────────────────────────────────────────
+#  SERVICE PAGES (Phase 4)
+# ─────────────────────────────────────────────────────────────────────
+# Vier nieuwe dienst-landingspagina's. Body wordt als raw HTML doorgegeven
+# (geen P[key] template; geschreven direct in deze file). Visual identity
+# blijft consistent: hergebruikt .ph/.sec/.svc-grid/.sc-card classes uit
+# bestaande /diensten/ pagina.
+
+SERVICE_PAGES_DATA = [
+    # ── 1. DPO as a Service ──────────────────────────────────────────
+    {
+        "slug": "dpo-as-a-service",
+        "nl_slug_path": "/diensten/dpo-as-a-service/",
+        "en_slug_path": "/en/diensten/dpo-as-a-service/",
+        "nl_title": "Externe DPO en Interim Functionaris Gegevensbescherming | DCBS Utrecht",
+        "nl_desc": "Externe DPO of interim Functionaris Gegevensbescherming nodig? DCBS levert ervaren privacy officers voor mkb, corporates en (semi-)publieke organisaties. Pragmatisch, onafhankelijk, aantoonbaar compliant.",
+        "nl_keywords": "externe DPO, interim DPO, externe Functionaris Gegevensbescherming, DPO as a service, FG inhuren, privacy officer extern, DPO uitbesteden mkb, interim functionaris gegevensbescherming",
+        "en_title": "External DPO and Interim Data Protection Officer | DCBS Netherlands",
+        "en_desc": "External DPO or interim Data Protection Officer needed? DCBS delivers experienced privacy officers for SMEs, corporates and public sector organisations in the Netherlands. Pragmatic, independent, demonstrably compliant.",
+        "en_keywords": "external DPO, interim DPO, external Data Protection Officer, DPO as a service, hire a DPO, external privacy officer, outsource DPO SME, interim Data Protection Officer",
+        "service_type_nl": "DPO as a Service",
+        "service_type_en": "DPO as a Service",
+    },
+]
+
+
+def service_body_dpo_nl() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/diensten/" style="color:var(--mu);text-decoration:none">Diensten</a> / Externe DPO</p>
+  <h2>Externe DPO en Interim <span class="g">Functionaris Gegevensbescherming</span></h2>
+  <p class="sub">Een onafhankelijke DPO die uw organisatie kent &mdash; direct operationeel, zonder consultancy-trechter. Voor mkb, corporates en (semi-)publieke organisaties.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">Een Functionaris Gegevensbescherming (FG) &mdash; ook wel Data Protection Officer (DPO) &mdash; is voor veel organisaties wettelijk verplicht onder de AVG. Maar de functie intern beleggen is vaak duur en de juiste expertise is schaars. DCBS levert een <strong>externe DPO</strong> of <strong>interim FG</strong> die direct operationeel inzetbaar is, met ervaring bij toezichthouders, gemeentes, nutsbedrijven en private organisaties.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">Onze externe DPO werkt vanuit volledige onafhankelijkheid, zoals de AVG voorschrijft. U krijgt geen consultancy-trechter met juniors, maar &eacute;&eacute;n vast aanspreekpunt dat uw organisatie kent &mdash; en blijft kennen, ook als de samenstelling van uw team verandert.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; Wat het inhoudt</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">Wat een <span class="g">externe DPO</span> levert</h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Volwaardige FG-vervulling: signalerend, adviserend, toezichthoudend &mdash; en als enige escalatiepad naar de Autoriteit Persoonsgegevens. Schaalbaar van enkele uren per maand tot vaste aanwezigheid.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" style="cursor:default"><div class="sct">DPO-vervulling met volledige onafhankelijkheid</div><p class="scb">Externe DPO-rol conform AVG artikel 38: onafhankelijk, niet ge&iuml;nstrueerd door management, met directe escalatielijn naar de hoogste leiding van uw organisatie.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Interim FG bij overbrugging</div><p class="scb">Interim functionaris gegevensbescherming tijdens werving, langdurige afwezigheid of reorganisatie. Direct inzetbaar, zonder onboarding-traject van drie maanden.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Privacy officer extern voor signalering</div><p class="scb">Wekelijkse aanwezigheid voor advies aan project- en lijnmanagers, review van nieuwe verwerkingen, monitoring van datalekafhandeling en beoordeling van DPIA-uitkomsten.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">DPO uitbesteden mkb &mdash; flexibel</div><p class="scb">Van &eacute;&eacute;n dagdeel per maand tot drie dagen per week. Voor mkb-organisaties die wel verplicht zijn een DPO te benoemen, maar nog niet de schaal hebben voor een fulltime functie.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Kennisdeling en escalatielijn AP</div><p class="scb">Doorlopende kennisoverdracht aan uw interne privacyteam. Vast contactpunt voor de Autoriteit Persoonsgegevens bij vragen, klachten of inspecties.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; Wanneer DCBS voor u relevant is</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Wettelijke DPO-plicht niet ingevuld</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">U bent een (semi-)publieke organisatie of een bedrijf dat structureel grootschalige verwerkingen of bijzondere categorie&euml;n verwerkt. Een DPO is verplicht onder AVG artikel 37, maar nog niet aangesteld &mdash; of de aanstelling voldoet niet aan de onafhankelijkheidsvereiste.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Overdracht na vertrek FG</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Uw FG vertrekt en de werving van een opvolger duurt drie tot zes maanden. In de tussentijd moet de DPO-functie operationeel blijven: verwerkingsregister bijgehouden, DPIA-reviews uitgevoerd, datalekafhandeling onveranderd.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Capaciteitspiek of complex traject</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Uw interne FG heeft te maken met een uitzonderlijke piek: implementatie van een nieuw kernsysteem, AI-rollout, AVG-handhavingstraject door de AP, of een complex datalek met bestuurlijke impact. Externe versterking voor specifieke fase.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <span class="ew">03 &mdash; Wat u krijgt</span>
+      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
+      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
+        <li style="margin-bottom:.6rem">Operationeel inzetbare DPO of FG binnen vijf werkdagen</li>
+        <li style="margin-bottom:.6rem">&Eacute;&eacute;n vast aanspreekpunt &mdash; geen wisselende juniors</li>
+        <li style="margin-bottom:.6rem">Jaarplan met prioriteiten en kwartaalrapportages aan directie</li>
+        <li style="margin-bottom:.6rem">Verwerkingsregister bijgehouden, datalekprotocol getest, DPIA-overzicht actueel</li>
+        <li style="margin-bottom:.6rem">Adviesnotities en escalatielijn richting Autoriteit Persoonsgegevens</li>
+        <li>Vaste maandprijs &mdash; geen verrassende uurtjes-factuurtjes</li>
+      </ul>
+    </div>
+    <div>
+      <span class="ew">04 &mdash; Werkwijze</span>
+      <h2 class="sh" style="margin-top:.8rem">Vier <span class="g">stappen</span></h2>
+      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Intake &amp; nulmeting</strong> &mdash; gesprek met opdrachtgever en huidige privacy-stakeholders. Beoordeling van de stand van verwerkingsregister, DPIA-archief, datalekprocedure en lopende AP-zaken.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Onboarding &amp; overdracht</strong> &mdash; toegang tot relevante systemen, kennismaking met sleutelpersonen, formalisering van de DPO-aanstelling en aanmelding bij de Autoriteit Persoonsgegevens.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Operationele DPO-fase</strong> &mdash; vaste werkritme: wekelijkse aanwezigheid, maandelijkse rapportage aan directie, kwartaalreview van risico's. Direct escaleerbaar bij incidenten.</li>
+        <li><strong style="color:var(--wh)">Rapportage &amp; doorontwikkeling</strong> &mdash; jaarrapportage aan directie en RvT. Doorlopende verbetering van privacy-managementsysteem; afbouw of opvolging bij interne aanstelling.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">05 &mdash; Recent uitgevoerd voor</span>
+  <h2 class="sh" style="margin-top:.8rem">DPO- en FG-opdrachten in <span class="g">de praktijk</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS heeft externe DPO- en interim FG-rollen ingevuld bij (semi-)publieke organisaties, gemeentes, nutsbedrijven, financi&euml;le dienstverleners en internationale corporates. Een aantal recent zichtbare opdrachten: <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Gemeente Amsterdam</a>, <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Evides Waterbedrijf</a>, <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Athlon</a> en <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">SCOR</a>. Voor de volledige praktijkbeschrijvingen: zie de <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">cases-pagina</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Externe DPO inzetten?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. Wij beoordelen of er een match is, en zo ja, hoe een externe DPO of interim FG-traject er voor uw organisatie uit zou kunnen zien.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Plan kennismaking &rarr;</a>
+      <a href="/contact/" class="btn bg">Contact via formulier</a>
+    </div>
+  </div>
+</section>"""
+
+
+def service_body_dpo_en() -> str:
+    return """<div class="ph rev">
+  <p class="crumb"><a href="/en/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/en/diensten/" style="color:var(--mu);text-decoration:none">Services</a> / External DPO</p>
+  <h2>External DPO and Interim <span class="g">Data Protection Officer</span></h2>
+  <p class="sub">An independent DPO who actually knows your organisation &mdash; operational from day one, no consultancy funnel. For SMEs, corporates and public sector organisations.</p>
+</div>
+
+<section class="sec rev">
+  <div style="max-width:780px">
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">A Data Protection Officer (DPO) &mdash; in Dutch &lsquo;Functionaris Gegevensbescherming&rsquo; or FG &mdash; is legally required under the GDPR for many organisations. Filling the role internally is often expensive, and the right expertise is scarce. DCBS delivers an <strong>external DPO</strong> or <strong>interim Data Protection Officer</strong> who is operational from day one, with experience at supervisory authorities, municipalities, utilities and private organisations.</p>
+    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">Our external DPO operates with the full independence the GDPR requires. You don't get a consultancy funnel staffed with juniors, but a single point of contact who actually learns your organisation &mdash; and stays with you, even when your internal team changes.</p>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <span class="ew">01 &mdash; What it covers</span>
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+    <div>
+      <h2 class="sh">What an <span class="g">external DPO</span> delivers</h2>
+      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Full DPO function: signalling, advising, supervising &mdash; with a direct escalation route to the Dutch Data Protection Authority. Scalable from a few hours per month to a continuous presence.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
+      <div class="sc" style="cursor:default"><div class="sct">DPO role with full independence</div><p class="scb">External DPO under GDPR Article 38: independent, not instructed by management, with a direct escalation line to the highest level of your organisation.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Interim DPO for bridging</div><p class="scb">Interim Data Protection Officer during recruitment, prolonged absence or reorganisation. Operational immediately, no three-month onboarding.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">External privacy officer for signalling</div><p class="scb">Weekly presence advising project and line managers, reviewing new processing activities, monitoring breach handling and assessing DPIA outcomes.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Outsource DPO for SMEs &mdash; flexible</div><p class="scb">From one half-day per month to three days per week. For SMEs that are legally required to appoint a DPO but don't yet have the scale for a full-time role.</p></div>
+      <div class="sc" style="cursor:default"><div class="sct">Knowledge sharing &amp; supervisory contact</div><p class="scb">Continuous knowledge transfer to your internal privacy team. Permanent contact point for the Dutch DPA on inquiries, complaints or inspections.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">02 &mdash; When DCBS is relevant to you</span>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Statutory DPO requirement unmet</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">You are a public sector organisation or a company that structurally processes data at scale or processes special categories. A DPO is required under GDPR Article 37 but has not yet been appointed &mdash; or the existing appointment does not meet the independence requirement.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Handover after DPO departure</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Your DPO is leaving and recruiting a successor takes three to six months. In the interim the DPO function must remain operational: processing records maintained, DPIA reviews completed, breach handling uninterrupted.</p>
+    </div>
+    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
+      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Capacity peak or complex programme</h3>
+      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Your internal DPO faces an exceptional peak: implementation of a new core system, AI rollout, GDPR enforcement track by the supervisory authority, or a complex breach with board-level impact. External reinforcement for a defined phase.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev2">
+  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
+    <div>
+      <span class="ew">03 &mdash; What you get</span>
+      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
+      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
+        <li style="margin-bottom:.6rem">Operational DPO or interim DPO within five working days</li>
+        <li style="margin-bottom:.6rem">One permanent point of contact &mdash; no rotating juniors</li>
+        <li style="margin-bottom:.6rem">Annual plan with priorities and quarterly board reports</li>
+        <li style="margin-bottom:.6rem">Processing records maintained, breach protocol tested, DPIA register current</li>
+        <li style="margin-bottom:.6rem">Advisory notes and escalation route to the supervisory authority</li>
+        <li>Fixed monthly fee &mdash; no surprise hourly invoices</li>
+      </ul>
+    </div>
+    <div>
+      <span class="ew">04 &mdash; Approach</span>
+      <h2 class="sh" style="margin-top:.8rem">Four <span class="g">steps</span></h2>
+      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Intake &amp; baseline</strong> &mdash; conversation with the client and current privacy stakeholders. Assessment of processing records, DPIA archive, breach procedure and any pending supervisory matters.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Onboarding &amp; handover</strong> &mdash; access to relevant systems, introductions to key people, formalisation of the DPO appointment and registration with the Dutch DPA.</li>
+        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Operational DPO phase</strong> &mdash; fixed rhythm: weekly presence, monthly board reporting, quarterly risk review. Direct escalation in case of incidents.</li>
+        <li><strong style="color:var(--wh)">Reporting &amp; continuous improvement</strong> &mdash; annual report to board and supervisory board. Ongoing improvement of the privacy management system; phase-out or handover on internal appointment.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec rev">
+  <span class="ew">05 &mdash; Recent engagements</span>
+  <h2 class="sh" style="margin-top:.8rem">DPO and interim DPO engagements <span class="g">in practice</span></h2>
+  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS has filled external DPO and interim DPO roles at public sector organisations, municipalities, utilities, financial services firms and international corporates. Recent visible engagements include <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">City of Amsterdam</a>, <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Evides Waterbedrijf</a>, <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">Athlon</a> and <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">SCOR</a>. Full case descriptions on the <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">cases page</a>.</p>
+</section>
+
+<section class="sec rev2" style="padding-bottom:5rem">
+  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
+    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Engage an external DPO?</h2>
+    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. We assess whether there is a match and, if so, what an external DPO or interim DPO engagement could look like for your organisation.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp">Book intake &rarr;</a>
+      <a href="/en/contact/" class="btn bg">Contact via form</a>
+    </div>
+  </div>
+</section>"""
+
+
+SERVICE_BODY_BUILDERS = {
+    "dpo-as-a-service": (service_body_dpo_nl, service_body_dpo_en),
+}
+
+
+def build_service_pages() -> list[dict]:
+    """Page-configs voor de vier nieuwe dienst-landingspagina's.
+
+    Phase 4 iteratie: alleen pagina's met body-builders in
+    SERVICE_BODY_BUILDERS worden gegenereerd. Rest blijft pending tot
+    user-bevestiging na review van pagina 1.
+    """
+    out: list[dict] = []
+    for entry in SERVICE_PAGES_DATA:
+        slug = entry["slug"]
+        if slug not in SERVICE_BODY_BUILDERS:
+            continue
+        nl_body, en_body = SERVICE_BODY_BUILDERS[slug]
+        # NL
+        out.append({
+            "url": entry["nl_slug_path"], "lang": NL,
+            "template": None,
+            "body_html_raw": nl_body(),
+            "title": entry["nl_title"],
+            "description": entry["nl_desc"],
+            "keywords": entry["nl_keywords"],
+            "og_title": entry["nl_title"].split(" | ")[0],
+            "og_description": entry["nl_desc"][:200],
+            "service_type": entry["service_type_nl"],
+            "service_page": True,
+        })
+        # EN
+        out.append({
+            "url": entry["en_slug_path"], "lang": EN,
+            "template": None,
+            "body_html_raw": en_body(),
+            "title": entry["en_title"],
+            "description": entry["en_desc"],
+            "keywords": entry["en_keywords"],
+            "og_title": entry["en_title"].split(" | ")[0],
+            "og_description": entry["en_desc"][:200],
+            "service_type": entry["service_type_en"],
+            "service_page": True,
+        })
+    return out
 
 
 def build_article_pages() -> list[dict]:
@@ -851,13 +1117,16 @@ def build_page(cfg: dict) -> str:
     og_locale = "nl_NL" if lang == NL else "en_GB"
     robots = cfg.get("robots", "index, follow")
 
-    # Body content uit template (go-links vertaald, embedded footer gestript)
-    body_html = transform_go_links(TEMPLATES[cfg["template"]])
-    body_html = strip_embedded_footer(body_html)
-    body_html = strip_breadcrumb_articles_only(body_html)
-    # EN-stub: prepend Engelse samenvatting + disclaimer voor de NL-template-body
-    if cfg.get("en_stub_prefix"):
-        body_html = cfg["en_stub_prefix"] + body_html
+    # Body content uit template OF raw HTML (voor service pages)
+    if cfg.get("body_html_raw"):
+        body_html = cfg["body_html_raw"]
+    else:
+        body_html = transform_go_links(TEMPLATES[cfg["template"]])
+        body_html = strip_embedded_footer(body_html)
+        body_html = strip_breadcrumb_articles_only(body_html)
+        # EN-stub: prepend Engelse samenvatting + disclaimer voor NL-template
+        if cfg.get("en_stub_prefix"):
+            body_html = cfg["en_stub_prefix"] + body_html
 
     # JSON-LD: homepage krijgt ProfessionalService
     is_home = url in ("/", "/en/")
@@ -867,6 +1136,28 @@ def build_page(cfg: dict) -> str:
         jsonld_blocks.append(
             '<script type="application/ld+json">\n' +
             json.dumps(ps, ensure_ascii=False, indent=2) +
+            '\n</script>'
+        )
+
+    # Service JSON-LD voor dienst-landingspagina's
+    if cfg.get("service_page"):
+        service_jsonld = {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": cfg["og_title"],
+            "provider": {
+                "@type": "ProfessionalService",
+                "name": "The Data Compliance Builders",
+                "url": "https://www.dcbs.nl",
+            },
+            "areaServed": {"@type": "Country", "name": "Netherlands"},
+            "serviceType": cfg.get("service_type", ""),
+            "description": cfg["description"],
+            "url": canonical,
+        }
+        jsonld_blocks.append(
+            '<script type="application/ld+json">\n' +
+            json.dumps(service_jsonld, ensure_ascii=False, indent=2) +
             '\n</script>'
         )
 
@@ -989,7 +1280,7 @@ def build_page(cfg: dict) -> str:
 # ─────────────────────────────────────────────────────────────────────
 
 def main() -> None:
-    all_pages = list(PAGES) + build_article_pages()
+    all_pages = list(PAGES) + build_article_pages() + build_service_pages()
     for cfg in all_pages:
         url = cfg["url"]
         # Bepaal output-pad
