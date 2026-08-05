@@ -1,291 +1,140 @@
 <!DOCTYPE html>
-<html lang="nl-NL">
+<html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AVG Compliance, DPIA's en BC 5701 Certificering | DCBS</title>
-<meta name="description" content="AVG-audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-certificeringstrajecten. DCBS bouwt aantoonbare AVG-compliance — niet alleen op papier, ook in de praktijk.">
-<meta name="keywords" content="AVG consultancy, AVG advies bedrijf, privacy compliance advies, privacy audit, DPIA uitvoeren, DPIA privacy impact assessment, datalek meldprocedure, verwerkingsregister opstellen, privacybeleid opstellen, Autoriteit Persoonsgegevens advies, BC 5701 certificering, BC 5701 implementatie, BC 5701 gap analyse">
-<meta name="author" content="Jeroen Dubach, The Data Compliance Builders">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<title>AVG compliance & privacy consultant | DPIA, audits, BC 5701 | DCBS</title>
+<meta name="description" content="Privacy-managementsysteem, DPIA's, AVG-audits, vendor assessments en BC 5701-certificering. Senior privacy consultant — o.a. interim DPO bij de AFM. Gratis kennismakingsgesprek.">
 <link rel="canonical" href="https://www.dcbs.nl/diensten/avg-compliance/">
-
-<!-- Hreflang -->
-<link rel="alternate" hreflang="nl-NL" href="https://www.dcbs.nl/diensten/avg-compliance/">
-<link rel="alternate" hreflang="en-GB" href="https://www.dcbs.nl/en/diensten/gdpr-compliance/">
-<link rel="alternate" hreflang="x-default" href="https://www.dcbs.nl/diensten/avg-compliance/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="AVG Compliance, DPIA's en BC 5701 Certificering">
-<meta property="og:description" content="AVG-audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-certificeringstrajecten. DCBS bouwt aantoonbare AVG-compliance — niet alleen op papier, ook in de praktijk.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dcbs.nl/diensten/avg-compliance/">
-<meta property="og:locale" content="nl_NL">
+<link rel="icon" type="image/png" href="/assets/dcbs-logo.png">
 <meta property="og:site_name" content="The Data Compliance Builders">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AVG Compliance, DPIA's en BC 5701 Certificering">
-<meta name="twitter:description" content="AVG-audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-certificeringstrajecten. DCBS bouwt aantoonbare AVG-compliance — niet alleen op papier, ook in de praktijk.">
-
-<!-- Icons -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-
-<!-- Stylesheet -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "AVG Compliance, DPIA's en BC 5701 Certificering",
-  "provider": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders",
-    "url": "https://www.dcbs.nl"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Netherlands"
-  },
-  "serviceType": "AVG / GDPR Compliance",
-  "description": "AVG-audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-certificeringstrajecten. DCBS bouwt aantoonbare AVG-compliance — niet alleen op papier, ook in de praktijk.",
-  "url": "https://www.dcbs.nl/diensten/avg-compliance/"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Data Compliance Builders",
-  "url": "https://www.dcbs.nl",
-  "publisher": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders"
+<meta property="og:title" content="Privacy compliance (AVG/GDPR) | DCBS">
+<meta property="og:image" content="https://www.dcbs.nl/assets/dcbs-logo.png">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#FBFAF7;color:#14181A;font-family:'Archivo',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#0E5654;text-decoration:none}
+  a:hover{color:#0A3937}
+  image-slot{max-width:100%}
+  @media (max-width:1100px){
+    body>div,body>header,body>footer{padding-left:40px!important;padding-right:40px!important}
   }
-}
-</script>
+  @media (max-width:920px){
+    header{height:auto!important;flex-wrap:wrap;gap:14px;padding-top:16px!important;padding-bottom:16px!important}
+    header nav{flex-wrap:wrap;gap:14px 22px!important}
+    div[style*="grid-template-columns"],a[style*="grid-template-columns"],form>div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    a[style*="justify-content:space-between"][style*="baseline"]{flex-wrap:wrap}
+    h1{font-size:clamp(40px,9vw,58px)!important}
+    h2{font-size:clamp(28px,6.5vw,40px)!important}
+    div[style*="columns:2"]{columns:1!important}
+  }
+  @media (max-width:640px){
+    body>div,body>header,body>footer{padding-left:20px!important;padding-right:20px!important}
+    h1{font-size:clamp(34px,10vw,44px)!important}
+    div[style*="min-height:420px"]{min-height:300px!important}
+  }
 
-<!-- Plausible Analytics (cookieless, EU-hosted) -->
-<script defer data-domain="dcbs.nl" src="https://plausible.io/js/script.js"></script>
+</style>
+<style>
+a.hv-base{}
+.hv1:hover{color:#FBFAF7 !important}
+.hv2:hover{color:#B7D8D3 !important}
+.hv3:hover{background:#FFFFFF !important;color:#0A3937 !important}
+.hv4:hover{color:#FFFFFF !important;border-bottom:1px solid #FFFFFF !important}
+.hv5:hover{background:#0E5654 !important;color:#FBFAF7 !important}
+.hv6:hover{color:#0E5654 !important}
+.hv7:hover{color:#0A3937 !important;border-bottom:1px solid #0A3937 !important}
+.hv8:hover{color:#8FBAB5 !important}
+.hv9:hover{color:#14181A !important}
+.hv10:hover{background:#0A3937 !important;color:#FBFAF7 !important}
+.hv11:hover{background:#F3F1EA !important;color:#0E5654 !important}
+.nieuwsrij:hover, .nieuwsrij:hover span{color:#0E5654!important}
+</style>
+<script src="/site.js" defer></script>
 </head>
 <body>
-<nav>
-  <a href="/" class="nlogo" style="cursor:pointer;text-decoration:none">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:44px;width:auto;display:block">
-  <defs>
-    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6b6ef5"/>
-      <stop offset="100%" stop-color="#1de9d4"/>
-    </linearGradient>
-  </defs>
-  <rect width="90" height="90" rx="18" fill="url(#lg)"/>
-  <rect class="lb" style="animation-delay:0s"    x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.18s"  x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.36s"  x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.54s"  x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.72s"  x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.90s"  x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:1.08s" x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg>
+<header style="display:flex;align-items:center;justify-content:space-between;height:84px;padding:0 72px;border-bottom:1px solid #E2DFD6">
+  <a href="/" style="display:flex;align-items:center;gap:14px;color:#14181A" class="hv9">
+    <img src="/assets/dcbs-logo.png" alt="DCBS" style="height:36px;width:36px;flex:none">
+    <span style="font-size:10.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#8E938F">The Data Compliance Builders</span>
   </a>
+  <nav style="display:flex;align-items:center;gap:34px;font-size:13.5px">
+    <a href="/diensten/" style="color:#0E5654;font-weight:500">Diensten</a>
+    <a href="/over-ons/" style="color:#14181A" class="hv6">Over Jeroen</a>
+    <a href="/cases/" style="color:#14181A" class="hv6">Cases</a>
+    <a href="/nieuws/" style="color:#14181A" class="hv6">Nieuws</a>
+    <a href="/contact/" style="color:#14181A" class="hv6">Contact</a>
+    <a href="/contact/" style="background:#0E5654;color:#FBFAF7;font-size:13px;font-weight:500;padding:12px 20px" class="hv10">Plan een gesprek</a>
+  </nav>
+</header>
 
-  <!-- Desktop navigatie -->
-  <div class="nav-inner" style="margin-left:auto;align-items:center;gap:2rem">
-    <div class="nav-links" id="nav-links">
-      <a href="/" data-path="/">Home</a>
-      <a href="/over-ons/" data-path="/over-ons/">Over ons</a>
-      <a href="/diensten/" data-path="/diensten/">Diensten</a>
-      <a href="/cases/" data-path="/cases/">Cases</a>
-      <a href="/nieuws/" data-path="/nieuws/">Nieuws</a>
-      <a href="/contact/" data-path="/contact/" class="ncta plausible-event-name=Gratis+Consult+Click">Gratis consult</a>
-    </div>
-    <div class="lang-sw">
-      <button class="lbtn act" id="btn-nl" onclick="setLang('nl')">NL</button>
-      <button class="lbtn " id="btn-en" onclick="setLang('en')">EN</button>
-    </div>
-  </div>
-
-  <!-- Hamburger knop (mobiel) -->
-  <button class="hamburger" id="hamburger" type="button" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- Mobiel menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="/" data-path="/">Home</a>
-  <a href="/over-ons/" data-path="/over-ons/">Over ons</a>
-  <a href="/diensten/" data-path="/diensten/">Diensten</a>
-  <a href="/cases/" data-path="/cases/">Cases</a>
-  <a href="/nieuws/" data-path="/nieuws/">Nieuws</a>
-  <a href="/contact/" data-path="/contact/" style="color:var(--tl)">Gratis consult &rarr;</a>
-  <div class="mob-lang">
-    <button class="lbtn act" id="mob-btn-nl" onclick="setLang('nl')">NL</button>
-    <button class="lbtn " id="mob-btn-en" onclick="setLang('en')">EN</button>
+<div style="padding:100px 72px 90px;border-bottom:1px solid #E2DFD6">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654"><a href="/diensten/">Diensten</a> · Expertisegebied 01</div>
+  <h1 style="font-family:'Petrona',Georgia,serif;font-weight:400;font-size:60px;line-height:1.05;letter-spacing:-.02em;margin:24px 0 0;max-width:22ch">Privacy compliance die een AP-controle doorstaat</h1>
+  <p style="font-size:17px;line-height:1.6;color:#4E5552;max-width:56ch;margin:26px 0 0">Een privacy-managementsysteem op basis van de AVG, ISO 27701 of BC 5701: verwerkingsregister, beleid, procedures en bewijs — gedocumenteerd en auditklaar. Geen rapport voor in de lade, maar een werkende praktijk.</p>
+  <div style="display:flex;align-items:center;gap:28px;margin-top:38px;flex-wrap:wrap">
+    <a href="/contact/" style="background:#0E5654;color:#FBFAF7;font-size:14px;font-weight:500;padding:16px 26px" class="hv10">Plan een gratis kennismakingsgesprek (30 min)</a>
+    <span style="font-size:13px;color:#8E938F">Vrijblijvend · reactie binnen één werkdag</span>
   </div>
 </div>
 
-<main id="news-content" style="padding-top:72px">
-<div class="ph rev">
-  <p class="crumb"><a href="/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/diensten/" style="color:var(--mu);text-decoration:none">Diensten</a> / AVG Compliance</p>
-  <h2>AVG Compliance, DPIA's en <span class="g">BC 5701 Certificering</span></h2>
-  <p class="sub">Aantoonbare AVG-compliance &mdash; niet alleen op papier, ook in de praktijk. Audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-trajecten.</p>
+<div style="padding:90px 72px">
+  <div style="border-bottom:1px solid #14181A;padding-bottom:12px;font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#6B716E">Wat u krijgt</div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;padding:26px 0;border-bottom:1px solid #E2DFD6">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:25px">Privacy-managementsysteem</span>
+    <span style="font-size:14.5px;line-height:1.6;color:#4E5552">Verwerkingsregister, beleid, procedures, bewaarbeleid en een PDCA-cyclus — op basis van de AVG, ISO 27701 of BC 5701.</span>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;padding:26px 0;border-bottom:1px solid #E2DFD6">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:25px">DPIA's</span>
+    <span style="font-size:14.5px;line-height:1.6;color:#4E5552">Data Protection Impact Assessments voor risicovolle verwerkingen — inclusief pre-DPIA's en DTIA's voor internationale doorgifte.</span>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;padding:26px 0;border-bottom:1px solid #E2DFD6">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:25px">Audits &amp; GAP-analyses</span>
+    <span style="font-size:14.5px;line-height:1.6;color:#4E5552">Waar staat de organisatie ten opzichte van de norm — en wat heeft prioriteit. Meetbaar via een volwassenheidsmodel.</span>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;padding:26px 0;border-bottom:1px solid #E2DFD6">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:25px">Vendor assessments</span>
+    <span style="font-size:14.5px;line-height:1.6;color:#4E5552">Beoordeling van verwerkers en leveranciers, inclusief verwerkersovereenkomsten en ketenafspraken.</span>
+  </div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:32px;padding:26px 0;border-bottom:1px solid #E2DFD6">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:25px">BC 5701-certificering</span>
+    <span style="font-size:14.5px;line-height:1.6;color:#4E5552">Begeleiding naar certificering van uw privacy-managementsysteem — als BC 5701 Lead Implementor.</span>
+  </div>
 </div>
 
-<section class="sec rev">
-  <div style="max-width:780px">
-    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">De AVG werkt pas wanneer beleid, processen en techniek samen sluiten. Een verwerkingsregister dat niet aansluit op werkelijke verwerkingen, een datalekprotocol dat alleen op papier bestaat, of een DPIA-archief zonder follow-up &mdash; dat zijn de bevindingen waarmee de Autoriteit Persoonsgegevens een handhavingstraject opent.</p>
-    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS bouwt aan privacy-managementsystemen die werken in de praktijk: documentatie die klopt met operatie, controles die daadwerkelijk worden uitgevoerd, en bewijslast die overeind blijft tijdens een inspectie.</p>
-  </div>
-</section>
-
-<section class="sec rev2">
-  <span class="ew">01 &mdash; Wat het inhoudt</span>
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
+<div style="background:#F3F1EA;padding:80px 72px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654;margin-bottom:36px">Veelgestelde vragen</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px">
     <div>
-      <h2 class="sh">AVG-bouwstenen <span class="g">in samenhang</span></h2>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Vijf onderdelen die elkaar versterken: DPIA, datalekbeheer, verwerkingsregister, BC 5701-certificering en privacy audits. Geen losse projecten, maar een samenhangend managementsysteem.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
-      <div class="sc" id="dpia" style="cursor:default"><div class="sct">DPIA uitvoeren</div><p class="scb">Data Protection Impact Assessment (privacy impact assessment) voor hoog-risico verwerkingen: nieuwe AI-toepassingen, biometrie, profiling, grootschalige monitoring. Methodisch onderbouwd, met concrete mitigerende maatregelen en een toetsbaar restrisico-oordeel.</p></div>
-      <div class="sc" id="datalek" style="cursor:default"><div class="sct">Datalek meldprocedure en afhandeling</div><p class="scb">Datalek meldprocedure die de 72-uurs termijn van AVG art. 33 haalbaar maakt: triagepad, beslisbomen voor wel/niet melden, vaste rolverdeling tussen FG, juridisch en business. Inclusief tabletop-oefening om de procedure te testen.</p></div>
-      <div class="sc" id="verwerkingsregister" style="cursor:default"><div class="sct">Verwerkingsregister opstellen</div><p class="scb">Verwerkingsregister opstellen volgens AVG art. 30 dat actueel blijft: gekoppeld aan business-processen, met een vaste cyclus voor bijwerken en review. Geen Excel-document dat na vier maanden achterhaald is.</p></div>
-      <div class="sc" id="bc-5701" style="cursor:default"><div class="sct">BC 5701 implementatie en gap-analyse</div><p class="scb">Implementatiepartner voor het BC 5701 Privacy Keurmerk &mdash; de eerste Nederlandse AVG-certificeringsstandaard, ontwikkeld door Brand Compliance en goedgekeurd door de Autoriteit Persoonsgegevens onder AVG art. 42. DCBS begeleidt het traject; de certificering zelf wordt uitgevoerd door Brand Compliance.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Privacy audit en privacybeleid</div><p class="scb">Onafhankelijke privacy audit van bestaande processen, beleid en documentatie. Privacybeleid opstellen of herzien zodat het aansluit op de werkelijke verwerkingen &mdash; en stand houdt bij toetsing.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec rev">
-  <span class="ew">02 &mdash; Wanneer DCBS voor u relevant is</span>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
-    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
-      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Nieuwe hoog-risico verwerking</h3>
-      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Een nieuwe verwerking (AI-systeem, biometrie, profiling, grootschalige monitoring) staat in de pijplijn en vereist een DPIA voor go-live. De interne capaciteit ontbreekt of de methodiek is niet eerder toegepast in dit type traject.</p>
-    </div>
-    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
-      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AVG-handhavingstraject of audit</h3>
-      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">De Autoriteit Persoonsgegevens heeft een informatieverzoek gestuurd, een klacht is in behandeling, of een interne audit toonde gaten in beleid en documentatie. Snel een verdedigbare bewijslast nodig.</p>
-    </div>
-    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
-      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">Marktvraag om BC 5701-keurmerk</h3>
-      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Opdrachtgevers vragen om een aantoonbare AVG-certificering bij aanbestedingen of leveranciersaudits. BC 5701 is daar de Nederlandse marktstandaard voor &mdash; alleen de implementatie ontbreekt.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec rev2">
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
-    <div>
-      <span class="ew">03 &mdash; Wat u krijgt</span>
-      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
-      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
-        <li style="margin-bottom:.6rem">DPIA-rapport met methodische onderbouwing en restrisico-oordeel</li>
-        <li style="margin-bottom:.6rem">Datalek meldprocedure inclusief tabletop-test en draaiboek</li>
-        <li style="margin-bottom:.6rem">Verwerkingsregister gekoppeld aan business-processen, met onderhoudscyclus</li>
-        <li style="margin-bottom:.6rem">BC 5701 gap-analyse + implementatieplan + audit-readiness</li>
-        <li style="margin-bottom:.6rem">Privacybeleid opgesteld of herzien en intern goedgekeurd</li>
-        <li>Adviesnotities voor specifieke AP-vragen of -inspecties</li>
-      </ul>
+      <div style="font-family:'Petrona',Georgia,serif;font-size:21px;line-height:1.3">Wij hebben al privacybeleid. Waarom een managementsysteem?</div>
+      <p style="font-size:14px;line-height:1.65;color:#4E5552;margin:14px 0 0">Beleid beschrijft de bedoeling; een managementsysteem bewijst de uitvoering. Bij een AP-controle telt wat u kunt aantonen: een actueel register, uitgevoerde DPIA's en gedocumenteerde besluiten.</p>
     </div>
     <div>
-      <span class="ew">04 &mdash; Werkwijze</span>
-      <h2 class="sh" style="margin-top:.8rem">Vier <span class="g">stappen</span></h2>
-      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
-        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Nulmeting &amp; scope</strong> &mdash; gesprek met opdrachtgever, juridisch en privacy-eigenaren. Bepalen welk onderdeel (DPIA, datalek, register, BC 5701) als eerste opgepakt wordt.</li>
-        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Inventarisatie &amp; analyse</strong> &mdash; bestaande documentatie, processen en techniek doorlichten. Gat tussen huidige situatie en AVG-vereisten in kaart brengen, met prioritering op risico.</li>
-        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Implementatie &amp; vastlegging</strong> &mdash; documentatie wordt gebouwd, processen worden ingericht en getest, sleutelfiguren krijgen training. Audit-trail blijft compleet.</li>
-        <li><strong style="color:var(--wh)">Borging &amp; overdracht</strong> &mdash; jaarcyclus, review-momenten en eigenaarschap belegd intern. Opvolging bij toetsing of certificering.</li>
-      </ol>
+      <div style="font-family:'Petrona',Georgia,serif;font-size:21px;line-height:1.3">Is BC 5701-certificering verplicht?</div>
+      <p style="font-size:14px;line-height:1.65;color:#4E5552;margin:14px 0 0">Nee. Het is de Nederlandse norm voor privacy-managementsystemen en een sterk signaal richting klanten, toezichthouder en aanbestedingen. Het systeem is ook zonder certificaat de basis.</p>
+    </div>
+    <div>
+      <div style="font-family:'Petrona',Georgia,serif;font-size:21px;line-height:1.3">Hoe lang duurt een implementatie?</div>
+      <p style="font-size:14px;line-height:1.65;color:#4E5552;margin:14px 0 0">Afhankelijk van omvang en startpositie: van enkele maanden voor een mkb-organisatie tot een jaar voor een corporate. De nulmeting geeft binnen weken een realistisch beeld.</p>
     </div>
   </div>
-</section>
+</div>
 
-<section class="sec rev">
-  <span class="ew">05 &mdash; Voor wie</span>
-  <h2 class="sh" style="margin-top:.8rem">Sectoren waar DCBS <span class="g">AVG-trajecten uitvoert</span></h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS werkt voor toezichthouders, gemeentes, nutsbedrijven, verzekeraars, retail-organisaties en internationale productiebedrijven. Voor concrete praktijkvoorbeelden &mdash; bekijk <a href="/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">onze cases</a>.</p>
-</section>
+<div style="background:#0A3937;color:#F1F5F3;padding:90px 72px;text-align:center">
+  <h2 style="font-family:'Petrona',Georgia,serif;font-weight:400;font-size:42px;line-height:1.1;letter-spacing:-.02em;margin:0">Weten waar uw organisatie staat?</h2>
+  <div style="display:flex;justify-content:center;margin-top:32px">
+    <a href="/contact/" style="background:#FBFAF7;color:#0A3937;font-size:14px;font-weight:500;padding:17px 28px" class="hv3">Plan een gratis kennismakingsgesprek (30 min)</a>
+  </div>
+</div>
 
-<section class="sec rev2" style="padding-bottom:5rem">
-  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
-    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Aan de slag met AVG-compliance?</h2>
-    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Gratis kennismakingsgesprek van 30 minuten. In het gesprek wordt verkend welk onderdeel het meeste oplevert &mdash; en welk traject voor uw organisatie haalbaar is.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp plausible-event-name=Calendly+Click">Plan kennismaking &rarr;</a>
-      <a href="/contact/" class="btn bg">Contact via formulier</a>
-    </div>
+<footer style="border-top:1px solid #E2DFD6;padding:36px 72px;display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;color:#6B716E;flex-wrap:wrap;gap:12px">
+  <a href="/" style="display:inline-flex;align-items:center;gap:10px;font-family:'Petrona',Georgia,serif;font-size:16px;color:#14181A"><img src="/assets/dcbs-logo.png" alt="DCBS" style="height:24px;width:24px;flex:none">The Data Compliance Builders</a>
+  <div style="display:flex;gap:28px;flex-wrap:wrap">
+    <span>contact@dcbs.nl</span><span>+31 (0)6 15 23 44 09</span><span>Bakemastraat 48, Utrecht</span><span>KVK 66569346</span><a href="https://linkedin.com/company/the-data-compliance-builders/">LinkedIn →</a>
   </div>
-</section>
-</main>
-
-<footer>
-  <div class="fi">
-    <div class="fb">
-      <div class="fbr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:38px;width:auto;display:block">
-  <defs><linearGradient id="lgf" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#6b6ef5"/><stop offset="100%" stop-color="#1de9d4"/>
-  </linearGradient></defs>
-  <rect width="90" height="90" rx="18" fill="url(#lgf)"/>
-  <rect x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg></div>
-      <p>Onafhankelijk adviesbureau voor privacy, AI en data management compliance. Gevestigd in Utrecht.</p>
-    </div>
-    <div class="fcol"><h4>Diensten</h4><ul>
-      <li><a href="/diensten/dpo-as-a-service/">Externe DPO</a></li>
-      <li><a href="/diensten/avg-compliance/">AVG Consultancy</a></li>
-      <li><a href="/diensten/ai-act-compliance/">EU AI Act Advies</a></li>
-      <li><a href="/diensten/data-management/">Data Management</a></li>
-      <li><a href="/diensten/avg-compliance/#dpia">DPIA uitvoeren</a></li>
-      <li><a href="/diensten/avg-compliance/#bc-5701">BC 5701 certificering</a></li>
-      <li><a href="/diensten/ai-act-compliance/">ISO 42001 implementatie</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Bedrijf</h4><ul>
-      <li><a href="/over-ons/">Over ons</a></li>
-      <li><a href="/cases/">Cases</a></li>
-      <li><a href="/nieuws/">Nieuws</a></li>
-      <li><a href="/contact/">Contact</a></li>
-      <li><a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="plausible-event-name=Calendly+Click">Afspraak plannen</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Contact</h4><ul>
-      <li><a href="mailto:contact@dcbs.nl" class="plausible-event-name=Email+Click">contact@dcbs.nl</a></li>
-      <li><a href="tel:+31615234409" class="plausible-event-name=Phone+Click">+31 (0)6 15 23 44 09</a></li>
-      <li>Bakemastraat 48, Utrecht</li>
-      <li>KVK: 66569346</li>
-      <li><a href="https://linkedin.com/company/the-data-compliance-builders/" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
-    </ul></div>
-  </div>
-  <div class="fbot">
-    <span class="fcp">&copy; <span data-copyright-year>2026</span> The Data Compliance Builders B.V. &middot; Utrecht &middot; <a href="/privacybeleid/" style="color:var(--mu);text-decoration:none">Privacybeleid</a></span>
-  </div>
+  <span>© 2026 DCBS B.V.</span>
 </footer>
-
-
-
-<div id="cookie-banner" role="dialog" aria-label="Cookie-melding">
-  <p>Wij gebruiken geen tracking- of advertentiecookies. Alleen functioneel noodzakelijke cookies voor de werking van de website. <a href="/privacybeleid/" style="cursor:pointer">Meer informatie</a></p>
-  <div class="cookie-btns">
-    <button class="cookie-decline" onclick="cookieDecline()">Alleen noodzakelijk</button>
-    <button class="cookie-accept" onclick="cookieAccept()">Akkoord</button>
-  </div>
-</div>
-
-<script src="/assets/js/main.js" defer></script>
-
 </body>
 </html>

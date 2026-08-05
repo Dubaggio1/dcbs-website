@@ -1,342 +1,162 @@
 <!DOCTYPE html>
-<html lang="nl-NL">
+<html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Onze Diensten | Privacy, DPO, AI Act, Data Management | DCBS</title>
-<meta name="description" content="Vier expertisegebieden: privacy / AVG compliance, DPO as a service, EU AI Act compliance en data management. Pragmatisch advies voor Nederlandse organisaties.">
-<meta name="keywords" content="diensten DCBS, AVG advies, DPO uitbesteden, EU AI Act consultancy, data governance Nederland">
-<meta name="author" content="Jeroen Dubach, The Data Compliance Builders">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Diensten: AVG, AI Act, NIS2 & ISO 27001 compliance | DCBS</title>
+<meta name="description" content="Privacy compliance, AI compliance, NIS2, information security (ISO 27001) en quantum-readiness — als managementsysteem, met DPO en Privacy Officer as a Service.">
 <link rel="canonical" href="https://www.dcbs.nl/diensten/">
-
-<!-- Hreflang -->
-<link rel="alternate" hreflang="nl-NL" href="https://www.dcbs.nl/diensten/">
-<link rel="alternate" hreflang="en-GB" href="https://www.dcbs.nl/en/diensten/">
-<link rel="alternate" hreflang="x-default" href="https://www.dcbs.nl/diensten/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Diensten | DCBS">
-<meta property="og:description" content="Privacy, DPO, EU AI Act en data management — vier expertisegebieden.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dcbs.nl/diensten/">
-<meta property="og:locale" content="nl_NL">
+<link rel="icon" type="image/png" href="/assets/dcbs-logo.png">
 <meta property="og:site_name" content="The Data Compliance Builders">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Diensten | DCBS">
-<meta name="twitter:description" content="Privacy, DPO, EU AI Act en data management — vier expertisegebieden.">
-
-<!-- Icons -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-
-<!-- Stylesheet -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!-- JSON-LD -->
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Data Compliance Builders",
-  "url": "https://www.dcbs.nl",
-  "publisher": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders"
+<meta property="og:title" content="Diensten | DCBS">
+<meta property="og:image" content="https://www.dcbs.nl/assets/dcbs-logo.png">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#FBFAF7;color:#14181A;font-family:'Archivo',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#0E5654;text-decoration:none}
+  a:hover{color:#0A3937}
+  image-slot{max-width:100%}
+  @media (max-width:1100px){
+    body>div,body>header,body>footer{padding-left:40px!important;padding-right:40px!important}
   }
-}
-</script>
+  @media (max-width:920px){
+    header{height:auto!important;flex-wrap:wrap;gap:14px;padding-top:16px!important;padding-bottom:16px!important}
+    header nav{flex-wrap:wrap;gap:14px 22px!important}
+    div[style*="grid-template-columns"],a[style*="grid-template-columns"],form>div[style*="grid-template-columns"]{grid-template-columns:1fr!important}
+    a[style*="justify-content:space-between"][style*="baseline"]{flex-wrap:wrap}
+    h1{font-size:clamp(40px,9vw,58px)!important}
+    h2{font-size:clamp(28px,6.5vw,40px)!important}
+    div[style*="columns:2"]{columns:1!important}
+  }
+  @media (max-width:640px){
+    body>div,body>header,body>footer{padding-left:20px!important;padding-right:20px!important}
+    h1{font-size:clamp(34px,10vw,44px)!important}
+    div[style*="min-height:420px"]{min-height:300px!important}
+  }
 
-<!-- Plausible Analytics (cookieless, EU-hosted) -->
-<script defer data-domain="dcbs.nl" src="https://plausible.io/js/script.js"></script>
+</style>
+<style>
+a.hv-base{}
+.hv1:hover{color:#FBFAF7 !important}
+.hv2:hover{color:#B7D8D3 !important}
+.hv3:hover{background:#FFFFFF !important;color:#0A3937 !important}
+.hv4:hover{color:#FFFFFF !important;border-bottom:1px solid #FFFFFF !important}
+.hv5:hover{background:#0E5654 !important;color:#FBFAF7 !important}
+.hv6:hover{color:#0E5654 !important}
+.hv7:hover{color:#0A3937 !important;border-bottom:1px solid #0A3937 !important}
+.hv8:hover{color:#8FBAB5 !important}
+.hv9:hover{color:#14181A !important}
+.hv10:hover{background:#0A3937 !important;color:#FBFAF7 !important}
+.hv11:hover{background:#F3F1EA !important;color:#0E5654 !important}
+.nieuwsrij:hover, .nieuwsrij:hover span{color:#0E5654!important}
+</style>
+<script src="/site.js" defer></script>
 </head>
 <body>
-<nav>
-  <a href="/" class="nlogo" style="cursor:pointer;text-decoration:none">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:44px;width:auto;display:block">
-  <defs>
-    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6b6ef5"/>
-      <stop offset="100%" stop-color="#1de9d4"/>
-    </linearGradient>
-  </defs>
-  <rect width="90" height="90" rx="18" fill="url(#lg)"/>
-  <rect class="lb" style="animation-delay:0s"    x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.18s"  x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.36s"  x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.54s"  x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.72s"  x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.90s"  x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:1.08s" x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg>
+<header style="display:flex;align-items:center;justify-content:space-between;height:84px;padding:0 72px;border-bottom:1px solid #E2DFD6">
+  <a href="/" style="display:flex;align-items:center;gap:14px;color:#14181A" class="hv9">
+    <img src="/assets/dcbs-logo.png" alt="DCBS" style="height:36px;width:36px;flex:none">
+    <span style="font-size:10.5px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:#8E938F">The Data Compliance Builders</span>
   </a>
+  <nav style="display:flex;align-items:center;gap:34px;font-size:13.5px">
+    <a href="/diensten/" style="color:#0E5654;font-weight:500">Diensten</a>
+    <a href="/over-ons/" style="color:#14181A" class="hv6">Over Jeroen</a>
+    <a href="/cases/" style="color:#14181A" class="hv6">Cases</a>
+    <a href="/nieuws/" style="color:#14181A" class="hv6">Nieuws</a>
+    <a href="/contact/" style="color:#14181A" class="hv6">Contact</a>
+    <a href="/contact/" style="background:#0E5654;color:#FBFAF7;font-size:13px;font-weight:500;padding:12px 20px" class="hv10">Plan een gesprek</a>
+  </nav>
+</header>
 
-  <!-- Desktop navigatie -->
-  <div class="nav-inner" style="margin-left:auto;align-items:center;gap:2rem">
-    <div class="nav-links" id="nav-links">
-      <a href="/" data-path="/">Home</a>
-      <a href="/over-ons/" data-path="/over-ons/">Over ons</a>
-      <a href="/diensten/" data-path="/diensten/">Diensten</a>
-      <a href="/cases/" data-path="/cases/">Cases</a>
-      <a href="/nieuws/" data-path="/nieuws/">Nieuws</a>
-      <a href="/contact/" data-path="/contact/" class="ncta plausible-event-name=Gratis+Consult+Click">Gratis consult</a>
-    </div>
-    <div class="lang-sw">
-      <button class="lbtn act" id="btn-nl" onclick="setLang('nl')">NL</button>
-      <button class="lbtn " id="btn-en" onclick="setLang('en')">EN</button>
-    </div>
-  </div>
+<div style="padding:110px 72px 80px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654">Diensten</div>
+  <h1 style="font-family:'Petrona',Georgia,serif;font-weight:400;font-size:64px;line-height:1.05;letter-spacing:-.02em;margin:24px 0 0;max-width:20ch">Vijf expertisegebieden. Eén aanspreekpunt.</h1>
+  <p style="font-size:17px;line-height:1.6;color:#4E5552;max-width:56ch;margin:26px 0 0">Elk gebied wordt geleverd als managementsysteem: niet een rapport, maar een werkende, gedocumenteerde en auditklare praktijk. DPO en Privacy Officer as a Service zijn de doorlopende vormen daarvan.</p>
+</div>
 
-  <!-- Hamburger knop (mobiel) -->
-  <button class="hamburger" id="hamburger" type="button" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
+<div style="padding:0 72px 90px">
+  <a href="/diensten/avg-compliance/" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) 20px;align-items:center;gap:32px;padding:34px 0;border-top:1px solid #14181A;color:#14181A" class="hv11">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:15px;color:#0E5654">01</span>
+    <span style="font-family:'Petrona',Georgia,serif;font-size:36px;letter-spacing:-.02em">Privacy compliance</span>
+    <span style="font-size:14px;line-height:1.55;color:#4E5552">Privacy-managementsysteem op basis van de AVG, ISO 27701 of BC 5701. DPIA's, audits, vendor assessments en certificeringsbegeleiding.</span>
+    <span style="font-size:15px;color:#8E938F;text-align:right">→</span>
+  </a>
+  <a href="/diensten/ai-act-compliance/" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) 20px;align-items:center;gap:32px;padding:34px 0;border-top:1px solid #E2DFD6;color:#14181A" class="hv11">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:15px;color:#0E5654">02</span>
+    <span style="font-family:'Petrona',Georgia,serif;font-size:36px;letter-spacing:-.02em">AI compliance</span>
+    <span style="font-size:14px;line-height:1.55;color:#4E5552">AI-managementsysteem op basis van ISO/IEC 42001 en de EU AI Act: AI-register, risicoclassificatie, FRIA en GPAI-verplichtingen.</span>
+    <span style="font-size:15px;color:#8E938F;text-align:right">→</span>
+  </a>
+  <a href="/diensten/nis2/" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) 20px;align-items:center;gap:32px;padding:34px 0;border-top:1px solid #E2DFD6;color:#14181A" class="hv11">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:15px;color:#0E5654">03</span>
+    <span style="font-family:'Petrona',Georgia,serif;font-size:36px;letter-spacing:-.02em">NIS2 / Cyberbeveiligingswet</span>
+    <span style="font-size:14px;line-height:1.55;color:#4E5552">In werking per 15 augustus 2026. Zorgplicht, meldplicht, registratie bij het NCSC en de bestuurdersverantwoordelijkheid — georganiseerd en aantoonbaar.</span>
+    <span style="font-size:15px;color:#8E938F;text-align:right">→</span>
+  </a>
+  <a href="/diensten/information-security/" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) 20px;align-items:center;gap:32px;padding:34px 0;border-top:1px solid #E2DFD6;color:#14181A" class="hv11">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:15px;color:#0E5654">04</span>
+    <span style="font-family:'Petrona',Georgia,serif;font-size:36px;letter-spacing:-.02em">Information security</span>
+    <span style="font-size:14px;line-height:1.55;color:#4E5552">ISMS-implementatie en ISO 27001-certificering: van GAP-analyse tot geslaagde audit. Het fundament onder privacy-, AI- en NIS2-compliance.</span>
+    <span style="font-size:15px;color:#8E938F;text-align:right">→</span>
+  </a>
+  <a href="/diensten/quantum-readiness/" style="display:grid;grid-template-columns:56px minmax(0,1fr) minmax(0,1.1fr) 20px;align-items:center;gap:32px;padding:34px 0;border-top:1px solid #E2DFD6;border-bottom:1px solid #E2DFD6;color:#14181A" class="hv11">
+    <span style="font-family:'Petrona',Georgia,serif;font-size:15px;color:#0E5654">05</span>
+    <span style="font-family:'Petrona',Georgia,serif;font-size:36px;letter-spacing:-.02em">Quantum-readiness</span>
+    <span style="font-size:14px;line-height:1.55;color:#4E5552">Voorbereiding op post-quantum cryptografie en de aankomende EU-regelgeving: crypto-inventarisatie, risicoanalyse en migratieplan.</span>
+    <span style="font-size:15px;color:#8E938F;text-align:right">→</span>
+  </a>
+</div>
 
-<!-- Mobiel menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="/" data-path="/">Home</a>
-  <a href="/over-ons/" data-path="/over-ons/">Over ons</a>
-  <a href="/diensten/" data-path="/diensten/">Diensten</a>
-  <a href="/cases/" data-path="/cases/">Cases</a>
-  <a href="/nieuws/" data-path="/nieuws/">Nieuws</a>
-  <a href="/contact/" data-path="/contact/" style="color:var(--tl)">Gratis consult &rarr;</a>
-  <div class="mob-lang">
-    <button class="lbtn act" id="mob-btn-nl" onclick="setLang('nl')">NL</button>
-    <button class="lbtn " id="mob-btn-en" onclick="setLang('en')">EN</button>
+<div style="background:#F3F1EA;padding:90px 72px">
+  <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654">Vaste ondersteuning · op abonnementsbasis</div>
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;margin-top:40px">
+    <a href="/diensten/dpo-as-a-service/" style="background:#FBFAF7;padding:48px;color:#14181A;display:flex;flex-direction:column;gap:14px" class="hv5">
+      <span style="font-family:'Petrona',Georgia,serif;font-size:32px;letter-spacing:-.02em">DPO as a Service</span>
+      <span style="font-size:14.5px;line-height:1.6;opacity:.75">De formele rol van Functionaris Gegevensbescherming, extern belegd en aangemeld bij de Autoriteit Persoonsgegevens. Onafhankelijk toezicht, rapportage aan de directie.</span>
+      <span style="font-size:13.5px;font-weight:500;margin-top:auto;padding-top:12px">Meer over DPO as a Service →</span>
+    </a>
+    <a href="/diensten/privacy-officer-as-a-service/" style="background:#FBFAF7;padding:48px;color:#14181A;display:flex;flex-direction:column;gap:14px" class="hv5">
+      <span style="font-family:'Petrona',Georgia,serif;font-size:32px;letter-spacing:-.02em">Privacy Officer as a Service</span>
+      <span style="font-size:14.5px;line-height:1.6;opacity:.75">De operationele privacy officer die het werk dóét: verwerkingsregister, DPIA's, datalekken, verwerkersovereenkomsten en awareness. Naast of zonder formele FG.</span>
+      <span style="font-size:13.5px;font-weight:500;margin-top:auto;padding-top:12px">Meer over Privacy Officer as a Service →</span>
+    </a>
   </div>
 </div>
 
-<main id="news-content" style="padding-top:72px">
-<div class="ph rev">
-  <p class="crumb"><span href="/">Home</span> / Diensten</p>
-  <h2>Diensten op maat voor <span class="g">compliance-succes</span></h2>
-  <p class="sub">The Data Compliance Builders biedt drie specialisaties, één aanpak: managementsystemen die aantoonbare, duurzame compliance opbouwen — geen eenmalige adviezen, maar structuren die uw organisatie daadwerkelijk gebruikt en kan onderhouden.</p>
+<div style="padding:90px 72px">
+  <div style="border-bottom:1px solid #14181A;padding-bottom:12px;font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#6B716E">Voor wie</div>
+  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px;margin-top:44px">
+    <div>
+      <div style="font-family:'Petrona',Georgia,serif;font-size:27px;letter-spacing:-.01em">MKB</div>
+      <p style="font-size:14.5px;line-height:1.65;color:#4E5552;margin:14px 0 0">Grote klanten of aanbestedingen vragen om aantoonbare compliance, maar een eigen privacy officer is te zwaar. Een abonnement geeft senior capaciteit zonder vaste formatie.</p>
+    </div>
+    <div>
+      <div style="font-family:'Petrona',Georgia,serif;font-size:27px;letter-spacing:-.01em">Corporates</div>
+      <p style="font-size:14.5px;line-height:1.65;color:#4E5552;margin:14px 0 0">Het beleid ligt er, maar de uitvoering hapert: verouderd verwerkingsregister, DPIA-achterstand, ketenafspraken. Een managementsysteem brengt structuur en bewijs.</p>
+    </div>
+    <div>
+      <div style="font-family:'Petrona',Georgia,serif;font-size:27px;letter-spacing:-.01em">Overheid</div>
+      <p style="font-size:14.5px;line-height:1.65;color:#4E5552;margin:14px 0 0">Hoge eisen, publieke verantwoording en toezicht van de AP. Ervaring bij AFM, Gemeente Amsterdam en Evides vertaalt zich direct naar de publieke context.</p>
+    </div>
+  </div>
 </div>
-<section class="sec rev2" id="dienst-overzicht">
-  <span class="ew">Overzicht</span>
-  <h2 class="sh" style="margin-top:.8rem">Vier expertisegebieden</h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">Klik door naar de specifieke dienst voor entry-, exit- en deliverable-details.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:2.5rem">
-    <a href="/diensten/dpo-as-a-service/" class="sc" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:8px;cursor:pointer;transition:border-color .2s">
-      <div class="scn" style="font-size:.78rem;color:var(--mu);letter-spacing:.1em">01</div>
-      <h3 class="sct" style="font-size:1.15rem;font-weight:900;color:var(--wh);margin:0;line-height:1.3">Externe DPO en Interim FG</h3>
-      <p class="scb" style="color:var(--bd);line-height:1.7;font-size:.93rem;margin:0;flex:1">Een onafhankelijke DPO die uw organisatie kent &mdash; direct operationeel, zonder consultancy-trechter. Voor mkb, corporates en (semi-)publieke organisaties.</p>
-      <span style="color:var(--tl);font-weight:700;font-size:.85rem;letter-spacing:.04em;margin-top:.4rem">Meer over Externe DPO &rarr;</span>
-    </a>
-    <a href="/diensten/avg-compliance/" class="sc" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:8px;cursor:pointer;transition:border-color .2s">
-      <div class="scn" style="font-size:.78rem;color:var(--mu);letter-spacing:.1em">02</div>
-      <h3 class="sct" style="font-size:1.15rem;font-weight:900;color:var(--wh);margin:0;line-height:1.3">AVG Compliance, DPIA's en BC 5701</h3>
-      <p class="scb" style="color:var(--bd);line-height:1.7;font-size:.93rem;margin:0;flex:1">Aantoonbare AVG-compliance &mdash; niet alleen op papier, ook in de praktijk. Audits, DPIA's, verwerkingsregisters, datalekprocedures en BC 5701-trajecten.</p>
-      <span style="color:var(--tl);font-weight:700;font-size:.85rem;letter-spacing:.04em;margin-top:.4rem">Meer over AVG Compliance &rarr;</span>
-    </a>
-    <a href="/diensten/ai-act-compliance/" class="sc" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:8px;cursor:pointer;transition:border-color .2s">
-      <div class="scn" style="font-size:.78rem;color:var(--mu);letter-spacing:.1em">03</div>
-      <h3 class="sct" style="font-size:1.15rem;font-weight:900;color:var(--wh);margin:0;line-height:1.3">EU AI Act en AI Governance</h3>
-      <p class="scb" style="color:var(--bd);line-height:1.7;font-size:.93rem;margin:0;flex:1">Risicoclassificatie van AI-systemen, AI governance frameworks, FRIA-impactbeoordelingen en ISO 42001-implementatie. Praktisch en juridisch onderbouwd.</p>
-      <span style="color:var(--tl);font-weight:700;font-size:.85rem;letter-spacing:.04em;margin-top:.4rem">Meer over EU AI Act &rarr;</span>
-    </a>
-    <a href="/diensten/data-management/" class="sc" style="text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.6rem;padding:1.5rem;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:8px;cursor:pointer;transition:border-color .2s">
-      <div class="scn" style="font-size:.78rem;color:var(--mu);letter-spacing:.1em">04</div>
-      <h3 class="sct" style="font-size:1.15rem;font-weight:900;color:var(--wh);margin:0;line-height:1.3">Data Management en Data Governance</h3>
-      <p class="scb" style="color:var(--bd);line-height:1.7;font-size:.93rem;margin:0;flex:1">De brug tussen privacy en AI compliance. Data governance frameworks, datavolwassenheidsassessments en data quality management volgens DAMA-DMBOK.</p>
-      <span style="color:var(--tl);font-weight:700;font-size:.85rem;letter-spacing:.04em;margin-top:.4rem">Meer over Data Management &rarr;</span>
-    </a>
+
+<div style="background:#0A3937;color:#F1F5F3;padding:100px 72px;text-align:center">
+  <h2 style="font-family:'Petrona',Georgia,serif;font-weight:400;font-size:44px;line-height:1.1;letter-spacing:-.02em;margin:0">Niet zeker welk gebied uw vraag raakt?</h2>
+  <p style="font-size:16px;line-height:1.6;color:#CFDEDB;max-width:52ch;margin:18px auto 0">In 30 minuten beoordelen we uw situatie en krijgt u direct bruikbaar advies.</p>
+  <div style="display:flex;justify-content:center;margin-top:34px">
+    <a href="/contact/" style="background:#FBFAF7;color:#0A3937;font-size:14px;font-weight:500;padding:17px 28px" class="hv3">Plan een gratis kennismakingsgesprek (30 min)</a>
   </div>
-</section>
+</div>
 
-<section class="sec rev">
-  <span class="ew">01 &mdash; Privacy</span>
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:5rem">
-    <div>
-      <h2 class="sh">Privacy <span class="g">Compliance</span></h2>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-bottom:1rem">Privacy compliance zorgt ervoor dat organisaties persoonsgegevens verantwoord en conform de AVG verwerken. Wij beoordelen risico&apos;s, implementeren governance-frameworks en bouwen managementsystemen die uw organisatie aantoonbaar compliant maken &mdash; en houden.</p>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Specialist in BC 5701 Privacy Keurmerk-certificering &mdash; het erkende keurmerk voor gegevensverwerkers.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
-      <div class="sc" style="cursor:default"><div class="sct">Privacy Managementsysteem</div><p class="scb">Een PDCA-gebaseerd systeem: beleid, procedures, verwerkingsregister, monitoring &mdash; volledig gedocumenteerd en klaar voor elke audit.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">DPO as a Service</div><p class="scb">Een externe Functionaris voor Gegevensbescherming die direct inzetbaar is en uw organisatie ondersteunt bij alle AVG-vraagstukken.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Privacy Audits &amp; DPIA</div><p class="scb">Onafhankelijke audits van uw privacyprogramma en Data Protection Impact Assessments voor hoog-risico verwerkingen.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Vendor &amp; Third Party Assessments</div><p class="scb">Beoordeling van verwerkers en leveranciers op privacyrisico&apos;s, contractreview en supply chain compliance conform AVG art. 28.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Privacy Due Diligence</div><p class="scb">Gestructureerde privacybeoordeling bij fusies en overnames &mdash; verborgen risico&apos;s in kaart gebracht v&oacute;&oacute;r het akkoord.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">BC 5701 Certificering</div><p class="scb">Begeleiding van het volledige certificeringstraject voor het BC 5701 Privacy Keurmerk, van nulmeting tot certificaat.</p></div>
-    </div>
+<footer style="border-top:1px solid #E2DFD6;padding:36px 72px;display:flex;justify-content:space-between;align-items:baseline;font-size:12.5px;color:#6B716E;flex-wrap:wrap;gap:12px">
+  <a href="/" style="display:inline-flex;align-items:center;gap:10px;font-family:'Petrona',Georgia,serif;font-size:16px;color:#14181A"><img src="/assets/dcbs-logo.png" alt="DCBS" style="height:24px;width:24px;flex:none">The Data Compliance Builders</a>
+  <div style="display:flex;gap:28px;flex-wrap:wrap">
+    <span>contact@dcbs.nl</span><span>+31 (0)6 15 23 44 09</span><span>Bakemastraat 48, Utrecht</span><span>KVK 66569346</span><a href="https://linkedin.com/company/the-data-compliance-builders/">LinkedIn →</a>
   </div>
-  <div class="dv" style="margin-bottom:5rem"></div>
-  <span class="ew">02 &mdash; Kunstmatige Intelligentie</span>
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:5rem">
-    <div>
-      <h2 class="sh">AI <span class="g">Compliance</span></h2>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-bottom:1rem">De EU AI Act is van kracht. Organisaties die AI-systemen inzetten, moeten nu actie ondernemen. Wij helpen u uw AI-portfolio in kaart brengen, risico&apos;s classificeren en de vereiste governance opzetten.</p>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Van ISO/IEC 42001 managementsystemen tot Fundamental Rights Impact Assessments.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
-      <div class="sc" style="cursor:default"><div class="sct">EU AI Act Implementatie</div><p class="scb">Inventarisatie en risicoclassificatie van uw AI-systemen, conformiteitsbeoordelingen en technische documentatie.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">AI Managementsysteem (ISO/IEC 42001)</div><p class="scb">Een volledig AI-governance-framework: risicobeleid, verantwoordelijkheden, monitoring en continue verbeteringscycli.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Fundamental Rights Impact Assessment (FRIA)</div><p class="scb">Gestructureerde beoordeling van de impact van uw AI-systemen op grondrechten &mdash; verplicht voor overheidsinstanties.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">GPAI-modelcompliance</div><p class="scb">Transparantieverplichtingen en compliance-frameworks voor General Purpose AI-modellen zoals grote taalmodellen.</p></div>
-    </div>
-  </div>
-  <div class="dv" style="margin-bottom:5rem"></div>
-  <span class="ew">03 &mdash; Data</span>
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start">
-    <div>
-      <h2 class="sh">Data <span class="g">Management</span></h2>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Goede data-governance is de onzichtbare basis onder elke privacy- en AI-compliance. Wij brengen uw datavolwassenheid in kaart, ontwerpen governance-frameworks en zorgen dat uw data nauwkeurig, toegankelijk en in lijn met regelgeving is.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
-      <div class="sc" style="cursor:default"><div class="sct">Datavolwassenheidsassessment</div><p class="scb">Een helder beeld van waar uw organisatie staat op het gebied van databeheer &mdash; en een concreet pad naar volwassenheid.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Data Governance Framework</div><p class="scb">Rollen, verantwoordelijkheden, beleid en processen voor consistent, verantwoord en regelgevingsconform gegevensbeheer.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">Datakwaliteitsbeheer</div><p class="scb">Systemen en controls die de nauwkeurigheid, volledigheid en betrouwbaarheid van uw data-assets borgen.</p></div>
-    </div>
-  </div>
-</section>
-
-
-<section class="sec dk rev">
-  <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:5rem;align-items:center" class="svc-grid">
-    <div>
-      <span class="ew">Spotlight dienst</span>
-      <h2 class="sh">Privacy Due Diligence bij <span class="g">fusies &amp; overnames</span></h2>
-      <p style="font-size:.95rem;color:var(--bd);line-height:1.85;margin:1.5rem 0">Bij een overname koopt u niet alleen activa &mdash; u neemt ook de privacyrisico&apos;s over. Onvoldoende privacybeheer bij de doelorganisatie kan leiden tot boetes, reputatieschade en kostbare hersteltrajecten na de deal.</p>
-      <p style="font-size:.95rem;color:var(--bd);line-height:1.85;margin-bottom:2rem">DCBS voert een gestructureerde privacybeoordeling uit v&oacute;&oacute;r het akkoord: wat is de AVG-volwassenheid van de doelorganisatie, welke verplichtingen lopen er en wat zijn de risico&apos;s die u overneemt?</p>
-      <a href="https://calendly.com/dubach-legal/30min" target="_blank" class="btn bg plausible-event-name=Calendly+Click">Bespreek uw situatie &rarr;</a>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
-      <div style="background:var(--cd);padding:1.8rem 2rem">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tl);margin-bottom:.5rem">Wat wij beoordelen</div>
-        <p style="font-size:.88rem;color:var(--bd);line-height:1.75;margin:0">AVG-volwassenheid, verwerkingsregister, verwerkersovereenkomsten, datalekhistorie, lopende klachten of AP-onderzoeken en privacyrisico&apos;s in systemen en processen.</p>
-      </div>
-      <div style="background:var(--cd);padding:1.8rem 2rem">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tl);margin-bottom:.5rem">Wat u ontvangt</div>
-        <p style="font-size:.88rem;color:var(--bd);line-height:1.75;margin:0">Een helder rapport met risiconiveau, bevindingen en een concreet actieplan &mdash; als onderhandelingsinstrument of als basis voor post-merger integratie.</p>
-      </div>
-      <div style="background:var(--cd);padding:1.8rem 2rem">
-        <div style="font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--tl);margin-bottom:.5rem">Wanneer relevant</div>
-        <p style="font-size:.88rem;color:var(--bd);line-height:1.75;margin:0">Bij overnames, fusies, joint ventures of strategische samenwerkingen waarbij persoonsgegevens een rol spelen &mdash; voor ondertekening van de koopovereenkomst.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="sec dk rev">
-  <span class="ew">Veelgestelde vragen</span>
-  <h2 class="sh">Snel antwoord op uw <span class="g">vragen</span></h2>
-  <div style="display:flex;flex-direction:column;gap:2px;background:var(--br);margin-top:3rem">
-
-    <details style="background:var(--cd);padding:2rem 2.5rem;cursor:pointer;group" open>
-      <summary style="font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--wh);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
-        Ben ik verplicht een DPO/FG aan te stellen?
-        <span style="color:var(--tl);font-size:1.4rem;font-weight:300;flex-shrink:0;margin-left:1rem">+</span>
-      </summary>
-      <p style="font-size:.92rem;color:var(--bd);line-height:1.85;margin-top:1rem;margin-bottom:0">Organisaties die op grote schaal persoonsgegevens verwerken, bijzondere categorieën verwerken of een overheidsinstantie zijn, zijn verplicht een Functionaris voor Gegevensbescherming (FG/DPO) aan te stellen. Voor andere organisaties is het niet verplicht, maar kan een externe DPO as a Service een waardevolle en kosteneffectieve oplossing zijn.</p>
-    </details>
-
-    <details style="background:var(--cd);padding:2rem 2.5rem;cursor:pointer">
-      <summary style="font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--wh);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
-        Wat kost een extern DPO as a Service?
-        <span style="color:var(--tl);font-size:1.4rem;font-weight:300;flex-shrink:0;margin-left:1rem">+</span>
-      </summary>
-      <p style="font-size:.92rem;color:var(--bd);line-height:1.85;margin-top:1rem;margin-bottom:0">De kosten zijn afhankelijk van de omvang van uw organisatie en het gewenste aantal uren per maand. In de meeste gevallen is een externe DPO aanzienlijk kostenefficiënter dan een interne aanstelling. Na een kort kennismakingsgesprek kunnen we u een concrete indicatie geven die aansluit bij uw situatie.</p>
-    </details>
-
-    <details style="background:var(--cd);padding:2rem 2.5rem;cursor:pointer">
-      <summary style="font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--wh);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
-        Geldt de EU AI Act voor mijn organisatie?
-        <span style="color:var(--tl);font-size:1.4rem;font-weight:300;flex-shrink:0;margin-left:1rem">+</span>
-      </summary>
-      <p style="font-size:.92rem;color:var(--bd);line-height:1.85;margin-top:1rem;margin-bottom:0">De EU AI Act geldt voor elke organisatie die AI-systemen ontwikkelt, distribueert of inzet binnen de EU — ongeacht de grootte. Verplichtingen zijn afhankelijk van de risicocategorie van uw AI-toepassingen. Verboden praktijken zijn per 2 februari 2025 van kracht; verplichtingen voor hoog-risico systemen volgen in augustus 2026.</p>
-    </details>
-
-    <details style="background:var(--cd);padding:2rem 2.5rem;cursor:pointer">
-      <summary style="font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--wh);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
-        Hoe lang duurt een privacy-audit?
-        <span style="color:var(--tl);font-size:1.4rem;font-weight:300;flex-shrink:0;margin-left:1rem">+</span>
-      </summary>
-      <p style="font-size:.92rem;color:var(--bd);line-height:1.85;margin-top:1rem;margin-bottom:0">Een privacyaudit voor een middelgrote organisatie duurt doorgaans twee tot vier weken. U ontvangt een helder rapport met bevindingen, risiconiveau en een geprioriteerd actieplan — geen generiek rapport, maar een document dat direct als basis dient voor verbetering.</p>
-    </details>
-
-    <details style="background:var(--cd);padding:2rem 2.5rem;cursor:pointer">
-      <summary style="font-size:1rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;color:var(--wh);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center">
-        Wat is het BC 5701 Privacy Keurmerk?
-        <span style="color:var(--tl);font-size:1.4rem;font-weight:300;flex-shrink:0;margin-left:1rem">+</span>
-      </summary>
-      <p style="font-size:.92rem;color:var(--bd);line-height:1.85;margin-top:1rem;margin-bottom:0">Het BC 5701 Privacy Keurmerk is de Nederlandse marktstandaard voor organisaties die persoonsgegevens verwerken namens andere organisaties. Het keurmerk toont aantoonbaar aan dat uw privacybeheer op orde is — en wordt steeds vaker gevraagd door opdrachtgevers als contractvereiste. DCBS begeleidt het volledige traject van nulmeting tot certificaat.</p>
-    </details>
-
-  </div>
-</section>
-<div class="ctaband rev"><div><h2>Niet zeker waar u moet <span class="g">beginnen?</span></h2><p>Wij bieden een gratis gesprek van 30 minuten om uw compliance-behoeften te beoordelen en de juiste prioriteiten te stellen.</p></div>
-  <a href="https://calendly.com/dubach-legal/30min" target="_blank" class="btn bp plausible-event-name=Calendly+Click">Plan een gratis gesprek &rarr;</a></div>
+  <span>© 2026 DCBS B.V.</span>
 </footer>
-</main>
-
-<footer>
-  <div class="fi">
-    <div class="fb">
-      <div class="fbr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:38px;width:auto;display:block">
-  <defs><linearGradient id="lgf" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#6b6ef5"/><stop offset="100%" stop-color="#1de9d4"/>
-  </linearGradient></defs>
-  <rect width="90" height="90" rx="18" fill="url(#lgf)"/>
-  <rect x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg></div>
-      <p>Onafhankelijk adviesbureau voor privacy, AI en data management compliance. Gevestigd in Utrecht.</p>
-    </div>
-    <div class="fcol"><h4>Diensten</h4><ul>
-      <li><a href="/diensten/dpo-as-a-service/">Externe DPO</a></li>
-      <li><a href="/diensten/avg-compliance/">AVG Consultancy</a></li>
-      <li><a href="/diensten/ai-act-compliance/">EU AI Act Advies</a></li>
-      <li><a href="/diensten/data-management/">Data Management</a></li>
-      <li><a href="/diensten/avg-compliance/#dpia">DPIA uitvoeren</a></li>
-      <li><a href="/diensten/avg-compliance/#bc-5701">BC 5701 certificering</a></li>
-      <li><a href="/diensten/ai-act-compliance/">ISO 42001 implementatie</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Bedrijf</h4><ul>
-      <li><a href="/over-ons/">Over ons</a></li>
-      <li><a href="/cases/">Cases</a></li>
-      <li><a href="/nieuws/">Nieuws</a></li>
-      <li><a href="/contact/">Contact</a></li>
-      <li><a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="plausible-event-name=Calendly+Click">Afspraak plannen</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Contact</h4><ul>
-      <li><a href="mailto:contact@dcbs.nl" class="plausible-event-name=Email+Click">contact@dcbs.nl</a></li>
-      <li><a href="tel:+31615234409" class="plausible-event-name=Phone+Click">+31 (0)6 15 23 44 09</a></li>
-      <li>Bakemastraat 48, Utrecht</li>
-      <li>KVK: 66569346</li>
-      <li><a href="https://linkedin.com/company/the-data-compliance-builders/" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
-    </ul></div>
-  </div>
-  <div class="fbot">
-    <span class="fcp">&copy; <span data-copyright-year>2026</span> The Data Compliance Builders B.V. &middot; Utrecht &middot; <a href="/privacybeleid/" style="color:var(--mu);text-decoration:none">Privacybeleid</a></span>
-  </div>
-</footer>
-
-
-
-<div id="cookie-banner" role="dialog" aria-label="Cookie-melding">
-  <p>Wij gebruiken geen tracking- of advertentiecookies. Alleen functioneel noodzakelijke cookies voor de werking van de website. <a href="/privacybeleid/" style="cursor:pointer">Meer informatie</a></p>
-  <div class="cookie-btns">
-    <button class="cookie-decline" onclick="cookieDecline()">Alleen noodzakelijk</button>
-    <button class="cookie-accept" onclick="cookieAccept()">Akkoord</button>
-  </div>
-</div>
-
-<script src="/assets/js/main.js" defer></script>
-
 </body>
 </html>
