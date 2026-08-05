@@ -106,10 +106,14 @@
       lijst.innerHTML = items.map(function(a, i){
         var top = i === 0 ? '#14181A' : '#E2DFD6';
         var bottom = i === items.length - 1 ? ';border-bottom:1px solid #E2DFD6' : '';
-        var href = a.link ? ' href="' + esc(a.link) + '" target="_blank" rel="noopener"' : '';
+        var isExt = a.link && /^https?:/i.test(a.link);
+        var href = a.link ? ' href="' + esc(a.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') : '';
+        var media = a.img
+          ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:320px;max-width:100%;height:190px;object-fit:cover;background:#E9E5DA">'
+          : '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
         return '<div style="position:relative">' +
           '<a' + href + ' style="display:grid;grid-template-columns:minmax(200px,320px) minmax(0,1fr) 110px;gap:44px;align-items:center;padding:36px 0;border-top:1px solid ' + top + bottom + ';color:#14181A" class="nieuwsrij">' +
-          '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>' +
+          media +
           '<span><span style="display:block;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654">' + esc(a.cat) + '</span>' +
           '<span style="display:block;font-family:\'Petrona\',Georgia,serif;font-size:29px;line-height:1.22;margin-top:12px">' + esc(a.title) + '</span>' +
           '<span style="display:block;font-size:14px;line-height:1.6;color:#4E5552;margin-top:12px;max-width:64ch">' + esc(a.summary) + '</span></span>' +
@@ -138,11 +142,22 @@
       e.preventDefault();
       var f = new FormData(form);
       var item = { id: 'local-' + Date.now(), cat: f.get('cat'), date: f.get('date'), title: f.get('title'), summary: f.get('summary'), link: (f.get('link') || '').trim() };
-      setLocal([item].concat(getLocal()));
-      form.reset();
-      if (formwrap) formwrap.style.display = 'none';
-      if (toggle) toggle.textContent = '+ Artikel toevoegen';
-      render();
+      function finish(){
+        setLocal([item].concat(getLocal()));
+        form.reset();
+        if (formwrap) formwrap.style.display = 'none';
+        if (toggle) toggle.textContent = '+ Artikel toevoegen';
+        render();
+      }
+      var file = form.querySelector('input[type="file"]');
+      var img = file && file.files && file.files[0];
+      if (img) {
+        if (img.size > 1500000) { alert('Afbeelding is te groot (max ~1,5 MB). Kies een kleinere afbeelding.'); return; }
+        var reader = new FileReader();
+        reader.onload = function(){ item.img = reader.result; finish(); };
+        reader.onerror = function(){ finish(); };
+        reader.readAsDataURL(img);
+      } else { finish(); }
     });
   }
 })();
