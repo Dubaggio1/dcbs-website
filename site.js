@@ -29,6 +29,9 @@
   if (consent) applyConsent(consent);
 
   document.addEventListener('DOMContentLoaded', function(){
+    // ---- Mobiele opschoning (alleen <=720px; desktop ongewijzigd) ----
+    enhanceMobile();
+
     // ---- Cookiebanner ----
     var banner = document.getElementById('cookie-banner');
     if (banner && !consent) banner.style.display = 'flex';
@@ -49,6 +52,80 @@
     var lijst = document.getElementById('nieuws-lijst');
     if (lijst) initNieuws(lijst);
   });
+
+  function enhanceMobile(){
+    if (window.__dcbsMobile) return; window.__dcbsMobile = true;
+
+    // Stylesheet — uitsluitend voor <=720px; desktop blijft exact ongewijzigd
+    var css = document.createElement('style');
+    css.textContent =
+      '@media(max-width:720px){' +
+      ' header{position:relative!important;flex-wrap:nowrap!important;height:auto!important;min-height:56px;padding:10px 20px!important;gap:12px!important}' +
+      ' header>a:first-child span{display:none!important}' +
+      ' header nav{display:none!important}' +
+      ' header nav.dcbs-open{display:flex!important;flex-direction:column;align-items:stretch!important;position:absolute;top:100%;left:0;right:0;margin:0;padding:6px 20px 14px;gap:0!important;z-index:60;box-shadow:0 12px 26px rgba(0,0,0,.16)}' +
+      ' header nav.dcbs-open a{width:100%;padding:14px 2px!important;font-size:16px!important;border-top:1px solid rgba(140,140,140,.22)}' +
+      ' header nav.dcbs-open a:first-child{border-top:none}' +
+      ' .dcbs-burger{display:inline-flex!important}' +
+      ' html,body{overflow-x:hidden}' +
+      '}';
+    document.head.appendChild(css);
+
+    // DOM-mutaties UITSLUITEND op mobiel (<=720px); desktop blijft volledig ongemoeid.
+    var mq = window.matchMedia('(max-width:720px)');
+    function build(){
+      if (window.__dcbsMenuBuilt || !mq.matches) return;
+      var header = document.querySelector('header');
+      var nav = header && header.querySelector('nav');
+      if (!header || !nav) return;
+      window.__dcbsMenuBuilt = true;
+
+      // Losse header-CTA's (bijv. "Plan een gesprek") in het menu opnemen
+      var logo = header.querySelector('a');
+      Array.prototype.slice.call(header.children).forEach(function(el){
+        if (el.tagName === 'A' && el !== logo) nav.appendChild(el);
+      });
+
+      // Kleuren afleiden van de nav-link (licht op donkere hero, donker op lichte pagina's)
+      var link = nav.querySelector('a');
+      var col = link ? getComputedStyle(link).color : 'rgb(20,24,26)';
+      var m = (col.match(/\d+/g) || [20,24,26]).map(Number);
+      var dark = (0.299*m[0] + 0.587*m[1] + 0.114*m[2]) > 150;
+      nav.style.setProperty('background', dark ? '#0A3937' : '#FBFAF7', 'important');
+      nav.querySelectorAll('a').forEach(function(a){
+        if (/background/i.test(a.getAttribute('style') || '')) return; // CTA met eigen achtergrond behoudt eigen kleuren
+        a.style.setProperty('color', dark ? '#FBFAF7' : '#14181A', 'important');
+      });
+
+      // Hamburgerknop
+      var burger = document.createElement('button');
+      burger.className = 'dcbs-burger';
+      burger.setAttribute('aria-label', 'Menu');
+      burger.setAttribute('aria-expanded', 'false');
+      burger.style.cssText = 'display:none;flex:none;width:42px;height:42px;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:0;color:' + col;
+      for (var k = 0; k < 3; k++){
+        var bar = document.createElement('span');
+        bar.style.cssText = 'display:block;width:24px;height:2px;background:currentColor;transition:.2s';
+        burger.appendChild(bar);
+      }
+      function closeMenu(){
+        nav.classList.remove('dcbs-open'); burger.setAttribute('aria-expanded','false');
+        var b = burger.children; b[0].style.transform=''; b[1].style.opacity=''; b[2].style.transform='';
+      }
+      burger.addEventListener('click', function(){
+        var open = nav.classList.toggle('dcbs-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var b = burger.children;
+        b[0].style.transform = open ? 'translateY(7px) rotate(45deg)' : '';
+        b[1].style.opacity = open ? '0' : '';
+        b[2].style.transform = open ? 'translateY(-7px) rotate(-45deg)' : '';
+      });
+      nav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+      header.appendChild(burger);
+    }
+    build();
+    if (mq.addEventListener) mq.addEventListener('change', build); else if (mq.addListener) mq.addListener(build);
+  }
 
   function startWaves(canvas){
     var ctx = canvas.getContext('2d');
