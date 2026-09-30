@@ -123,9 +123,14 @@ a.hv-base{}
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
         <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Categorie
           <select name="cat" style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
-            <option>Privacy</option>
-            <option>AI Compliance</option>
-            <option>Data Management</option>
+            <option>Privacy compliance</option>
+            <option>AI compliance</option>
+            <option>NIS2 / Cyberbeveiligingswet</option>
+            <option>Information security</option>
+            <option>Quantum-readiness</option>
+            <option>DPO as a Service</option>
+            <option>Privacy Officer as a Service</option>
+            <option>Security Officer as a Service</option>
           </select>
         </label>
         <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Datum (bijv. "Augustus 2026")
@@ -149,6 +154,17 @@ a.hv-base{}
         <button type="button" onclick="document.getElementById('artikel-formwrap').style.display='none';document.getElementById('toggle-form').textContent='+ Artikel toevoegen'" style="font-family:'Archivo',sans-serif;font-size:14px;color:#6B716E;background:none;border:none;cursor:pointer" class="hv9">Annuleren</button>
       </div>
     </form>
+  </div>
+
+  <!-- Publiceer-paneel: site.js vult dit met de nieuws-data.js-regel(s) voor artikelen die alleen in deze browser staan. -->
+  <div id="artikel-export" style="display:none;margin:0 72px 60px;background:#F3F1EA;padding:44px 48px">
+    <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654;margin-bottom:6px">Publiceren</div>
+    <p style="font-size:13px;line-height:1.6;color:#6B716E;margin:0 0 16px;max-width:70ch">Onderstaande artikelen staan alleen in deze browser. Kopieer de regel(s), plak ze bovenaan de lijst in nieuws-data.js en zet een eventuele afbeelding in de map assets/nieuws/. Publiceer de site; daarna verdwijnen ze hier vanzelf.</p>
+    <textarea id="artikel-export-code" readonly rows="4" spellcheck="false" style="width:100%;box-sizing:border-box;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.5;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A;resize:vertical"></textarea>
+    <div id="artikel-export-imgs" style="display:flex;flex-direction:column;gap:6px;margin-top:12px;font-size:13px"></div>
+    <div style="display:flex;gap:14px;margin-top:16px">
+      <button type="button" id="artikel-export-copy" style="font-family:'Archivo',sans-serif;background:#0E5654;color:#FBFAF7;font-size:14px;font-weight:500;padding:12px 22px;border:none;cursor:pointer" class="hv13">Kopieer</button>
+    </div>
   </div>
 
 

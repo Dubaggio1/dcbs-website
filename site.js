@@ -180,8 +180,14 @@
   function nieuwsEsc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
   // Alle artikelen, nieuwste eerst: eerst de in deze browser toegevoegde (localStorage),
   // daarna window.DCBS_ARTICLES uit /nieuws-data.js (volgorde van dat bestand = bovenaan is nieuwste).
+  // Lokale artikelen waarvan de titel al in nieuws-data.js staat, zijn gepubliceerd en worden niet dubbel getoond.
+  function lokaalOngepubliceerd(){
+    var titels = {};
+    (window.DCBS_ARTICLES || []).forEach(function(a){ titels[String(a.title || '').trim().toLowerCase()] = true; });
+    return nieuwsLocal().filter(function(a){ return !titels[String(a.title || '').trim().toLowerCase()]; });
+  }
   function alleArtikelen(){
-    return nieuwsLocal().map(function(a){ a = Object.assign({}, a); a._local = true; return a; })
+    return lokaalOngepubliceerd().map(function(a){ a = Object.assign({}, a); a._local = true; return a; })
       .concat(window.DCBS_ARTICLES || []);
   }
 
@@ -210,7 +216,41 @@
   function initNieuws(lijst){
     var getLocal = nieuwsLocal, esc = nieuwsEsc;
     function setLocal(v){ try { localStorage.setItem(NIEUWS_LSKEY, JSON.stringify(v)); } catch(e){} }
+
+    // Publiceer-paneel: kant-en-klare regel(s) voor nieuws-data.js van artikelen die alleen in deze browser staan.
+    var exportWrap = document.getElementById('artikel-export'), exportCode = document.getElementById('artikel-export-code'),
+        exportImgs = document.getElementById('artikel-export-imgs'), exportCopy = document.getElementById('artikel-export-copy');
+    function jsStr(s){ return "'" + String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\r?\n/g, '\\n') + "'"; }
+    function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50) || 'artikel'; }
+    function renderExport(){
+      if (!exportWrap || !exportCode) return;
+      var local = lokaalOngepubliceerd();
+      if (!local.length){ exportWrap.style.display = 'none'; return; }
+      var d = new Date(), ym = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2), imgs = [];
+      exportCode.textContent = exportCode.value = local.map(function(a){
+        var s = slug(a.title);
+        var line = "  { id: 'news-" + ym + '-' + s + "', cat: " + jsStr(a.cat) + ', date: ' + jsStr(a.date) + ', link: ' + jsStr(a.link) + ', title: ' + jsStr(a.title) + ', summary: ' + jsStr(a.summary);
+        if (a.img && /^data:image\//i.test(a.img)){
+          var ext = (a.img.match(/^data:image\/([a-z0-9+]+)/i) || [0, 'jpg'])[1].toLowerCase().replace('jpeg', 'jpg').replace('svg+xml', 'svg');
+          imgs.push({ name: s + '.' + ext, href: a.img });
+          line += ", img: '/assets/nieuws/" + s + '.' + ext + "'";
+        } else if (a.img) { line += ', img: ' + jsStr(a.img); }
+        return line + ' },';
+      }).join('\n');
+      exportCode.rows = Math.min(12, local.length + 3);
+      if (exportImgs) exportImgs.innerHTML = imgs.map(function(i){
+        return '<a href="' + i.href + '" download="' + esc(i.name) + '" style="color:#0E5654">Download afbeelding \u2192 ' + esc(i.name) + ' (zet in assets/nieuws/)</a>';
+      }).join('');
+      exportWrap.style.display = 'block';
+    }
+    if (exportCopy && exportCode) exportCopy.addEventListener('click', function(){
+      function done(){ exportCopy.textContent = 'Gekopieerd \u2713'; setTimeout(function(){ exportCopy.textContent = 'Kopieer'; }, 2000); }
+      function fallback(){ exportCode.focus(); exportCode.select(); try { document.execCommand('copy'); } catch(e){} done(); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(exportCode.value).then(done, fallback); else fallback();
+    });
+
     function render(){
+      renderExport();
       var items = alleArtikelen();
       if (!items.length){
         lijst.innerHTML = '<p style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.4;color:#4E5552;margin:0;padding:36px 0;border-top:1px solid #14181A">Er zijn nog geen artikelen gepubliceerd. Nieuwe artikelen verschijnen hier automatisch.</p>';
