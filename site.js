@@ -174,22 +174,11 @@
     if (reduced) draw(0); else requestAnimationFrame(draw);
   }
 
-  // ---- Nieuws: gedeelde helpers (nieuwspagina + homepage) ----------------
-  var NIEUWS_LSKEY = 'dcbs-local-articles';
-  function nieuwsLocal(){ try { return JSON.parse(localStorage.getItem(NIEUWS_LSKEY) || '[]'); } catch(e){ return []; } }
+  // ---- Nieuws: publieke weergave -------------------------------------------
+  // Bron: window.DCBS_ARTICLES uit /nieuws-data.js (bovenaan = nieuwste). Dat bestand wordt beheerd
+  // via de nieuwspagina (/nieuws/#beheer), die het via de GitHub-API publiceert; zie initBeheer hieronder.
   function nieuwsEsc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-  // Alle artikelen, nieuwste eerst: eerst de in deze browser toegevoegde (localStorage),
-  // daarna window.DCBS_ARTICLES uit /nieuws-data.js (volgorde van dat bestand = bovenaan is nieuwste).
-  // Lokale artikelen waarvan de titel al in nieuws-data.js staat, zijn gepubliceerd en worden niet dubbel getoond.
-  function lokaalOngepubliceerd(){
-    var titels = {};
-    (window.DCBS_ARTICLES || []).forEach(function(a){ titels[String(a.title || '').trim().toLowerCase()] = true; });
-    return nieuwsLocal().filter(function(a){ return !titels[String(a.title || '').trim().toLowerCase()]; });
-  }
-  function alleArtikelen(){
-    return lokaalOngepubliceerd().map(function(a){ a = Object.assign({}, a); a._local = true; return a; })
-      .concat(window.DCBS_ARTICLES || []);
-  }
+  function alleArtikelen(){ return window.DCBS_ARTICLES || []; }
 
   // Homepage: de 3 nieuwste artikelen, zelfde bron en volgorde als de nieuwspagina.
   // Zonder artikelen blijft de hele sectie (#nieuws-sectie) verborgen.
@@ -214,103 +203,212 @@
   }
 
   function initNieuws(lijst){
-    var getLocal = nieuwsLocal, esc = nieuwsEsc;
-    function setLocal(v){ try { localStorage.setItem(NIEUWS_LSKEY, JSON.stringify(v)); } catch(e){} }
+    var esc = nieuwsEsc;
+    var publiek = alleArtikelen();
+    var beheer = null;        // { items, sha } zodra de beheerder de lijst uit GitHub heeft geladen
+    var beheerOpen = false;   // beheerpaneel open: toon bewerk-/verwijderknoppen
 
-    // Publiceer-paneel: kant-en-klare regel(s) voor nieuws-data.js van artikelen die alleen in deze browser staan.
-    var exportWrap = document.getElementById('artikel-export'), exportCode = document.getElementById('artikel-export-code'),
-        exportImgs = document.getElementById('artikel-export-imgs'), exportCopy = document.getElementById('artikel-export-copy');
-    function jsStr(s){ return "'" + String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\r?\n/g, '\\n') + "'"; }
-    function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50) || 'artikel'; }
-    function renderExport(){
-      if (!exportWrap || !exportCode) return;
-      var local = lokaalOngepubliceerd();
-      if (!local.length){ exportWrap.style.display = 'none'; return; }
-      var d = new Date(), ym = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2), imgs = [];
-      exportCode.textContent = exportCode.value = local.map(function(a){
-        var s = slug(a.title);
-        var line = "  { id: 'news-" + ym + '-' + s + "', cat: " + jsStr(a.cat) + ', date: ' + jsStr(a.date) + ', link: ' + jsStr(a.link) + ', title: ' + jsStr(a.title) + ', summary: ' + jsStr(a.summary);
-        if (a.img && /^data:image\//i.test(a.img)){
-          var ext = (a.img.match(/^data:image\/([a-z0-9+]+)/i) || [0, 'jpg'])[1].toLowerCase().replace('jpeg', 'jpg').replace('svg+xml', 'svg');
-          imgs.push({ name: s + '.' + ext, href: a.img });
-          line += ", img: '/assets/nieuws/" + s + '.' + ext + "'";
-        } else if (a.img) { line += ', img: ' + jsStr(a.img); }
-        return line + ' },';
-      }).join('\n');
-      exportCode.rows = Math.min(12, local.length + 3);
-      if (exportImgs) exportImgs.innerHTML = imgs.map(function(i){
-        return '<a href="' + i.href + '" download="' + esc(i.name) + '" style="color:#0E5654">Download afbeelding \u2192 ' + esc(i.name) + ' (zet in assets/nieuws/)</a>';
-      }).join('');
-      exportWrap.style.display = 'block';
+    function rij(a, i, n){
+      var top = i === 0 ? '#14181A' : '#E2DFD6';
+      var bottom = i === n - 1 ? ';border-bottom:1px solid #E2DFD6' : '';
+      var isExt = a.link && /^https?:/i.test(a.link);
+      var href = a.link ? ' href="' + esc(a.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') : '';
+      var media = a.img
+        ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:320px;max-width:100%;height:190px;object-fit:cover;background:#E9E5DA">'
+        : '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
+      var knoppen = beheerOpen
+        ? '<span style="position:absolute;top:36px;right:0;display:flex;gap:8px">' +
+          '<button type="button" data-edit="' + esc(a.id) + '" style="font-family:Archivo,sans-serif;font-size:12px;color:#0E5654;background:#FBFAF7;border:1px solid #A9C4C1;padding:6px 12px;cursor:pointer">Bewerken</button>' +
+          '<button type="button" data-del="' + esc(a.id) + '" style="font-family:Archivo,sans-serif;font-size:12px;color:#8E938F;background:#FBFAF7;border:1px solid #D6D2C6;padding:6px 12px;cursor:pointer">Verwijderen</button></span>'
+        : '';
+      return '<div style="position:relative">' +
+        '<a' + href + ' style="display:grid;grid-template-columns:minmax(200px,320px) minmax(0,1fr) 110px;gap:44px;align-items:center;padding:36px 0;border-top:1px solid ' + top + bottom + ';color:#14181A" class="nieuwsrij">' +
+        media +
+        '<span><span style="display:block;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654">' + esc(a.cat) + '</span>' +
+        '<span style="display:block;font-family:\'Petrona\',Georgia,serif;font-size:29px;line-height:1.22;margin-top:12px">' + esc(a.title) + '</span>' +
+        '<span style="display:block;font-size:14px;line-height:1.6;color:#4E5552;margin-top:12px;max-width:64ch">' + esc(a.summary) + '</span></span>' +
+        '<span style="font-size:12.5px;color:#6B716E;text-align:right">' + esc(a.date) + '</span></a>' +
+        knoppen + '</div>';
     }
-    if (exportCopy && exportCode) exportCopy.addEventListener('click', function(){
-      function done(){ exportCopy.textContent = 'Gekopieerd \u2713'; setTimeout(function(){ exportCopy.textContent = 'Kopieer'; }, 2000); }
-      function fallback(){ exportCode.focus(); exportCode.select(); try { document.execCommand('copy'); } catch(e){} done(); }
-      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(exportCode.value).then(done, fallback); else fallback();
-    });
-
     function render(){
-      renderExport();
-      var items = alleArtikelen();
-      if (!items.length){
+      var list = beheer ? beheer.items : publiek;
+      if (!list.length){
         lijst.innerHTML = '<p style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.4;color:#4E5552;margin:0;padding:36px 0;border-top:1px solid #14181A">Er zijn nog geen artikelen gepubliceerd. Nieuwe artikelen verschijnen hier automatisch.</p>';
         return;
       }
-      lijst.innerHTML = items.map(function(a, i){
-        var top = i === 0 ? '#14181A' : '#E2DFD6';
-        var bottom = i === items.length - 1 ? ';border-bottom:1px solid #E2DFD6' : '';
-        var isExt = a.link && /^https?:/i.test(a.link);
-        var href = a.link ? ' href="' + esc(a.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') : '';
-        var media = a.img
-          ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:320px;max-width:100%;height:190px;object-fit:cover;background:#E9E5DA">'
-          : '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
-        return '<div style="position:relative">' +
-          '<a' + href + ' style="display:grid;grid-template-columns:minmax(200px,320px) minmax(0,1fr) 110px;gap:44px;align-items:center;padding:36px 0;border-top:1px solid ' + top + bottom + ';color:#14181A" class="nieuwsrij">' +
-          media +
-          '<span><span style="display:block;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654">' + esc(a.cat) + '</span>' +
-          '<span style="display:block;font-family:\'Petrona\',Georgia,serif;font-size:29px;line-height:1.22;margin-top:12px">' + esc(a.title) + '</span>' +
-          '<span style="display:block;font-size:14px;line-height:1.6;color:#4E5552;margin-top:12px;max-width:64ch">' + esc(a.summary) + '</span></span>' +
-          '<span style="font-size:12.5px;color:#6B716E;text-align:right">' + esc(a.date) + '</span></a>' +
-          (a._local ? '<button data-del="' + esc(a.id) + '" title="Verwijderen" style="position:absolute;top:36px;right:0;font-family:Archivo,sans-serif;font-size:12px;color:#8E938F;background:none;border:1px solid #D6D2C6;padding:6px 12px;cursor:pointer">Verwijderen</button>' : '') +
-          '</div>';
-      }).join('');
-      lijst.querySelectorAll('button[data-del]').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          setLocal(getLocal().filter(function(x){ return x.id !== btn.getAttribute('data-del'); }));
-          render();
-        });
-      });
+      lijst.innerHTML = list.map(function(a, i){ return rij(a, i, list.length); }).join('');
     }
     render();
-    var toggle = document.getElementById('toggle-form'), formwrap = document.getElementById('artikel-formwrap');
-    if (toggle && formwrap){
-      toggle.addEventListener('click', function(){
-        var open = formwrap.style.display !== 'none';
-        formwrap.style.display = open ? 'none' : 'block';
-        toggle.textContent = open ? '+ Artikel toevoegen' : 'Sluit formulier';
-      });
-    }
-    var form = document.getElementById('artikel-form');
-    if (form) form.addEventListener('submit', function(e){
-      e.preventDefault();
-      var f = new FormData(form);
-      var item = { id: 'local-' + Date.now(), cat: f.get('cat'), date: f.get('date'), title: f.get('title'), summary: f.get('summary'), link: (f.get('link') || '').trim() };
-      function finish(){
-        setLocal([item].concat(getLocal()));
-        form.reset();
-        if (formwrap) formwrap.style.display = 'none';
-        if (toggle) toggle.textContent = '+ Artikel toevoegen';
-        render();
+    initBeheer();
+
+    // ---- Beheer: toevoegen, bewerken, verwijderen; publiceert rechtstreeks naar GitHub ------------
+    // Zichtbaar via /nieuws/#beheer of zodra er een token in deze browser staat. Het token is een
+    // fine-grained GitHub-token met alleen 'Contents: read and write' op de repository van de site.
+    function initBeheer(){
+      var REPO = 'Dubaggio1/dcbs-website', BRANCH = 'main', DATAPAD = 'nieuws-data.js', TOKENKEY = 'dcbs-github-token';
+      var API = window.DCBS_GITHUB_API || 'https://api.github.com';
+      var $ = function(id){ return document.getElementById(id); };
+      var knop = $('beheer-knop'), paneel = $('beheer-paneel'), login = $('beheer-login'), werk = $('beheer-werk'),
+          status = $('beheer-status'), form = $('artikel-form'), formtitel = $('beheer-formtitel'), uitloggen = $('beheer-uitloggen'),
+          tokenInput = $('beheer-token'), tokenOpslaan = $('beheer-token-opslaan'), annuleren = $('artikel-annuleren');
+      if (!knop || !paneel || !form) return;
+      function fld(n){ return form.querySelector('[name="' + n + '"]'); }
+      function token(){ try { return localStorage.getItem(TOKENKEY) || ''; } catch(e){ return ''; } }
+      function setToken(t){ try { if (t) localStorage.setItem(TOKENKEY, t); else localStorage.removeItem(TOKENKEY); } catch(e){} }
+      if (location.hash !== '#beheer' && !token()) return;   // bezoekers zien niets van het beheer
+      knop.style.display = '';
+
+      function melding(t, isFout){ if (status){ status.textContent = t || ''; status.style.color = isFout ? '#A33A2A' : '#0E5654'; } }
+      function fout(e){ melding('Mislukt: ' + (e && e.message ? e.message : e), true); }
+      function bezig(b){
+        form.querySelectorAll('button, input, select, textarea').forEach(function(el){ el.disabled = b; });
+        lijst.querySelectorAll('button[data-edit],button[data-del]').forEach(function(el){ el.disabled = b; });
       }
-      var file = form.querySelector('input[type="file"]');
-      var img = file && file.files && file.files[0];
-      if (img) {
-        if (img.size > 1500000) { alert('Afbeelding is te groot (max ~1,5 MB). Kies een kleinere afbeelding.'); return; }
-        var reader = new FileReader();
-        reader.onload = function(){ item.img = reader.result; finish(); };
-        reader.onerror = function(){ finish(); };
-        reader.readAsDataURL(img);
-      } else { finish(); }
-    });
+      function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50) || 'artikel'; }
+      function b64enc(str){ return btoa(unescape(encodeURIComponent(str))); }
+      function b64dec(b){ return decodeURIComponent(escape(atob(String(b).replace(/\s/g, '')))); }
+      function parseData(src){
+        try { return new Function('window', src + '\nreturn window.DCBS_ARTICLES || [];')({}) || []; }
+        catch(e){ throw new Error('nieuws-data.js kon niet gelezen worden (' + e.message + ')'); }
+      }
+      function serialize(list){
+        return '// DCBS nieuwsartikelen — beheerd via https://www.dcbs.nl/nieuws/#beheer (niet met de hand bewerken).\n' +
+               '// Bovenaan = nieuwste. cat = een van de diensten. link = LinkedIn-post. img = pad onder /assets/nieuws/.\n' +
+               'window.DCBS_ARTICLES = [\n' + list.map(function(a){ return '  ' + JSON.stringify(a); }).join(',\n') + '\n];\n';
+      }
+      function api(method, pad, body){
+        var url = API + '/repos/' + REPO + '/contents/' + pad + (method === 'GET' ? '?ref=' + BRANCH + '&t=' + Date.now() : '');
+        return fetch(url, {
+          method: method,
+          headers: { 'Authorization': 'Bearer ' + token(), 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json' },
+          body: body ? JSON.stringify(body) : undefined
+        }).then(function(r){
+          if (r.status === 404 && method === 'GET') return null;
+          return r.text().then(function(t){
+            var j = null; try { j = t ? JSON.parse(t) : null; } catch(e){}
+            if (!r.ok){
+              if (r.status === 401) throw new Error('token ongeldig of verlopen (401)');
+              if (r.status === 409) throw new Error('de lijst is intussen elders gewijzigd; laad opnieuw (409)');
+              throw new Error((j && j.message) || ('HTTP ' + r.status));
+            }
+            return j;
+          });
+        });
+      }
+      function laad(){
+        melding('Laden…');
+        return api('GET', DATAPAD).then(function(j){
+          beheer = j ? { items: parseData(b64dec(j.content)), sha: j.sha } : { items: [], sha: null };
+          render(); melding('');
+        });
+      }
+      function publiceer(list, message){
+        var body = { message: message, content: b64enc(serialize(list)), branch: BRANCH };
+        if (beheer && beheer.sha) body.sha = beheer.sha;
+        return api('PUT', DATAPAD, body).then(function(j){
+          beheer = { items: list, sha: j && j.content ? j.content.sha : null };
+          render();
+        });
+      }
+      function uploadAfbeelding(file, naam){
+        return new Promise(function(res, rej){
+          var r = new FileReader();
+          r.onload = function(){ res(String(r.result).split(',')[1]); };
+          r.onerror = function(){ rej(new Error('afbeelding kon niet gelezen worden')); };
+          r.readAsDataURL(file);
+        }).then(function(b64){
+          var ext = (file.name.match(/\.([a-z0-9]+)$/i) || [0, 'jpg'])[1].toLowerCase().replace('jpeg', 'jpg');
+          var pad = 'assets/nieuws/' + slug(naam) + '-' + Date.now().toString(36) + '.' + ext;
+          return api('PUT', pad, { message: 'Nieuws: afbeelding ' + pad, content: b64, branch: BRANCH }).then(function(){ return '/' + pad; });
+        });
+      }
+      function verwijderAfbeelding(pad){   // alleen eigen bestanden onder /assets/nieuws/, fouten negeren
+        if (!pad || pad.indexOf('/assets/nieuws/') !== 0) return Promise.resolve();
+        var p = pad.slice(1);
+        return api('GET', p).then(function(j){
+          if (j && j.sha) return api('DELETE', p, { message: 'Nieuws: afbeelding verwijderd ' + p, sha: j.sha, branch: BRANCH });
+        }).catch(function(){});
+      }
+
+      var publiceerKnop = $('artikel-publiceer'), imgVerwijderWrap = $('artikel-imgverwijder-wrap'), imgHuidig = $('artikel-img-huidig');
+      function resetForm(){
+        form.reset(); fld('id').value = '';
+        if (formtitel) formtitel.textContent = 'Nieuw artikel';
+        if (annuleren) annuleren.style.display = 'none';
+        if (imgVerwijderWrap) imgVerwijderWrap.style.display = 'none';
+        if (publiceerKnop) publiceerKnop.textContent = 'Publiceren';
+      }
+      function bewerk(id){
+        var a = beheer && beheer.items.filter(function(x){ return x.id === id; })[0];
+        if (!a) return;
+        form.reset();
+        fld('id').value = a.id; fld('cat').value = a.cat || ''; fld('date').value = a.date || '';
+        fld('title').value = a.title || ''; fld('summary').value = a.summary || ''; fld('link').value = a.link || '';
+        if (formtitel) formtitel.textContent = 'Artikel bewerken';
+        if (imgVerwijderWrap){ imgVerwijderWrap.style.display = a.img ? 'flex' : 'none'; if (imgHuidig) imgHuidig.textContent = a.img || ''; }
+        if (annuleren) annuleren.style.display = '';
+        if (publiceerKnop) publiceerKnop.textContent = 'Wijzigingen publiceren';
+        melding('');
+        paneel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      function verwijder(id){
+        var a = beheer && beheer.items.filter(function(x){ return x.id === id; })[0];
+        if (!a) return;
+        if (!window.confirm('Dit artikel verwijderen van de site?\n\n' + a.title)) return;
+        bezig(true); melding('Verwijderen…');
+        publiceer(beheer.items.filter(function(x){ return x.id !== id; }), 'Nieuws: verwijderd: ' + a.title)
+          .then(function(){ return verwijderAfbeelding(a.img); })
+          .then(function(){ if (fld('id').value === id) resetForm(); melding('Verwijderd en gepubliceerd. De site is binnen 1 tot 3 minuten bijgewerkt.'); })
+          .catch(fout).then(function(){ bezig(false); });
+      }
+      function bewaar(){
+        if (!beheer) return;
+        var f = new FormData(form), id = (f.get('id') || '').trim();
+        var bestaand = id ? beheer.items.filter(function(x){ return x.id === id; })[0] : null;
+        var item = { id: bestaand ? id : 'news-' + Date.now().toString(36), cat: f.get('cat') || '', date: (f.get('date') || '').trim(),
+                     link: (f.get('link') || '').trim(), title: (f.get('title') || '').trim(), summary: (f.get('summary') || '').trim() };
+        var oudeImg = bestaand && bestaand.img ? bestaand.img : '';
+        var imgWeg = !!(bestaand && f.get('imgverwijder'));
+        if (oudeImg && !imgWeg) item.img = oudeImg;
+        var fileInput = form.querySelector('input[type="file"]'), file = fileInput && fileInput.files && fileInput.files[0];
+        if (file && file.size > 1500000){ fout('afbeelding is te groot (max 1,5 MB); kies een kleinere afbeelding'); return; }
+        bezig(true); melding(file ? 'Afbeelding uploaden…' : 'Publiceren…');
+        (file ? uploadAfbeelding(file, item.title).then(function(p){ item.img = p; }) : Promise.resolve())
+          .then(function(){
+            melding('Publiceren…');
+            var list = bestaand ? beheer.items.map(function(x){ return x.id === item.id ? item : x; }) : [item].concat(beheer.items);
+            return publiceer(list, (bestaand ? 'Nieuws: bewerkt: ' : 'Nieuws: nieuw artikel: ') + item.title);
+          })
+          .then(function(){ if (oudeImg && item.img !== oudeImg) return verwijderAfbeelding(oudeImg); })   // oude afbeelding opruimen
+          .then(function(){ resetForm(); melding('Gepubliceerd. De site is binnen 1 tot 3 minuten bijgewerkt; hieronder staat al de nieuwe stand.'); })
+          .catch(fout).then(function(){ bezig(false); });
+      }
+
+      function toonLogin(){ login.style.display = 'block'; werk.style.display = 'none'; uitloggen.style.display = 'none'; }
+      function start(){
+        login.style.display = 'none'; werk.style.display = 'block'; uitloggen.style.display = '';
+        laad().catch(function(e){ fout(e); if (/401/.test(e.message)){ setToken(''); toonLogin(); } });
+      }
+      function open(){ beheerOpen = true; paneel.style.display = 'block'; knop.textContent = 'Sluit beheer'; render(); if (token()) start(); else toonLogin(); }
+      function sluit(){ beheerOpen = false; paneel.style.display = 'none'; knop.textContent = 'Beheren'; render(); }
+
+      knop.addEventListener('click', function(){ if (beheerOpen) sluit(); else open(); });
+      if (tokenOpslaan) tokenOpslaan.addEventListener('click', function(){
+        var t = (tokenInput.value || '').trim(); if (!t){ fout('plak eerst het token'); return; }
+        setToken(t); tokenInput.value = ''; start();
+      });
+      if (tokenInput) tokenInput.addEventListener('keydown', function(e){ if (e.key === 'Enter'){ e.preventDefault(); tokenOpslaan.click(); } });
+      if (uitloggen) uitloggen.addEventListener('click', function(){ setToken(''); beheer = null; render(); toonLogin(); melding('Token verwijderd uit deze browser.'); });
+      if (annuleren) annuleren.addEventListener('click', function(){ resetForm(); melding(''); });
+      form.addEventListener('submit', function(e){ e.preventDefault(); bewaar(); });
+      lijst.addEventListener('click', function(e){
+        var b = e.target.closest ? e.target.closest('button[data-edit],button[data-del]') : null;
+        if (!b || b.disabled) return;
+        e.preventDefault();
+        if (b.hasAttribute('data-edit')) bewerk(b.getAttribute('data-edit')); else verwijder(b.getAttribute('data-del'));
+      });
+      window.__dcbsBeheer = { items: function(){ return beheer ? beheer.items : null; }, laad: laad, open: open };   // testhaak
+      if (location.hash === '#beheer') open();
+    }
   }
 })();

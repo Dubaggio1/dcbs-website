@@ -112,17 +112,40 @@ a.hv-base{}
     <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654">Nieuws &amp; inzichten</div>
     <h1 style="font-family:'Petrona',Georgia,serif;font-weight:400;font-size:60px;line-height:1.05;letter-spacing:-.02em;margin:24px 0 0;max-width:22ch">Wat er speelt in privacy, AI en cyberwetgeving</h1>
   </div>
-  <button id="toggle-form" style="font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;color:#0E5654;background:none;border:1px solid #A9C4C1;padding:12px 20px;cursor:pointer;flex:none" class="hv12">+ Artikel toevoegen</button>
+  <button id="beheer-knop" style="display:none;font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;color:#0E5654;background:none;border:1px solid #A9C4C1;padding:12px 20px;cursor:pointer;flex:none" class="hv12">Beheren</button>
 </div>
 
 
-  <div id="artikel-formwrap" style="display:none;margin:0 72px 60px;background:#F3F1EA;padding:44px 48px">
-    <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654;margin-bottom:6px">Nieuw artikel toevoegen</div>
-    <p style="font-size:13px;line-height:1.6;color:#6B716E;margin:0 0 24px;max-width:70ch">Vul het formulier in en klik op Opslaan — het artikel verschijnt direct bovenaan de lijst en bij de drie nieuwste artikelen op de homepage, maar alléén in deze browser. Om het voor bezoekers te publiceren voegt u het bovenaan toe in nieuws-data.js en publiceert u de site.</p>
-    <form id="artikel-form" style="display:flex;flex-direction:column;gap:20px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
-        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Categorie
-          <select name="cat" style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
+  <!-- Beheer: alleen zichtbaar via /nieuws/#beheer of zodra er een GitHub-token in deze browser staat (site.js, initBeheer).
+       Publiceert rechtstreeks naar de GitHub-repository van de site; GitHub Pages werkt de site daarna binnen enkele minuten bij. -->
+  <div id="beheer-paneel" style="display:none;margin:0 72px 60px;background:#F3F1EA;padding:44px 48px">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:6px">
+      <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654">Artikelen beheren</div>
+      <button type="button" id="beheer-uitloggen" style="display:none;font-family:'Archivo',sans-serif;font-size:12px;color:#6B716E;background:none;border:none;cursor:pointer;padding:0" class="hv9">Token uit deze browser verwijderen</button>
+    </div>
+
+    <div id="beheer-login" style="display:none">
+      <p style="font-size:13px;line-height:1.6;color:#6B716E;margin:0 0 20px;max-width:70ch">Om artikelen rechtstreeks op de site te plaatsen, te bewerken en te verwijderen is eenmalig een GitHub-token nodig. Het token blijft alleen in deze browser en geeft uitsluitend schrijfrecht op de bestanden van deze site.</p>
+      <ol style="font-size:13px;line-height:1.7;color:#4E5552;margin:0 0 20px;padding-left:20px;max-width:70ch">
+        <li>Ga naar <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>, ingelogd als eigenaar van de site.</li>
+        <li>Token name: <em>dcbs.nl nieuws</em>. Expiration: bijvoorbeeld 1 jaar (daarna hier een nieuw token plakken).</li>
+        <li>Repository access: <em>Only select repositories</em>, kies <em>dcbs-website</em>.</li>
+        <li>Permissions, Repository permissions: <em>Contents</em> op <em>Read and write</em>. Klik <em>Generate token</em> en kopieer het token.</li>
+      </ol>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <input id="beheer-token" type="password" autocomplete="off" placeholder="github_pat_…" style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A;flex:1;min-width:260px">
+        <button type="button" id="beheer-token-opslaan" style="font-family:'Archivo',sans-serif;background:#0E5654;color:#FBFAF7;font-size:14px;font-weight:500;padding:14px 24px;border:none;cursor:pointer" class="hv13">Token opslaan</button>
+      </div>
+    </div>
+
+    <div id="beheer-werk" style="display:none">
+      <p style="font-size:13px;line-height:1.6;color:#6B716E;margin:0 0 20px;max-width:70ch">Publiceren zet de wijziging direct op de site. GitHub Pages werkt de pagina's binnen 1 tot 3 minuten bij; de lijst hieronder toont meteen de nieuwe stand. Bij elk artikel staan knoppen Bewerken en Verwijderen.</p>
+      <div id="beheer-formtitel" style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654;margin-bottom:14px">Nieuw artikel</div>
+      <form id="artikel-form" style="display:flex;flex-direction:column;gap:20px">
+        <input type="hidden" name="id" value="">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Categorie
+            <select name="cat" style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
             <option>Privacy compliance</option>
             <option>AI compliance</option>
             <option>NIS2 / Cyberbeveiligingswet</option>
@@ -131,40 +154,34 @@ a.hv-base{}
             <option>DPO as a Service</option>
             <option>Privacy Officer as a Service</option>
             <option>Security Officer as a Service</option>
-          </select>
+            </select>
+          </label>
+          <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Datum (bijv. "Oktober 2026")
+            <input name="date" required style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
+          </label>
+        </div>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Titel
+          <input name="title" required style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
         </label>
-        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Datum (bijv. "Augustus 2026")
-          <input name="date" required style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Samenvatting (voor de overzichtspagina)
+          <textarea name="summary" rows="3" required style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A;resize:vertical"></textarea>
         </label>
-      </div>
-      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Titel
-        <input name="title" required style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
-      </label>
-      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Samenvatting (voor de overzichtspagina)
-        <textarea name="summary" rows="3" required style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A;resize:vertical"></textarea>
-      </label>
-      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Link naar het volledige artikel (bijv. LinkedIn-post, optioneel)
-        <input name="link" style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
-      </label>
-      <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Afbeelding (optioneel, max ~1,5 MB)
-        <input name="afbeelding" type="file" accept="image/*" style="font-family:'Archivo',sans-serif;font-size:14px;padding:11px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
-      </label>
-      <div style="display:flex;gap:14px">
-        <button type="submit" style="font-family:'Archivo',sans-serif;background:#0E5654;color:#FBFAF7;font-size:14px;font-weight:500;padding:14px 24px;border:none;cursor:pointer" class="hv13">Artikel opslaan</button>
-        <button type="button" onclick="document.getElementById('artikel-formwrap').style.display='none';document.getElementById('toggle-form').textContent='+ Artikel toevoegen'" style="font-family:'Archivo',sans-serif;font-size:14px;color:#6B716E;background:none;border:none;cursor:pointer" class="hv9">Annuleren</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- Publiceer-paneel: site.js vult dit met de nieuws-data.js-regel(s) voor artikelen die alleen in deze browser staan. -->
-  <div id="artikel-export" style="display:none;margin:0 72px 60px;background:#F3F1EA;padding:44px 48px">
-    <div style="font-size:11px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:#0E5654;margin-bottom:6px">Publiceren</div>
-    <p style="font-size:13px;line-height:1.6;color:#6B716E;margin:0 0 16px;max-width:70ch">Onderstaande artikelen staan alleen in deze browser. Kopieer de regel(s), plak ze bovenaan de lijst in nieuws-data.js en zet een eventuele afbeelding in de map assets/nieuws/. Publiceer de site; daarna verdwijnen ze hier vanzelf.</p>
-    <textarea id="artikel-export-code" readonly rows="4" spellcheck="false" style="width:100%;box-sizing:border-box;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.5;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A;resize:vertical"></textarea>
-    <div id="artikel-export-imgs" style="display:flex;flex-direction:column;gap:6px;margin-top:12px;font-size:13px"></div>
-    <div style="display:flex;gap:14px;margin-top:16px">
-      <button type="button" id="artikel-export-copy" style="font-family:'Archivo',sans-serif;background:#0E5654;color:#FBFAF7;font-size:14px;font-weight:500;padding:12px 22px;border:none;cursor:pointer" class="hv13">Kopieer</button>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Link naar de LinkedIn-post (optioneel)
+          <input name="link" type="url" placeholder="https://www.linkedin.com/posts/…" style="font-family:'Archivo',sans-serif;font-size:15px;padding:13px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
+        </label>
+        <label style="display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6B716E">Afbeelding (optioneel, max 1,5 MB; bij bewerken vervangt dit de huidige afbeelding)
+          <input name="afbeelding" type="file" accept="image/*" style="font-family:'Archivo',sans-serif;font-size:14px;padding:11px 16px;border:1px solid #CFCBBF;background:#FBFAF7;color:#14181A">
+        </label>
+        <label id="artikel-imgverwijder-wrap" style="display:none;flex-direction:row;align-items:center;gap:10px;font-size:13px;color:#4E5552">
+          <input type="checkbox" name="imgverwijder" value="1"> Huidige afbeelding verwijderen (<span id="artikel-img-huidig"></span>)
+        </label>
+        <div style="display:flex;gap:14px">
+          <button type="submit" id="artikel-publiceer" style="font-family:'Archivo',sans-serif;background:#0E5654;color:#FBFAF7;font-size:14px;font-weight:500;padding:14px 24px;border:none;cursor:pointer" class="hv13">Publiceren</button>
+          <button type="button" id="artikel-annuleren" style="display:none;font-family:'Archivo',sans-serif;font-size:14px;color:#6B716E;background:none;border:none;cursor:pointer" class="hv9">Annuleren</button>
+        </div>
+      </form>
     </div>
+    <div id="beheer-status" style="font-size:13px;line-height:1.6;color:#0E5654;margin-top:18px;min-height:1.6em"></div>
   </div>
 
 
