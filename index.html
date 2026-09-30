@@ -69,7 +69,7 @@
     [style*="gap:56px"]{gap:28px!important}
     [style*="gap:48px"]{gap:24px!important}
     [style*="gap:44px"]{gap:20px!important}
-    div[style*="height:250px"],image-slot[style*="height:250px"]{height:160px!important}
+    div[style*="height:250px"],img[style*="height:250px"],image-slot[style*="height:250px"]{height:160px!important}
     div[style*="height:190px"],image-slot[style*="height:190px"]{height:130px!important}
     div[style*="padding:52px 48px"],form[style*="padding:52px"],div[style*="padding:44px 48px"],div[style*="padding:40px 44px"],a[style*="padding:48px"]{padding:26px 22px!important}
     div[style*="padding:52px 48px"]{padding:28px 24px!important}
@@ -98,6 +98,7 @@
 .heroaas:hover{color:#9FD1CA!important;border-bottom-color:#9FD1CA!important}
 .nieuwsrij:hover, .nieuwsrij:hover span{color:#0E5654!important}
 </style>
+<script src="/nieuws-data.js" defer></script>
 <script src="/site.js" defer></script>
 </head>
 <body>
@@ -342,28 +343,14 @@
   </div>
 </div>
 
-<div style="background:#F3F1EA;padding:110px 72px">
+<!-- Nieuws & inzichten: site.js vult dit blok automatisch met de 3 nieuwste artikelen uit /nieuws-data.js.
+     Zolang er geen artikelen zijn blijft het blok verborgen (display:none); site.js toont het zodra er artikelen zijn. -->
+<div id="nieuws-sectie" style="background:#F3F1EA;padding:110px 72px;display:none">
   <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:52px">
     <h2 style="font-family:'Petrona',Georgia,serif;font-weight:400;font-size:40px;letter-spacing:-.02em;margin:0">Nieuws &amp; inzichten</h2>
     <a href="/nieuws/" style="font-size:13px;color:#0E5654">Alle artikelen →</a>
   </div>
-  <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px">
-    <a href="/nieuws/" style="color:#14181A;display:flex;flex-direction:column;min-width:0" class="hv7">
-      <div style="width:100%;height:250px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654;margin-top:20px"><span>AI Compliance</span><span style="color:#8E938F">Maart 2025</span></div>
-      <div style="font-family:'Petrona',Georgia,serif;font-size:24px;line-height:1.25;margin-top:12px">AI2027: superintelligente AI binnen twee jaar — zijn we er klaar voor?</div>
-    </a>
-    <a href="/nieuws/" style="color:#14181A;display:flex;flex-direction:column;min-width:0" class="hv7">
-      <div style="width:100%;height:250px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654;margin-top:20px"><span>Privacy</span><span style="color:#8E938F">2025</span></div>
-      <div style="font-family:'Petrona',Georgia,serif;font-size:24px;line-height:1.25;margin-top:12px">Zeven jaar AVG-handhaving in Nederland: wat hebben we geleerd?</div>
-    </a>
-    <a href="/nieuws/" style="color:#14181A;display:flex;flex-direction:column;min-width:0" class="hv7">
-      <div style="width:100%;height:250px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654;margin-top:20px"><span>Privacy</span><span style="color:#8E938F">2025</span></div>
-      <div style="font-family:'Petrona',Georgia,serif;font-size:24px;line-height:1.25;margin-top:12px">Recordboete Vodafone Duitsland: €45 miljoen — lessen voor uw organisatie</div>
-    </a>
-  </div>
+  <div id="nieuws-home" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px"></div>
 </div>
 
 <div style="background:#0A3937;color:#F1F5F3;padding:120px 72px;text-align:center">

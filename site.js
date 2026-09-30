@@ -51,6 +51,8 @@
     // ---- Nieuws ----
     var lijst = document.getElementById('nieuws-lijst');
     if (lijst) initNieuws(lijst);
+    var home = document.getElementById('nieuws-home');
+    if (home) initNieuwsHome(home);
   });
 
   function enhanceMobile(){
@@ -172,14 +174,48 @@
     if (reduced) draw(0); else requestAnimationFrame(draw);
   }
 
+  // ---- Nieuws: gedeelde helpers (nieuwspagina + homepage) ----------------
+  var NIEUWS_LSKEY = 'dcbs-local-articles';
+  function nieuwsLocal(){ try { return JSON.parse(localStorage.getItem(NIEUWS_LSKEY) || '[]'); } catch(e){ return []; } }
+  function nieuwsEsc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  // Alle artikelen, nieuwste eerst: eerst de in deze browser toegevoegde (localStorage),
+  // daarna window.DCBS_ARTICLES uit /nieuws-data.js (volgorde van dat bestand = bovenaan is nieuwste).
+  function alleArtikelen(){
+    return nieuwsLocal().map(function(a){ a = Object.assign({}, a); a._local = true; return a; })
+      .concat(window.DCBS_ARTICLES || []);
+  }
+
+  // Homepage: de 3 nieuwste artikelen, zelfde bron en volgorde als de nieuwspagina.
+  // Zonder artikelen blijft de hele sectie (#nieuws-sectie) verborgen.
+  // Een artikel zonder link (bijv. LinkedIn-URL nog niet ingevuld) wordt als niet-klikbare kaart getoond.
+  function initNieuwsHome(grid){
+    var sectie = document.getElementById('nieuws-sectie');
+    var items = alleArtikelen().slice(0, 3);
+    if (!items.length){ if (sectie) sectie.style.display = 'none'; return; }
+    if (sectie) sectie.style.display = '';
+    grid.innerHTML = items.map(function(a){
+      var isExt = a.link && /^https?:/i.test(a.link);
+      var media = a.img
+        ? '<img src="' + nieuwsEsc(a.img) + '" alt="" loading="lazy" style="width:100%;height:250px;object-fit:cover;background:#E9E5DA">'
+        : '<div style="width:100%;height:250px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
+      return '<a' + (a.link ? ' href="' + nieuwsEsc(a.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="hv7"' : '') +
+        ' style="color:#14181A;display:flex;flex-direction:column;min-width:0">' +
+        media +
+        '<div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654;margin-top:20px"><span>' + nieuwsEsc(a.cat) + '</span><span style="color:#8E938F">' + nieuwsEsc(a.date) + '</span></div>' +
+        '<div style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.25;margin-top:12px">' + nieuwsEsc(a.title) + '</div>' +
+        '</a>';
+    }).join('');
+  }
+
   function initNieuws(lijst){
-    var LSKEY = 'dcbs-local-articles';
-    function getLocal(){ try { return JSON.parse(localStorage.getItem(LSKEY) || '[]'); } catch(e){ return []; } }
-    function setLocal(v){ try { localStorage.setItem(LSKEY, JSON.stringify(v)); } catch(e){} }
-    function esc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+    var getLocal = nieuwsLocal, esc = nieuwsEsc;
+    function setLocal(v){ try { localStorage.setItem(NIEUWS_LSKEY, JSON.stringify(v)); } catch(e){} }
     function render(){
-      var items = getLocal().map(function(a){ a = Object.assign({}, a); a._local = true; return a; })
-        .concat(window.DCBS_ARTICLES || []);
+      var items = alleArtikelen();
+      if (!items.length){
+        lijst.innerHTML = '<p style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.4;color:#4E5552;margin:0;padding:36px 0;border-top:1px solid #14181A">Er zijn nog geen artikelen gepubliceerd. Nieuwe artikelen verschijnen hier automatisch.</p>';
+        return;
+      }
       lijst.innerHTML = items.map(function(a, i){
         var top = i === 0 ? '#14181A' : '#E2DFD6';
         var bottom = i === items.length - 1 ? ';border-bottom:1px solid #E2DFD6' : '';
