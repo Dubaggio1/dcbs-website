@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', function(){
   if (!items.length) { if (sectie) sectie.style.display = 'none'; return; }
   function esc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
   grid.innerHTML = items.map(function(a){
-    var ext = a.link && /^https?:/i.test(a.link);
-    var open = a.link ? '<a class="card" href="' + esc(a.link) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') : '<div class="card"';
-    var close = a.link ? '</a>' : '</div>';
+    var dest = a.url || a.link; var ext = dest && /^https?:/i.test(dest);
+    var open = dest ? '<a class="card" href="' + esc(dest) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') : '<div class="card"';
+    var close = dest ? '</a>' : '</div>';
     var media = a.img ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">' : '<div class="bar"></div>';
     return open + ' style="flex:1 1 300px;display:flex;flex-direction:column">' + media +
       '<div style="padding:26px 28px;display:flex;flex-direction:column;gap:12px;flex:1">' +

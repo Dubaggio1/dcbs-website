@@ -174,6 +174,39 @@
     if (reduced) draw(0); else requestAnimationFrame(draw);
   }
 
+  // ---- Artikeltekst: eenvoudige opmaak naar HTML ---------------------------
+  // ## Kop, ### Subkop, - opsomming, 1. genummerd, > citaat, **vet**, *cursief*, [tekst](url),
+  // en een afbeelding op een eigen regel: ![bijschrift](/assets/nieuws/...). Dezelfde opmaak
+  // gebruikt LinkedIn (kop, subkop, lijsten, citaat), zodat beide versies gelijk zijn.
+  function mdEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function mdInline(t){
+    t = mdEsc(t);
+    t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/|mailto:)[^)\s]+)\)/g, function(m, txt, url){
+      var ext = /^https?:/i.test(url) && url.indexOf('dcbs.nl') < 0;
+      return '<a href="' + url + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + txt + '</a>';
+    });
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');
+    return t;
+  }
+  function mdNaarHtml(src, absoluut){
+    var blokken = String(src || '').replace(/\r/g, '').split(/\n\s*\n/), out = [];
+    blokken.forEach(function(b){
+      b = b.replace(/^\n+|\s+$/g, ''); if (!b) return;
+      var regels = b.split('\n'), m;
+      if ((m = b.match(/^!\[([^\]]*)\]\(([^)\s]+)\)$/))){
+        var src2 = m[2]; if (absoluut && src2.charAt(0) === '/') src2 = 'https://www.dcbs.nl' + src2;
+        out.push('<figure><img src="' + mdEsc(src2) + '" alt="' + mdEsc(m[1]) + '" loading="lazy">' + (m[1] ? '<figcaption>' + mdEsc(m[1]) + '</figcaption>' : '') + '</figure>');
+      } else if (/^### /.test(b)) out.push('<h3>' + mdInline(b.slice(4)) + '</h3>');
+      else if (/^## /.test(b)) out.push('<h2>' + mdInline(b.slice(3)) + '</h2>');
+      else if (regels.every(function(r){ return /^[-*] /.test(r); })) out.push('<ul>' + regels.map(function(r){ return '<li>' + mdInline(r.slice(2)) + '</li>'; }).join('') + '</ul>');
+      else if (regels.every(function(r){ return /^\d+[.)] /.test(r); })) out.push('<ol>' + regels.map(function(r){ return '<li>' + mdInline(r.replace(/^\d+[.)] /, '')) + '</li>'; }).join('') + '</ol>');
+      else if (regels.every(function(r){ return /^> ?/.test(r); })) out.push('<blockquote><p>' + regels.map(function(r){ return mdInline(r.replace(/^> ?/, '')); }).join('<br>') + '</p></blockquote>');
+      else out.push('<p>' + regels.map(mdInline).join('<br>') + '</p>');
+    });
+    return out.join('\n');
+  }
+  window.DCBS_MD = mdNaarHtml;
+
   // ---- Nieuws: publieke weergave -------------------------------------------
   // Bron: window.DCBS_ARTICLES uit /nieuws-data.js (bovenaan = nieuwste). Dat bestand wordt beheerd
   // via de nieuwspagina (/nieuws/#beheer), die het via de GitHub-API publiceert; zie initBeheer hieronder.
@@ -189,11 +222,12 @@
     if (!items.length){ if (sectie) sectie.style.display = 'none'; return; }
     if (sectie) sectie.style.display = '';
     grid.innerHTML = items.map(function(a){
-      var isExt = a.link && /^https?:/i.test(a.link);
+      var dest = a.url || a.link;
+      var isExt = dest && /^https?:/i.test(dest);
       var media = a.img
         ? '<img src="' + nieuwsEsc(a.img) + '" alt="" loading="lazy" style="width:100%;height:250px;object-fit:cover;background:#E9E5DA">'
         : '<div style="width:100%;height:250px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
-      return '<a' + (a.link ? ' href="' + nieuwsEsc(a.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="hv7"' : '') +
+      return '<a' + (dest ? ' href="' + nieuwsEsc(dest) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') + ' class="hv7"' : '') +
         ' style="color:#14181A;display:flex;flex-direction:column;min-width:0">' +
         media +
         '<div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:#0E5654;margin-top:20px"><span>' + nieuwsEsc(a.cat) + '</span><span style="color:#8E938F">' + nieuwsEsc(a.date) + '</span></div>' +
@@ -211,8 +245,9 @@
     function rij(a, i, n){
       var top = i === 0 ? '#14181A' : '#E2DFD6';
       var bottom = i === n - 1 ? ';border-bottom:1px solid #E2DFD6' : '';
-      var isExt = a.link && /^https?:/i.test(a.link);
-      var href = a.link ? ' href="' + esc(a.link) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') : '';
+      var dest = a.url || a.link;
+      var isExt = dest && /^https?:/i.test(dest);
+      var href = dest ? ' href="' + esc(dest) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') : '';
       var media = a.img
         ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:320px;max-width:100%;height:190px;object-fit:cover;background:#E9E5DA">'
         : '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
@@ -273,7 +308,7 @@
       }
       function serialize(list){
         return '// DCBS nieuwsartikelen — beheerd via https://www.dcbs.nl/nieuws/#beheer (niet met de hand bewerken).\n' +
-               '// Bovenaan = nieuwste. cat = een van de diensten. link = LinkedIn-post. img = pad onder /assets/nieuws/.\n' +
+               '// Bovenaan = nieuwste. cat = een van de diensten. url = artikelpagina op de site. link = LinkedIn-post (optioneel). img = omslagafbeelding.\n' +
                'window.DCBS_ARTICLES = [\n' + list.map(function(a){ return '  ' + JSON.stringify(a); }).join(',\n') + '\n];\n';
       }
       function api(method, pad, body){
@@ -330,6 +365,76 @@
         }).catch(function(){});
       }
 
+      // ---- Volledige artikelen op de site: nieuws/<slug>/index.html + artikel.md ----
+      function sha(pad){ return api('GET', pad).then(function(j){ return j && j.sha ? j.sha : null; }); }
+      function zetBestand(pad, inhoud, bericht){
+        return sha(pad).then(function(s){
+          var body = { message: bericht, content: b64enc(inhoud), branch: BRANCH }; if (s) body.sha = s;
+          return api('PUT', pad, body);
+        });
+      }
+      function verwijderBestand(pad, bericht){
+        return sha(pad).then(function(s){ if (s) return api('DELETE', pad, { message: bericht, sha: s, branch: BRANCH }); }).catch(function(){});
+      }
+      function vrijeSlug(basis, eigen){
+        if (eigen) return Promise.resolve(eigen);
+        var probeer = function(n){
+          var sl = basis + (n ? '-' + (n + 1) : '');
+          return sha('nieuws/' + sl + '/index.html').then(function(s){ return s ? probeer(n + 1) : sl; });
+        };
+        return probeer(0);
+      }
+      function bouwPagina(item, md){
+        return fetch('/nieuws/_template.html?t=' + Date.now()).then(function(r){
+          if (!r.ok) throw new Error('artikelsjabloon ontbreekt (/nieuws/_template.html)');
+          return r.text();
+        }).then(function(tpl){
+          var e = mdEsc, url = 'https://www.dcbs.nl/nieuws/' + item.slug + '/';
+          var cover = item.img ? '<figure class="cover"><img src="' + e(item.img) + '" alt=""></figure>' : '';
+          var og = item.img ? 'https://www.dcbs.nl' + item.img : 'https://www.dcbs.nl/assets/dcbs-logo-full.png';
+          var li = item.link ? '<p class="mut" style="margin-top:32px;font-size:15px">Ook verschenen op <a href="' + e(item.link) + '" target="_blank" rel="noopener">LinkedIn</a>.</p>' : '';
+          var vervang = { TITLE: e(item.title), DESC: e(item.summary), URL: url, OGIMG: e(og), CAT: e(item.cat), DATE: e(item.date), COVER: cover, BODY: mdNaarHtml(md) + li };
+          return tpl.replace(/\{\{(TITLE|DESC|URL|OGIMG|CAT|DATE|COVER|BODY)\}\}/g, function(m, k){ return vervang[k]; });
+        });
+      }
+      var bodyVeld = form.querySelector('[name="body"]'), voorbeeld = $('artikel-voorbeeld');
+      function invoegen(tekst){
+        if (!bodyVeld) return;
+        var a = bodyVeld.selectionStart || bodyVeld.value.length, v = bodyVeld.value;
+        var voor = v.slice(0, a).replace(/\s*$/, ''), na = v.slice(a).replace(/^\s*/, '');
+        bodyVeld.value = (voor ? voor + '\n\n' : '') + tekst + (na ? '\n\n' + na : '\n\n');
+        bodyVeld.focus();
+      }
+      var inlineKnop = $('artikel-inline-img'), inlineFile = $('artikel-inline-file');
+      if (inlineKnop && inlineFile){
+        inlineKnop.addEventListener('click', function(){ inlineFile.click(); });
+        inlineFile.addEventListener('change', function(){
+          var f = inlineFile.files && inlineFile.files[0]; if (!f) return;
+          if (f.size > 1500000){ fout('afbeelding is te groot (max 1,5 MB)'); inlineFile.value = ''; return; }
+          bezig(true); melding('Afbeelding uploaden…');
+          uploadAfbeelding(f, (fld('title').value || 'artikel') + '-tekst').then(function(p){
+            invoegen('![Bijschrift (optioneel)](' + p + ')'); melding('Afbeelding toegevoegd aan de tekst. Pas eventueel het bijschrift aan.');
+          }).catch(fout).then(function(){ bezig(false); inlineFile.value = ''; });
+        });
+      }
+      function toonVoorbeeld(){
+        if (!voorbeeld) return;
+        voorbeeld.style.display = 'block';
+        voorbeeld.innerHTML = '<h1>' + mdEsc(fld('title').value || 'Titel') + '</h1>' + mdNaarHtml(bodyVeld ? bodyVeld.value : '');
+      }
+      var vbKnop = $('artikel-voorbeeld-knop'), liKnop = $('artikel-linkedin-knop');
+      if (vbKnop) vbKnop.addEventListener('click', toonVoorbeeld);
+      if (liKnop) liKnop.addEventListener('click', function(){
+        var html = mdNaarHtml(bodyVeld ? bodyVeld.value : '', true);
+        var tekst = (bodyVeld ? bodyVeld.value : '');
+        var klaar = function(){ melding('Tekst gekopieerd. Plak hem in het LinkedIn-artikel onder de titel. Voeg afbeeldingen daar opnieuw in op dezelfde plek.'); };
+        try {
+          if (window.ClipboardItem && navigator.clipboard && navigator.clipboard.write){
+            navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([tekst], { type: 'text/plain' }) })]).then(klaar, function(e){ fout(e); });
+          } else { navigator.clipboard.writeText(tekst).then(klaar, function(e){ fout(e); }); }
+        } catch(e){ fout(e); }
+      });
+
       var publiceerKnop = $('artikel-publiceer'), imgVerwijderWrap = $('artikel-imgverwijder-wrap'), imgHuidig = $('artikel-img-huidig');
       function resetForm(){
         form.reset(); fld('id').value = '';
@@ -337,6 +442,7 @@
         if (annuleren) annuleren.style.display = 'none';
         if (imgVerwijderWrap) imgVerwijderWrap.style.display = 'none';
         if (publiceerKnop) publiceerKnop.textContent = 'Publiceren';
+        if (voorbeeld){ voorbeeld.style.display = 'none'; voorbeeld.innerHTML = ''; }
       }
       function bewerk(id){
         var a = beheer && beheer.items.filter(function(x){ return x.id === id; })[0];
@@ -349,6 +455,13 @@
         if (annuleren) annuleren.style.display = '';
         if (publiceerKnop) publiceerKnop.textContent = 'Wijzigingen publiceren';
         melding('');
+        if (bodyVeld){
+          bodyVeld.value = '';
+          if (a.slug){
+            melding('Artikeltekst laden…');
+            api('GET', 'nieuws/' + a.slug + '/artikel.md').then(function(j){ bodyVeld.value = j ? b64dec(j.content) : ''; melding(''); }).catch(fout);
+          }
+        }
         paneel.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
       function verwijder(id){
@@ -358,6 +471,7 @@
         bezig(true); melding('Verwijderen…');
         publiceer(beheer.items.filter(function(x){ return x.id !== id; }), 'Nieuws: verwijderd: ' + a.title)
           .then(function(){ return verwijderAfbeelding(a.img); })
+          .then(function(){ if (a.slug) return verwijderBestand('nieuws/' + a.slug + '/index.html', 'Nieuws: artikelpagina verwijderd ' + a.slug).then(function(){ return verwijderBestand('nieuws/' + a.slug + '/artikel.md', 'Nieuws: artikeltekst verwijderd ' + a.slug); }); })
           .then(function(){ if (fld('id').value === id) resetForm(); melding('Verwijderd en gepubliceerd. De site is binnen 1 tot 3 minuten bijgewerkt.'); })
           .catch(fout).then(function(){ bezig(false); });
       }
@@ -373,7 +487,26 @@
         var fileInput = form.querySelector('input[type="file"]'), file = fileInput && fileInput.files && fileInput.files[0];
         if (file && file.size > 1500000){ fout('afbeelding is te groot (max 1,5 MB); kies een kleinere afbeelding'); return; }
         bezig(true); melding(file ? 'Afbeelding uploaden…' : 'Publiceren…');
+        var md = bodyVeld ? bodyVeld.value.trim() : '';
+        if (!md && !item.link){ fout('vul de artikeltekst in, of een link naar LinkedIn'); return; }
         (file ? uploadAfbeelding(file, item.title).then(function(p){ item.img = p; }) : Promise.resolve())
+          .then(function(){
+            if (!md){
+              if (bestaand && bestaand.slug){   // tekst leeggemaakt: artikelpagina weghalen
+                return verwijderBestand('nieuws/' + bestaand.slug + '/index.html', 'Nieuws: artikelpagina verwijderd ' + bestaand.slug)
+                  .then(function(){ return verwijderBestand('nieuws/' + bestaand.slug + '/artikel.md', 'Nieuws: artikeltekst verwijderd ' + bestaand.slug); });
+              }
+              return;
+            }
+            melding('Artikelpagina maken…');
+            return vrijeSlug(slug(item.title), bestaand && bestaand.slug).then(function(sl){
+              item.slug = sl; item.url = '/nieuws/' + sl + '/';
+              return bouwPagina(item, md).then(function(html){
+                return zetBestand('nieuws/' + sl + '/artikel.md', md + '\n', 'Nieuws: artikeltekst ' + sl)
+                  .then(function(){ return zetBestand('nieuws/' + sl + '/index.html', html, 'Nieuws: artikelpagina ' + sl); });
+              });
+            });
+          })
           .then(function(){
             melding('Publiceren…');
             var list = bestaand ? beheer.items.map(function(x){ return x.id === item.id ? item : x; }) : [item].concat(beheer.items);

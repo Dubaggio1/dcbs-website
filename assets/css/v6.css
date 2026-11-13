@@ -67,6 +67,24 @@ label{font-size:14px;font-weight:600;display:block;margin-bottom:6px}
 }
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus,textarea:focus,select:focus{outline:2px solid #1F4FD1;outline-offset:2px}
 
+.prose{max-width:720px;margin:0 auto;font-size:19px;line-height:1.7;color:#1d2a40}
+.prose p{margin:0 0 22px}
+.prose h2{font-size:clamp(26px,2.6vw,34px);margin:44px 0 16px;line-height:1.15}
+.prose h3{font-size:22px;margin:32px 0 12px}
+.prose ul,.prose ol{margin:0 0 22px;padding-left:24px}.prose li{margin:6px 0}
+.prose a{color:#1F4FD1;text-decoration:underline;text-underline-offset:3px}
+.prose blockquote{margin:28px 0;padding:20px 24px;background:#F4F7FB;border-radius:12px;font-weight:600;color:#0B1F3A}
+.prose blockquote p{margin:0}
+.prose figure{margin:32px 0}.prose figure img{display:block;width:100%;border-radius:14px}
+.prose figcaption{font-size:14px;color:#3A4A63;margin-top:8px}
+.cover{margin:0 auto 40px;max-width:960px}.cover img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:18px}
+#beheer-paneel{margin-top:24px;padding:28px;border:1px solid #E4E8EF;border-radius:16px;background:#F4F7FB}
+#beheer-paneel label{display:block;margin:0 0 16px}
+#beheer-paneel input:not([type=checkbox]):not([type=file]),#beheer-paneel select,#beheer-paneel textarea{display:block;width:100%;margin-top:6px;background:#fff;border:1.5px solid #CBD3E1;border-radius:10px;padding:11px 12px;font:inherit;font-size:15px;color:#0B1F3A}
+#artikel-form textarea[name=body]{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.6;min-height:420px}
+#artikel-voorbeeld{display:none;margin-top:20px;padding:32px;background:#fff;border:1px solid #E4E8EF;border-radius:14px}
+.hulp{font-size:13px;color:#3A4A63;background:#fff;border:1px solid #E4E8EF;border-radius:10px;padding:12px 14px;margin:6px 0 10px;line-height:1.7}
+.hulp code{background:#EAF0FC;border-radius:4px;padding:1px 5px}
 #nieuws-lijst *{font-family:'Inter',system-ui,sans-serif!important}
 #nieuws-lijst .nieuwsrij{color:#0B1F3A!important;border-top-color:#E4E8EF!important}
 #nieuws-lijst .nieuwsrij span span:nth-child(2){font-weight:800!important;font-size:24px!important;letter-spacing:-.02em}
