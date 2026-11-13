@@ -462,10 +462,15 @@
         return { titel: titel, md: md.replace(/\n{3,}/g, '\n\n').trim() };
       }
       if (bodyVeld) bodyVeld.addEventListener('paste', function(e){
-        var cd = e.clipboardData, html = cd && cd.getData('text/html');
-        if (!html || !/<(p|h[1-6]|ul|ol|strong|b|em|blockquote|br)\b/i.test(html)) return;   // gewone tekst: normaal plakken
+        var cd = e.clipboardData, html = cd && cd.getData('text/html'), plat = cd ? cd.getData('text/plain') : '';
+        var r;
+        if (html && /<(p|h[1-6]|ul|ol|li|strong|b|em|blockquote|br|div)\b/i.test(html)) r = htmlNaarMd(html);
+        else if (plat){   // platte tekst, eventueel al met # en ## opmaak
+          var t = plat.replace(/\r/g, ''), m = t.match(/^\s*# (.+)\n/);
+          r = { titel: m ? m[1].trim() : '', md: m ? t.slice(m[0].length) : t };
+          r.md = r.md.replace(/^#{4,6} /gm, '### ').trim();
+        } else return;
         e.preventDefault();
-        var r = htmlNaarMd(html);
         if (r.titel && !fld('title').value) fld('title').value = r.titel;
         invoegen(r.md);
         toonVoorbeeld();
@@ -490,6 +495,9 @@
         voorbeeld.style.display = 'block';
         voorbeeld.innerHTML = '<h1>' + mdEsc(fld('title').value || 'Titel') + '</h1>' + mdNaarHtml(bodyVeld ? bodyVeld.value : '');
       }
+      var vbTimer = null;
+      if (bodyVeld) bodyVeld.addEventListener('input', function(){ clearTimeout(vbTimer); vbTimer = setTimeout(toonVoorbeeld, 300); });
+      if (form.querySelector('[name="title"]')) form.querySelector('[name="title"]').addEventListener('input', function(){ if (voorbeeld && voorbeeld.style.display === 'block') toonVoorbeeld(); });
       var vbKnop = $('artikel-voorbeeld-knop'), liKnop = $('artikel-linkedin-knop');
       if (vbKnop) vbKnop.addEventListener('click', toonVoorbeeld);
       if (liKnop) liKnop.addEventListener('click', function(){
