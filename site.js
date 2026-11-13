@@ -249,7 +249,7 @@
       var isExt = dest && /^https?:/i.test(dest);
       var href = dest ? ' href="' + esc(dest) + '"' + (isExt ? ' target="_blank" rel="noopener"' : '') : '';
       var media = a.img
-        ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:320px;max-width:100%;height:190px;object-fit:cover;background:#E9E5DA">'
+        ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:320px;max-width:100%;height:190px;object-fit:contain;background:#F4F7FB;border:1px solid #E4E8EF;border-radius:12px">'
         : '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
       var knoppen = beheerOpen
         ? '<span style="position:absolute;top:36px;right:0;display:flex;gap:8px">' +

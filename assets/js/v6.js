@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function(){
     var dest = a.url || a.link; var ext = dest && /^https?:/i.test(dest);
     var open = dest ? '<a class="card" href="' + esc(dest) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') : '<div class="card"';
     var close = dest ? '</a>' : '</div>';
-    var media = a.img ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:100%;height:200px;object-fit:cover;display:block">' : '<div class="bar"></div>';
+    var media = a.img ? '<img src="' + esc(a.img) + '" alt="" loading="lazy" style="width:100%;height:220px;object-fit:contain;background:#F4F7FB;display:block;border-bottom:1px solid #E4E8EF">' : '<div class="bar"></div>';
     return open + ' style="flex:1 1 300px;display:flex;flex-direction:column">' + media +
       '<div style="padding:26px 28px;display:flex;flex-direction:column;gap:12px;flex:1">' +
       '<span class="chip" style="align-self:flex-start">' + esc(a.cat) + '</span>' +
