@@ -185,7 +185,7 @@
       var ext = /^https?:/i.test(url) && url.indexOf('dcbs.nl') < 0;
       return '<a href="' + url + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + txt + '</a>';
     });
-    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');
+    t = t.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>').replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');
     return t;
   }
   function mdNaarHtml(src, absoluut){
@@ -405,6 +405,74 @@
         bodyVeld.value = (voor ? voor + '\n\n' : '') + tekst + (na ? '\n\n' + na : '\n\n');
         bodyVeld.focus();
       }
+      // Plakken met opmaak: tekst uit een document (Claude, Word, Google Docs) of van LinkedIn
+      // wordt omgezet naar de opmaak hierboven. Een kop 1 bovenaan wordt de titel.
+      function htmlNaarMd(html){
+        var doc = new DOMParser().parseFromString(html, 'text/html'), titel = '';
+        function inl(n){
+          if (n.nodeType === 3) return n.nodeValue.replace(/\s+/g, ' ');
+          if (n.nodeType !== 1) return '';
+          var t = n.tagName.toLowerCase(), st = (n.getAttribute('style') || '').toLowerCase();
+          var kind = Array.prototype.map.call(n.childNodes, inl).join('');
+          if (t === 'br') return '\n';
+          if (t === 'img'){ var src = n.getAttribute('src') || ''; return /^(https?:|\/)/.test(src) ? '\n\n![' + (n.getAttribute('alt') || '') + '](' + src + ')\n\n' : ''; }
+          if (!kind.trim()) return kind;
+          var lead = kind.match(/^\s*/)[0], trail = kind.match(/\s*$/)[0], kern = kind.trim();
+          if (t === 'a' && /^(https?:|mailto:|\/)/.test(n.getAttribute('href') || '')) return lead + '[' + kern + '](' + n.getAttribute('href') + ')' + trail;
+          var vet = t === 'strong' || t === 'b' || /font-weight:\s*(bold|[6-9]00)/.test(st);
+          var cur = t === 'em' || t === 'i' || /font-style:\s*italic/.test(st);
+          if (t === 'b' && /font-weight:\s*normal/.test(st)) vet = false;   // Google Docs-omhulsel
+          if (vet && cur) return lead + '***' + kern + '***' + trail;
+          if (vet) return lead + '**' + kern + '**' + trail;
+          if (cur) return lead + '*' + kern + '*' + trail;
+          return kind;
+        }
+        function schoon(t){ return t.replace(/[ \t]+\n/g, '\n').replace(/\n{3,}/g, '\n\n').trim(); }
+        var uit = [];
+        function blok(n){
+          if (n.nodeType === 3){ var tx = n.nodeValue.trim(); if (tx) uit.push(tx); return; }
+          if (n.nodeType !== 1) return;
+          var t = n.tagName.toLowerCase();
+          if (t === 'h1'){ var h = schoon(inl(n)); if (!titel && !uit.length) titel = h.replace(/\*/g, ''); else uit.push('## ' + h); return; }
+          if (t === 'h2'){ uit.push('## ' + schoon(inl(n)).replace(/\*\*/g, '')); return; }
+          if (t === 'h3' || t === 'h4' || t === 'h5' || t === 'h6'){ uit.push('### ' + schoon(inl(n)).replace(/\*\*/g, '')); return; }
+          if (t === 'ul' || t === 'ol'){
+            var i = 0;
+            Array.prototype.forEach.call(n.children, function(li){
+              if (li.tagName.toLowerCase() !== 'li') return; i++;
+              uit.push((t === 'ol' ? i + '. ' : '- ') + schoon(inl(li)).replace(/\n+/g, ' '));
+            });
+            uit.push(''); return;
+          }
+          if (t === 'blockquote'){ uit.push(schoon(inl(n)).split('\n').map(function(r){ return '> ' + r; }).join('\n')); return; }
+          if (t === 'hr'){ return; }
+          if (t === 'p' || t === 'figure' || t === 'figcaption' || t === 'pre'){ var p = schoon(inl(n)); if (p) uit.push(p); return; }
+          var heeftBlok = n.querySelector && n.querySelector('p,h1,h2,h3,h4,ul,ol,blockquote,figure,div,table');
+          if (heeftBlok){ Array.prototype.forEach.call(n.childNodes, blok); return; }
+          var r = schoon(inl(n)); if (r) uit.push(r);
+        }
+        Array.prototype.forEach.call(doc.body.childNodes, blok);
+        // lijstregels bij elkaar houden, andere blokken met een witregel scheiden
+        var md = '';
+        uit.forEach(function(b, k){
+          if (b === '') { md += '\n'; return; }
+          var lijst = /^(- |\d+\. )/.test(b), vorigeLijst = k > 0 && /^(- |\d+\. )/.test(uit[k - 1]);
+          md += (md ? (lijst && vorigeLijst ? '\n' : '\n\n') : '') + b;
+        });
+        return { titel: titel, md: md.replace(/\n{3,}/g, '\n\n').trim() };
+      }
+      if (bodyVeld) bodyVeld.addEventListener('paste', function(e){
+        var cd = e.clipboardData, html = cd && cd.getData('text/html');
+        if (!html || !/<(p|h[1-6]|ul|ol|strong|b|em|blockquote|br)\b/i.test(html)) return;   // gewone tekst: normaal plakken
+        e.preventDefault();
+        var r = htmlNaarMd(html);
+        if (r.titel && !fld('title').value) fld('title').value = r.titel;
+        invoegen(r.md);
+        toonVoorbeeld();
+        melding('Geplakt met opmaak. Controleer het voorbeeld hieronder.');
+      });
+      window.__dcbsHtmlNaarMd = htmlNaarMd;   // testhaak
+
       var inlineKnop = $('artikel-inline-img'), inlineFile = $('artikel-inline-file');
       if (inlineKnop && inlineFile){
         inlineKnop.addEventListener('click', function(){ inlineFile.click(); });
