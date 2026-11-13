@@ -434,9 +434,10 @@
           if (n.nodeType === 3){ var tx = n.nodeValue.trim(); if (tx) uit.push(tx); return; }
           if (n.nodeType !== 1) return;
           var t = n.tagName.toLowerCase();
-          if (t === 'h1'){ var h = schoon(inl(n)); if (!titel && !uit.length) titel = h.replace(/\*/g, ''); else uit.push('## ' + h); return; }
+          if (t === 'h1'){ var h = schoon(inl(n)); if (!titel && !uit.length) titel = h.replace(/\*/g, ''); else uit.push('## ' + h.replace(/\*\*/g, '')); return; }
           if (t === 'h2'){ uit.push('## ' + schoon(inl(n)).replace(/\*\*/g, '')); return; }
-          if (t === 'h3' || t === 'h4' || t === 'h5' || t === 'h6'){ uit.push('### ' + schoon(inl(n)).replace(/\*\*/g, '')); return; }
+          if (t === 'h3'){ uit.push('### ' + schoon(inl(n)).replace(/\*\*/g, '')); return; }
+          if (t === 'h4' || t === 'h5' || t === 'h6'){ uit.push('#### ' + schoon(inl(n)).replace(/\*\*/g, '')); return; }
           if (t === 'ul' || t === 'ol'){
             var i = 0;
             Array.prototype.forEach.call(n.children, function(li){
@@ -453,6 +454,16 @@
           var r = schoon(inl(n)); if (r) uit.push(r);
         }
         Array.prototype.forEach.call(doc.body.childNodes, blok);
+        // Kopniveaus gelijktrekken: het hoogste kopniveau in de tekst wordt ##, het niveau daaronder ###.
+        // Een kop helemaal bovenaan (voor de eerste alinea) is de titel en gaat niet mee in de tekst.
+        while (uit.length && /^#{2,4} /.test(uit[0])){ if (!titel) titel = uit[0].replace(/^#+ /, '').replace(/\*/g, ''); uit.shift(); }
+        var niveaus = uit.filter(function(b){ return /^#{2,4} /.test(b); }).map(function(b){ return b.match(/^#+/)[0].length; });
+        var verschuif = niveaus.length ? Math.min.apply(null, niveaus) - 2 : 0;
+        uit = uit.map(function(b){
+          var m = b.match(/^(#{2,4}) /); if (!m) return b;
+          var n = Math.max(2, Math.min(3, m[1].length - verschuif));
+          return new Array(n + 1).join('#') + b.slice(m[0].length - 1);
+        });
         // lijstregels bij elkaar houden, andere blokken met een witregel scheiden
         var md = '';
         uit.forEach(function(b, k){

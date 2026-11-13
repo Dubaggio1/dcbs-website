@@ -1,12 +1,12 @@
-## DPO-as-a-Service: een onafhankelijke FG, zonder vaste dienstbetrekking
+Een goede FG voorkomt meer problemen dan hij oplost. De echte waarde van een Functionaris Gegevensbescherming zit niet in het blussen van branden, maar in het meekijken voordat er iets misgaat.
 
-In veel organisaties zijn de privacytaken ergens belegd. De jurist, de IT-manager of de office manager doet het erbij, als privacy officer. Dat is een pet die iemand naast het eigen werk opzet. Voor het dagelijkse werk kan dat prima, zolang er tijd en kennis is.
+Bij een nieuw systeem, een nieuwe leverancier of een nieuwe toepassing van AI. Op het moment dat een keuze nog makkelijk bij te sturen is. Achteraf repareren is altijd duurder.
 
-Een Functionaris Gegevensbescherming (FG) is iets anders. Dat is geen pet, maar een formele, wettelijke functie. De FG wordt aangewezen, aangemeld bij de Autoriteit Persoonsgegevens en houdt onafhankelijk toezicht. Je hebt een FG, of je hebt hem niet.
+Een FG levert je ook iets op dat je zelf moeilijk kunt organiseren: een onafhankelijke blik. Je directie weet waar de risico's zitten, zwart op wit. Bij een datalek is er rust, omdat iemand weet wat er moet gebeuren. En richting klanten, investeerders en de Autoriteit Persoonsgegevens heb je een sterk verhaal.
 
-Juist die onafhankelijkheid maakt het lastig om de rol intern te beleggen. Wie zelf beslist over systemen en verwerkingen, kan daar niet ook onafhankelijk toezicht op houden. DPO-as-a-Service lost dat op. Je krijgt een ervaren, onafhankelijke FG die je organisatie kent, voor de inzet die bij je past.
+Voor de meeste organisaties is een fulltime FG niet nodig. Met DPO-as-a-Service krijg je een ervaren, onafhankelijke FG die je organisatie kent, voor de inzet die bij je past.
 
-### Wat doet een FG?
+## Wat doet een FG?
 
 De FG, in het Engels Data Protection Officer (DPO), houdt toezicht op de naleving van de AVG. Hij adviseert over privacyvraagstukken en is het aanspreekpunt voor de AP, je medewerkers en de mensen van wie je gegevens verwerkt.
 
@@ -16,7 +16,7 @@ De FG doet ook niet het uitvoerende werk. Het verwerkingsregister bijhouden, ver
 
 En de rol is puur privacy. Informatiebeveiliging, NIS2 en ISO 27001 horen er niet bij. Die onderwerpen raken elkaar, maar het zijn aparte vakgebieden met eigen verantwoordelijkheden.
 
-### Wanneer is een FG verplicht?
+## Wanneer is een FG verplicht?
 
 De AVG verplicht een FG in drie situaties:
 
@@ -28,7 +28,7 @@ Val je hieronder, dan meld je de FG aan bij de AP.
 
 Veel organisaties vallen er net buiten. Denk aan een SaaS-bedrijf met klantdata, een kleinere zorgaanbieder of een zakelijke dienstverlener. Ook dan geldt de AVG volledig, en is er privacywerk te doen. Daarvoor heb je een privacy officer nodig. Een FG is dan niet verplicht, maar kan wel een bewuste keuze zijn.
 
-### Start-up of scale-up? Kies bewust voor een FG vanaf het begin
+## Start-up of scale-up? Kies bewust voor een FG vanaf het begin
 
 Bouw je een product waarin persoonsgegevens een grote rol spelen? Denk aan healthtech, HR-tech, fintech of een SaaS-platform. Dan kan het slim zijn om meteen een FG aan te stellen, ook als het nog niet moet.
 
@@ -38,7 +38,7 @@ Daarnaast vragen investeerders en zakelijke klanten steeds vaker hoe je privacy 
 
 En groeit je organisatie snel, dan groeit de verplichting soms vanzelf mee. Ga je op grote schaal gezondheidsgegevens verwerken, dan wordt een FG verplicht. Dan ben je er al klaar voor.
 
-### Waarom een externe FG?
+## Waarom een externe FG?
 
 Voor de meeste organisaties met 50 tot 250 medewerkers is een fulltime FG niet nodig. Een goede FG werven is bovendien lastig en duur. Een externe FG heeft een paar duidelijke voordelen.
 
@@ -50,7 +50,7 @@ Voor de meeste organisaties met 50 tot 250 medewerkers is een fulltime FG niet n
 
 **Continuïteit.** Geen gat bij ziekte, verlof of vertrek.
 
-### Wat krijg je concreet?
+## Wat krijg je concreet?
 
 1. Een formeel aangewezen FG, aangemeld bij de AP
 2. Een vast aanspreekpunt voor de AP, je medewerkers en betrokkenen
@@ -62,13 +62,13 @@ Voor de meeste organisaties met 50 tot 250 medewerkers is een fulltime FG niet n
 
 Het uitvoerende werk doet een privacy officer. Dat kan iemand uit je eigen organisatie zijn. Heb je daar geen capaciteit voor, dan kan het ook via Privacy Officer as a Service. Wel altijd door een ander dan de FG, zodat het toezicht onafhankelijk blijft.
 
-### Zo werken we
+## Zo werken we
 
 We beginnen met een korte verkenning. Waar sta je, wat ligt er al en waar zitten de grootste risico’s? Daarna krijg je een concreet voorstel met een vaste inzet per maand.
 
 In de eerste maanden kijken we of de basis staat: register, beleid en een werkwijze voor datalekken en verzoeken. Daarna ligt de focus op toezicht, advies bij nieuwe projecten en periodieke controle.
 
-### Drie vragen om jezelf te stellen
+## Drie vragen om jezelf te stellen
 
 1. Ben je verplicht een FG aan te stellen, en heb je dat ook gedaan?
 2. Kan je FG echt onafhankelijk toezicht houden, los van de beslissingen die hij zelf neemt?
@@ -76,7 +76,7 @@ In de eerste maanden kijken we of de basis staat: register, beleid en een werkwi
 
 Is het antwoord op een van deze vragen nee of “dat weet ik niet zeker”? Dan is het goed om eens te praten.
 
-### Kennismaken
+## Kennismaken
 
 Wil je weten wat DPO-as-a-Service voor jouw organisatie kan betekenen? Plan een vrijblijvend kennismakingsgesprek. Mail naar [contact@dcbs.nl](mailto:contact@dcbs.nl) of bel +31 6 15234409. Dan kijken we samen wat je nodig hebt, en wat niet.
 
