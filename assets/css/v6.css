@@ -65,6 +65,14 @@ label{font-size:14px;font-weight:600;display:block;margin-bottom:6px}
 .tr{padding-right:36px}.tr .arr{position:absolute;right:0;top:26px}
 .tr .num{flex-basis:100%!important}
 }
+.logos{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.logos .rij{display:flex;align-items:center;gap:72px;width:max-content;animation:logoscroll 45s linear infinite}
+.logos:hover .rij{animation-play-state:paused}
+.logos img{height:34px;width:auto;opacity:.62;filter:grayscale(1);transition:opacity .2s}
+.logos img:hover{opacity:1}
+@keyframes logoscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.logos .rij{animation:none;flex-wrap:wrap;width:auto;justify-content:center;gap:32px 56px}.logos .rij .dup{display:none}}
+@media (max-width:700px){.logos img{height:26px}.logos .rij{gap:48px}}
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus,textarea:focus,select:focus{outline:2px solid #1F4FD1;outline-offset:2px}
 
 .prose{max-width:720px;margin:0 auto;font-size:19px;line-height:1.7;color:#1d2a40}
