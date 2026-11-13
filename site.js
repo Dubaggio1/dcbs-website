@@ -648,4 +648,18 @@
       if (location.hash === '#beheer') open();
     }
   }
+
+  // ---- Bezoekersstatistieken (Plausible, zonder cookies): klikken op contact meten ----
+  window.plausible = window.plausible || function(){ (window.plausible.q = window.plausible.q || []).push(arguments); };
+  document.addEventListener('click', function(e){
+    var a = e.target.closest ? e.target.closest('a') : null; if (!a) return;
+    var h = a.getAttribute('href') || '';
+    if (/^mailto:/i.test(h)) window.plausible('Email Click');
+    else if (/^tel:/i.test(h)) window.plausible('Phone Click');
+    else if (/\/contact\/?$/.test(h) && /b-p/.test(a.className)) window.plausible('Gratis Consult Click');
+    else if (/linkedin\.com|lnkd\.in/i.test(h)) window.plausible('LinkedIn Click');
+  });
+  document.addEventListener('submit', function(e){
+    if (e.target && /formsubmit\.co/.test(e.target.getAttribute('action') || '')) window.plausible('Contact Form Submit');
+  });
 })();
