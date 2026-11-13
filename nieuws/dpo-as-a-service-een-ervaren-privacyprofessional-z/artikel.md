@@ -79,3 +79,5 @@ Is het antwoord op een van deze vragen nee of “dat weet ik niet zeker”? Dan 
 ### Kennismaken
 
 Wil je weten wat DPO-as-a-Service voor jouw organisatie kan betekenen? Plan een vrijblijvend kennismakingsgesprek. Mail naar [contact@dcbs.nl](mailto:contact@dcbs.nl) of bel +31 6 15234409. Dan kijken we samen wat je nodig hebt, en wat niet.
+
+![Bijschrift (optioneel)](/assets/nieuws/dpo-as-a-service-een-ervaren-privacyprofessional-zonder-mwf5ipzq.png)
