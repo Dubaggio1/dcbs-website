@@ -1,8 +1,10 @@
-In veel organisaties is de privacyrol formeel wel belegd. Bij de jurist, de IT-manager of de office manager. Maar echt ingevuld wordt hij niet. Er is simpelweg geen tijd voor, en vaak ook niet de kennis.
+In veel organisaties zijn de privacytaken ergens belegd. De jurist, de IT-manager of de office manager doet het erbij, als privacy officer. Dat is een pet die iemand naast zijn eigen werk opzet. Voor het dagelijkse werk kan dat prima, zolang er tijd en kennis is.
 
-Dat gaat goed, tot het niet meer goed gaat. Een datalek op vrijdagmiddag. Een klant die wil weten hoe je met zijn gegevens omgaat. Een inzageverzoek waarvan de termijn al bijna verstreken is. Dan blijkt dat niemand precies weet wat er moet gebeuren.
+Een Functionaris Gegevensbescherming (FG) is iets anders. Dat is geen pet die iemand erbij opzet, maar een formele, wettelijke functie. De FG wordt aangewezen, aangemeld bij de Autoriteit Persoonsgegevens en houdt onafhankelijk toezicht. Je hebt een FG, of je hebt hem niet.
 
-DPO-as-a-Service lost dat op. Je krijgt een ervaren privacyprofessional die je organisatie kent, voor het aantal uren dat bij je past.
+Juist die onafhankelijkheid maakt het lastig om de rol intern te beleggen. Wie zelf beslist over systemen en verwerkingen, kan daar niet ook onafhankelijk toezicht op houden.
+
+DPO-as-a-Service lost dat op. Je krijgt een ervaren, onafhankelijke FG die je organisatie kent, voor de inzet die bij je past.
 
 ## Wat doet een DPO eigenlijk?
 
@@ -22,7 +24,7 @@ De AVG verplicht een FG in drie situaties:
 
 Val je hieronder, dan moet je de FG ook aanmelden bij de AP.
 
-Veel organisaties vallen er net buiten. Denk aan een SaaS-bedrijf met klantdata, een zorgaanbieder op kleine schaal of een zakelijke dienstverlener. Ook dan geldt de AVG volledig. Je moet nog steeds een verwerkingsregister bijhouden, DPIA's uitvoeren waar nodig en datalekken op tijd melden. De vraag is dus niet of je iemand nodig hebt die dit oppakt. De vraag is wie.
+Veel organisaties vallen er net buiten. Denk aan een SaaS-bedrijf met klantdata, een zorgaanbieder op kleine schaal of een zakelijke dienstverlener. Ook dan geldt de AVG volledig. Je moet nog steeds een verwerkingsregister bijhouden, DPIA's uitvoeren waar nodig en datalekken op tijd melden. Dat uitvoerende werk is de taak van een privacy officer, niet van de FG. Een FG is dan niet verplicht, maar kan wel een bewuste keuze zijn.
 
 ## Start-up of scale-up? Kies bewust voor een FG vanaf het begin
 
@@ -50,15 +52,15 @@ Voor de meeste organisaties met 50 tot 250 medewerkers is een fulltime FG niet n
 
 De invulling stemmen we af op je organisatie. Meestal gaat het om:
 
-1. Een vast aanspreekpunt voor privacyvragen, voor je team en voor de AP
-2. Een actueel verwerkingsregister
-3. Advies en begeleiding bij DPIA's
-4. Hulp bij datalekken: beoordelen, melden en vastleggen
-5. Afhandeling van verzoeken van betrokkenen, zoals inzage en verwijdering
-6. Toezicht op je privacybeleid, met een jaarlijkse rapportage aan de directie
-7. Korte, praktische awareness voor medewerkers
+1. Een formeel aangewezen FG, aangemeld bij de AP
+2. Een vast aanspreekpunt voor de AP, voor je medewerkers en voor betrokkenen
+3. Onafhankelijk toezicht op de naleving van de AVG, met een jaarlijkse rapportage aan de directie
+4. Advies bij DPIA's en nieuwe verwerkingen
+5. Advies bij datalekken: moet je melden, en is de afhandeling in orde?
+6. Toezicht op het verwerkingsregister en de afhandeling van verzoeken van betrokkenen
+7. Bewustwording en training van medewerkers
 
-Geen dikke rapporten die in een la verdwijnen. Wel een werkend privacyprogramma dat past bij de omvang en de risico's van je organisatie.
+Het dagelijkse uitvoerende werk, zoals het register bijhouden en verzoeken afhandelen, doet een privacy officer. Dat kan iemand van je eigen organisatie zijn. Heb je daar geen capaciteit voor, dan kan dat ook via Privacy Officer as a Service. Wel altijd door een ander dan de FG, zodat het toezicht onafhankelijk blijft.
 
 ## Voor wie is DPO-as-a-Service bedoeld?
 
@@ -74,12 +76,12 @@ DPO-as-a-Service past vooral bij organisaties die:
 
 We beginnen met een korte verkenning. Waar sta je, wat ligt er al en waar zitten de grootste risico's? Daarna krijg je een concreet voorstel met prioriteiten en een vaste inzet per maand. Dan gaan we samen aan de slag.
 
-In de eerste maanden ligt de focus vaak op de basis: register, beleid en een werkwijze voor datalekken en verzoeken. Daarna verschuift het naar toezicht, advies bij nieuwe projecten en periodieke controle.
+In de eerste maanden kijken we of de basis staat: register, beleid en een werkwijze voor datalekken en verzoeken. Daarna ligt de focus op toezicht, advies bij nieuwe projecten en periodieke controle.
 
 ## Drie vragen om jezelf te stellen
 
 1. Weet je wie er binnen je organisatie aan de bel trekt als er een datalek is, en wat die persoon dan doet?
 2. Is je verwerkingsregister actueel, en zou je het morgen aan de AP kunnen laten zien?
-3. Is de persoon die nu privacy "erbij doet" echt onafhankelijk van de beslissingen waar hij toezicht op houdt?
+3. Heb je een FG nodig, en kan die echt onafhankelijk toezicht houden, los van de beslissingen die hij zelf neemt?
 
 Is het antwoord op een van deze vragen nee of "dat weet ik niet zeker"? Dan is het goed om eens te praten.
