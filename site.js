@@ -253,6 +253,7 @@
         : '<div style="width:320px;max-width:100%;height:190px;background:linear-gradient(135deg,#E9E5DA,#DDD8CA)"></div>';
       var knoppen = beheerOpen
         ? '<span style="position:absolute;top:36px;right:0;display:flex;gap:8px">' +
+          (dest ? '<button type="button" data-copy="' + esc(/^https?:/i.test(dest) ? dest : 'https://www.dcbs.nl' + dest) + '" style="font-family:Inter,sans-serif;font-size:12px;font-weight:600;color:#fff;background:#1F4FD1;border:1px solid #1F4FD1;border-radius:999px;padding:6px 14px;cursor:pointer">Kopieer link</button>' : '') +
           '<button type="button" data-edit="' + esc(a.id) + '" style="font-family:Archivo,sans-serif;font-size:12px;color:#0E5654;background:#FBFAF7;border:1px solid #A9C4C1;padding:6px 12px;cursor:pointer">Bewerken</button>' +
           '<button type="button" data-del="' + esc(a.id) + '" style="font-family:Archivo,sans-serif;font-size:12px;color:#8E938F;background:#FBFAF7;border:1px solid #D6D2C6;padding:6px 12px;cursor:pointer">Verwijderen</button></span>'
         : '';
@@ -299,7 +300,7 @@
         form.querySelectorAll('button, input, select, textarea').forEach(function(el){ el.disabled = b; });
         lijst.querySelectorAll('button[data-edit],button[data-del]').forEach(function(el){ el.disabled = b; });
       }
-      function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 50) || 'artikel'; }
+      function slug(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60).replace(/-[^-]*$/, function(m, i, all){ return all.length >= 60 ? '' : m; }) || 'artikel'; }
       function b64enc(str){ return btoa(unescape(encodeURIComponent(str))); }
       function b64dec(b){ return decodeURIComponent(escape(atob(String(b).replace(/\s/g, '')))); }
       function parseData(src){
@@ -589,7 +590,14 @@
             return publiceer(list, (bestaand ? 'Nieuws: bewerkt: ' : 'Nieuws: nieuw artikel: ') + item.title);
           })
           .then(function(){ if (oudeImg && item.img !== oudeImg) return verwijderAfbeelding(oudeImg); })   // oude afbeelding opruimen
-          .then(function(){ resetForm(); melding('Gepubliceerd. De site is binnen 1 tot 3 minuten bijgewerkt; hieronder staat al de nieuwe stand.'); })
+          .then(function(){
+            resetForm();
+            if (item.url){
+              var link = 'https://www.dcbs.nl' + item.url;
+              melding('Gepubliceerd. Over 1 tot 3 minuten staat het artikel op ' + link + ' (link gekopieerd voor je LinkedIn-post).');
+              try { navigator.clipboard.writeText(link); } catch(e){}
+            } else melding('Gepubliceerd. De site is binnen 1 tot 3 minuten bijgewerkt; hieronder staat al de nieuwe stand.');
+          })
           .catch(fout).then(function(){ bezig(false); });
       }
 
@@ -611,6 +619,15 @@
       if (annuleren) annuleren.addEventListener('click', function(){ resetForm(); melding(''); });
       form.addEventListener('submit', function(e){ e.preventDefault(); bewaar(); });
       lijst.addEventListener('click', function(e){
+        var c = e.target.closest ? e.target.closest('button[data-copy]') : null;
+        if (c){
+          e.preventDefault();
+          var lk = c.getAttribute('data-copy');
+          var ok = function(){ c.textContent = 'Gekopieerd'; setTimeout(function(){ c.textContent = 'Kopieer link'; }, 2000); melding('Link gekopieerd: ' + lk); };
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(lk).then(ok, function(){ window.prompt('Kopieer deze link:', lk); });
+          else window.prompt('Kopieer deze link:', lk);
+          return;
+        }
         var b = e.target.closest ? e.target.closest('button[data-edit],button[data-del]') : null;
         if (!b || b.disabled) return;
         e.preventDefault();
