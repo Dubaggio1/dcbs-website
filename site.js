@@ -53,6 +53,7 @@
     if (lijst) initNieuws(lijst);
     var home = document.getElementById('nieuws-home');
     if (home) initNieuwsHome(home);
+    initLeesOok();
   });
 
   function enhanceMobile(){
@@ -236,6 +237,78 @@
     }).join('');
   }
 
+  // ---- Onderwerpen: vaste volgorde (gelijk aan de diensten) en de dienstpagina die erbij hoort ----
+  var NIEUWS_CATS = [
+    ['Privacy compliance', '/diensten/avg-compliance/'],
+    ['AI compliance', '/diensten/ai-act-compliance/'],
+    ['NIS2 / Cyberbeveiligingswet', '/diensten/nis2/'],
+    ['Information security', '/diensten/information-security/'],
+    ['Quantum-readiness', '/diensten/quantum-readiness/'],
+    ['DPO-as-a-Service', '/diensten/dpo-as-a-service/'],
+    ['Privacy Officer as a Service', '/diensten/privacy-officer-as-a-service/'],
+    ['Security Officer as a Service', '/diensten/security-officer-as-a-service/'],
+    ['TPRM- en contractmanagement', '/diensten/tprm-contractmanagement/']
+  ];
+  function catVolgorde(cat){ for (var i = 0; i < NIEUWS_CATS.length; i++) if (NIEUWS_CATS[i][0] === cat) return i; return 99; }
+  function catSlug(cat){ return String(cat || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  (function(){
+    var st = document.createElement('style');
+    st.textContent =
+      '#nieuws-filter{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}' +
+      '.nf{font-family:inherit;font-size:14px;font-weight:600;line-height:1;color:#0B1F3A;background:#fff;border:1.5px solid #CBD3E1;border-radius:999px;padding:10px 16px;min-height:40px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}' +
+      '.nf span{font-weight:500;color:#6B7890;margin-left:4px}' +
+      '.nf:hover{border-color:#1F4FD1;color:#1F4FD1}' +
+      '.nf.aan{background:#0B1F3A;border-color:#0B1F3A;color:#fff}.nf.aan span{color:#B9C4D6}' +
+      '.leesook{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:36px}' +
+      '@media (max-width:980px){.leesook{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:620px){.leesook{grid-template-columns:1fr}}' +
+      '.leesook a{display:flex;flex-direction:column;color:#0B1F3A}' +
+      '.leesook img{width:100%;aspect-ratio:1200/627;object-fit:cover;background:#F4F7FB;border-bottom:1px solid #E4E8EF}' +
+      '.leesook .lo-t{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px}' +
+      '.leesook .lo-d{font-size:12.5px;color:#6B7890}' +
+      '.leesook .lo-k{font-size:19px;font-weight:800;line-height:1.25;letter-spacing:-.015em}' +
+      '@media (max-width:760px){#nieuws-filter{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px;margin-right:-20px;padding-right:20px}.nf{flex:0 0 auto}}';
+    document.head.appendChild(st);
+  })();
+
+  // ---- Dienstpagina's: "Lees ook" met de nieuwste artikelen over dat onderwerp ----------------
+  // Zonder artikelen over het onderwerp verschijnt er niets. Staat boven het kennismakingsblok.
+  function initLeesOok(){
+    var pad = location.pathname.replace(/index\.html$/, '');
+    if (pad.charAt(pad.length - 1) !== '/') pad += '/';
+    var cat = '';
+    NIEUWS_CATS.forEach(function(c){ if (c[1] === pad) cat = c[0]; });
+    if (pad === '/diensten/leveranciersrisico-as-a-service/') cat = 'TPRM- en contractmanagement';
+    if (!cat) return;
+    function toon(){
+      var alleCat = alleArtikelen().filter(function(a){ return a.cat === cat; });
+      var items = alleCat.filter(function(a){ return a.url || a.link; }).slice(0, 3);   // alleen artikelen die ergens naartoe gaan
+      if (!items.length) return;
+      var secties = document.querySelectorAll('section');
+      var cta = secties[secties.length - 1];
+      if (!cta || !cta.parentNode) return;
+      var e = nieuwsEsc, meer = alleCat.length > items.length;
+      var sec = document.createElement('section');
+      sec.id = 'lees-ook';
+      sec.style.background = '#F4F7FB';
+      sec.style.marginBottom = 'clamp(40px,6vw,88px)';
+      sec.innerHTML = '<div class="wrap pad"><div style="display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end">' +
+        '<div><div class="kick">Lees ook</div><h2 style="margin-top:16px">Artikelen over dit onderwerp</h2></div>' +
+        '<a class="b b-o" href="/nieuws/' + (meer ? '?onderwerp=' + encodeURIComponent(catSlug(cat)) : '') + '">' + (meer ? 'Alle ' + alleCat.length + ' artikelen' : 'Alle artikelen') + '</a></div>' +
+        '<div class="leesook">' + items.map(function(a){
+          var dest = a.url || a.link, ext = /^https?:/i.test(dest);
+          return '<a class="card" href="' + e(dest) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
+            (a.img ? '<img src="' + e(a.img) + '" alt="" loading="lazy">' : '') +
+            '<span class="lo-t"><span class="lo-d">' + e(a.date) + '</span><span class="lo-k">' + e(a.title) + '</span></span></a>';
+        }).join('') + '</div></div>';
+      cta.parentNode.insertBefore(sec, cta);
+    }
+    if (window.DCBS_ARTICLES) return toon();
+    var sc = document.createElement('script');
+    sc.src = '/nieuws-data.js';
+    sc.onload = toon;
+    document.head.appendChild(sc);
+  }
+
   function initNieuws(lijst){
     var esc = nieuwsEsc;
     var publiek = alleArtikelen();
@@ -266,8 +339,48 @@
         '<span style="font-size:12.5px;color:#6B716E;text-align:right">' + esc(a.date) + '</span></a>' +
         knoppen + '</div>';
     }
+    // ---- Filter op onderwerp: de lijst blijft op datum, de knoppen tonen alleen onderwerpen met artikelen.
+    // Ook bereikbaar via /nieuws/?onderwerp=<slug>, zodat dienstpagina's naar hun eigen artikelen linken.
+    var filterCat = '';
+    var balk = document.createElement('div');
+    balk.id = 'nieuws-filter';
+    balk.setAttribute('role', 'group');
+    balk.setAttribute('aria-label', 'Filter op onderwerp');
+    lijst.parentNode.insertBefore(balk, lijst);
+    (function(){
+      var m = /[?&]onderwerp=([^&#]+)/.exec(location.search);
+      if (!m) return;
+      var gezocht = decodeURIComponent(m[1]);
+      alleArtikelen().forEach(function(a){ if (catSlug(a.cat) === gezocht) filterCat = a.cat; });
+    })();
+    function renderFilter(alle){
+      var telling = {}, cats = [];
+      alle.forEach(function(a){ if (!a.cat) return; if (!telling[a.cat]){ telling[a.cat] = 0; cats.push(a.cat); } telling[a.cat]++; });
+      cats.sort(function(x, y){ return catVolgorde(x) - catVolgorde(y); });
+      if (filterCat && !telling[filterCat]) filterCat = '';
+      if (cats.length < 2){ balk.innerHTML = ''; balk.style.display = 'none'; return; }
+      balk.style.display = '';
+      function knop(cat, label, n){
+        var aan = filterCat === cat;
+        return '<button type="button" class="nf' + (aan ? ' aan' : '') + '" data-cat="' + esc(cat) + '" aria-pressed="' + (aan ? 'true' : 'false') + '">' + esc(label) + ' <span>' + n + '</span></button>';
+      }
+      balk.innerHTML = knop('', 'Alles', alle.length) + cats.map(function(c){ return knop(c, c, telling[c]); }).join('');
+    }
+    balk.addEventListener('click', function(e){
+      var b = e.target.closest ? e.target.closest('button[data-cat]') : null;
+      if (!b) return;
+      filterCat = b.getAttribute('data-cat') || '';
+      try {
+        var u = location.pathname + (filterCat ? '?onderwerp=' + encodeURIComponent(catSlug(filterCat)) : '') + location.hash;
+        history.replaceState(null, '', u);
+      } catch(err){}
+      render();
+    });
+
     function render(){
-      var list = beheer ? beheer.items : publiek;
+      var alle = beheer ? beheer.items : publiek;
+      renderFilter(alle);
+      var list = filterCat ? alle.filter(function(a){ return a.cat === filterCat; }) : alle;
       if (!list.length){
         lijst.innerHTML = '<p style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.4;color:#4E5552;margin:0;padding:36px 0;border-top:1px solid #14181A">Er zijn nog geen artikelen gepubliceerd. Nieuwe artikelen verschijnen hier automatisch.</p>';
         return;
