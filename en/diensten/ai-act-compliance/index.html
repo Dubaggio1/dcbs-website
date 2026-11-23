@@ -1,291 +1,34 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EU AI Act Compliance and AI Governance | DCBS Netherlands</title>
-<meta name="description" content="Prepare your organisation for the EU AI Act. AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.">
-<meta name="keywords" content="EU AI Act consultancy, EU AI Act compliance, AI Act advice, AI compliance advice, AI governance framework, AI system risk classification, high-risk AI impact assessment, FRIA fundamental rights AI, ISO 42001 AI management system, ISO 42001 implementation, AI Act high-risk classification">
-<meta name="author" content="Jeroen Dubach, The Data Compliance Builders">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EU AI Act compliance &amp; ISO 42001 | AI register, FRIA | DCBS</title>
+<meta name="description" content="EU AI Act compliance: AI register, risk classification, ISO/IEC 42001 management system, FRIA and AI literacy. Transparency obligations apply from 2 August 2026.">
 <link rel="canonical" href="https://www.dcbs.nl/en/diensten/ai-act-compliance/">
-
-<!-- Hreflang -->
-<link rel="alternate" hreflang="nl-NL" href="https://www.dcbs.nl/diensten/ai-act-compliance/">
-<link rel="alternate" hreflang="en-GB" href="https://www.dcbs.nl/en/diensten/ai-act-compliance/">
+<link rel="alternate" hreflang="nl" href="https://www.dcbs.nl/diensten/ai-act-compliance/">
+<link rel="alternate" hreflang="en" href="https://www.dcbs.nl/en/diensten/ai-act-compliance/">
 <link rel="alternate" hreflang="x-default" href="https://www.dcbs.nl/diensten/ai-act-compliance/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="EU AI Act Compliance and AI Governance">
-<meta property="og:description" content="Prepare your organisation for the EU AI Act. AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dcbs.nl/en/diensten/ai-act-compliance/">
-<meta property="og:locale" content="en_GB">
+<link rel="icon" type="image/png" href="/assets/dcbs-icon.png">
 <meta property="og:site_name" content="The Data Compliance Builders">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="EU AI Act Compliance and AI Governance">
-<meta name="twitter:description" content="Prepare your organisation for the EU AI Act. AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.">
-
-<!-- Icons -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-
-<!-- Stylesheet -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "EU AI Act Compliance and AI Governance",
-  "provider": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders",
-    "url": "https://www.dcbs.nl"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Netherlands"
-  },
-  "serviceType": "EU AI Act Compliance",
-  "description": "Prepare your organisation for the EU AI Act. AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.",
-  "url": "https://www.dcbs.nl/en/diensten/ai-act-compliance/"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Data Compliance Builders",
-  "url": "https://www.dcbs.nl",
-  "publisher": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders"
-  }
-}
-</script>
-
-<!-- Plausible Analytics (cookieless, EU-hosted) -->
+<meta property="og:title" content="AI compliance (EU AI Act) | DCBS">
+<meta property="og:image" content="https://www.dcbs.nl/assets/dcbs-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/v6.css?v=1794589259">
 <script defer data-domain="dcbs.nl" src="https://plausible.io/js/script.js"></script>
+<script>window.__dcbsMobile = true;</script>
+<script src="/site.js?v=54320776177" defer></script>
+<script type="application/ld+json" id="ld-dcbs">{"@context":"https://schema.org","@graph":[{"@type":"Service","@id":"https://www.dcbs.nl/en/diensten/ai-act-compliance/#dienst","name":"AI compliance","serviceType":"AI compliance","description":"EU AI Act compliance: AI register, risk classification, ISO/IEC 42001 management system, FRIA and AI literacy. Transparency obligations apply from 2 August 2026.","url":"https://www.dcbs.nl/en/diensten/ai-act-compliance/","provider":{"@id":"https://www.dcbs.nl/#organisatie"},"areaServed":{"@type":"Country","name":"Netherlands"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dcbs.nl/en/"},{"@type":"ListItem","position":2,"name":"Services","item":"https://www.dcbs.nl/en/diensten/"},{"@type":"ListItem","position":3,"name":"AI compliance","item":"https://www.dcbs.nl/en/diensten/ai-act-compliance/"}]},{"@type":"FAQPage","@id":"https://www.dcbs.nl/en/diensten/ai-act-compliance/#faq","mainEntity":[{"@type":"Question","name":"Does the AI Act apply if I only use AI tools?","acceptedAnswer":{"@type":"Answer","text":"Yes. Users of AI have obligations too, for example around transparency and AI literacy. How heavy they are depends on the risk of the application."}},{"@type":"Question","name":"What does it cost?","acceptedAnswer":{"@type":"Answer","text":"That depends on what you need. After the intro call you receive a fixed proposal, with no surprises afterwards."}}]}]}</script>
 </head>
 <body>
-<nav>
-  <a href="/en/" class="nlogo" style="cursor:pointer;text-decoration:none">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:44px;width:auto;display:block">
-  <defs>
-    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6b6ef5"/>
-      <stop offset="100%" stop-color="#1de9d4"/>
-    </linearGradient>
-  </defs>
-  <rect width="90" height="90" rx="18" fill="url(#lg)"/>
-  <rect class="lb" style="animation-delay:0s"    x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.18s"  x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.36s"  x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.54s"  x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.72s"  x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.90s"  x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:1.08s" x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg>
-  </a>
-
-  <!-- Desktop navigatie -->
-  <div class="nav-inner" style="margin-left:auto;align-items:center;gap:2rem">
-    <div class="nav-links" id="nav-links">
-      <a href="/en/" data-path="/en/">Home</a>
-      <a href="/en/over-ons/" data-path="/en/over-ons/">About Us</a>
-      <a href="/en/diensten/" data-path="/en/diensten/">Services</a>
-      <a href="/en/cases/" data-path="/en/cases/">Cases</a>
-      <a href="/en/nieuws/" data-path="/en/nieuws/">News</a>
-      <a href="/en/contact/" data-path="/en/contact/" class="ncta plausible-event-name=Gratis+Consult+Click">Free consult</a>
-    </div>
-    <div class="lang-sw">
-      <button class="lbtn " id="btn-nl" onclick="setLang('nl')">NL</button>
-      <button class="lbtn act" id="btn-en" onclick="setLang('en')">EN</button>
-    </div>
-  </div>
-
-  <!-- Hamburger knop (mobiel) -->
-  <button class="hamburger" id="hamburger" type="button" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- Mobiel menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="/en/" data-path="/en/">Home</a>
-  <a href="/en/over-ons/" data-path="/en/over-ons/">About Us</a>
-  <a href="/en/diensten/" data-path="/en/diensten/">Services</a>
-  <a href="/en/cases/" data-path="/en/cases/">Cases</a>
-  <a href="/en/nieuws/" data-path="/en/nieuws/">News</a>
-  <a href="/en/contact/" data-path="/en/contact/" style="color:var(--tl)">Free consult &rarr;</a>
-  <div class="mob-lang">
-    <button class="lbtn " id="mob-btn-nl" onclick="setLang('nl')">NL</button>
-    <button class="lbtn act" id="mob-btn-en" onclick="setLang('en')">EN</button>
-  </div>
+<div style="width:100%;background:#fff;color:#0B1F3A">
+<header style="background:#fff;border-bottom:1px solid #E4E8EF;position:relative;z-index:10"><div class="wrap" style="min-height:80px;padding-top:12px;padding-bottom:12px;display:flex;gap:16px;justify-content:space-between;align-items:center"><a href="/en/"><img src="/assets/dcbs-logo-full.png" alt="The Data Compliance Builders" style="display:block;height:48px;width:auto"></a><nav class="nav nav-d" aria-label="Main menu" style="flex-wrap:wrap;gap:6px 30px;align-items:center;font-size:15px;font-weight:500"><a href="/en/diensten/" class="on">Services</a><a href="/en/over-ons/">About</a><a href="/en/cases/">Cases</a><a href="/en/nieuws/">News</a><a href="/en/contact/">Contact</a><span data-taal="d" style="font-size:13px;font-weight:600;color:#3A4A63"><a href="/diensten/ai-act-compliance/" hreflang="nl" data-taal>NL</a> / <span style="color:#0B1F3A">EN</span></span><a class="b b-p" href="/en/contact/">Free intro call</a></nav><details class="nav-m"><summary aria-label="Open menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>Menu</summary><nav class="menu" aria-label="Main menu mobile"><a href="/en/diensten/">Services</a><a href="/en/over-ons/">About</a><a href="/en/cases/">Cases</a><a href="/en/nieuws/">News</a><a href="/en/contact/">Contact</a><a href="/diensten/ai-act-compliance/" hreflang="nl" data-taal>NL / EN</a><a class="b b-p" href="/en/contact/">Free intro call</a></nav></details></div></header><section style="background:#fff"><div class="wrap" style="padding-top:clamp(56px,7vw,104px);padding-bottom:clamp(32px,4vw,56px);display:flex;flex-wrap:wrap;gap:48px 64px;align-items:center"><div style="flex:1.2 1 520px;min-width:0"><div class="kick">AI compliance</div><h1 style="margin-top:24px">Using AI without surprises.</h1><p class="lead" style="margin-top:24px">The AI Act sets requirements for those who develop AI and those who use it. I help you map which AI you use, which risk comes with it and what you need to arrange.</p><div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:12px;align-items:center"><a class="b b-p" href="/en/contact/">Book an intro call<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span class="mut" style="font-size:14px">Free, 30 minutes, no obligation</span></div><div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:10px"><span class="chip ">EU AI Act</span><span class="chip ">ISO/IEC 42001</span><span class="chip ">FRIA</span></div></div></div><svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wv wv-h" aria-hidden="true"><defs><linearGradient id="wA10" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F4FD1"></stop><stop offset="1" stop-color="#0FA88E"></stop></linearGradient><linearGradient id="wB10" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0FA88E" stop-opacity="0.35"></stop><stop offset="1" stop-color="#1F4FD1" stop-opacity="0.35"></stop></linearGradient></defs><path d="M0 80 C 300 0, 540 160, 840 90 S 1260 20, 1440 70 L 1440 200 L 0 200 Z" fill="url(#wB10)"></path><path d="M0 120 C 360 50, 600 190, 910 120 S 1300 70, 1440 110 L 1440 200 L 0 200 Z" fill="url(#wA10)"></path></svg></section><section style="background:#F4F7FB"><div class="wrap pad" style="display:flex;flex-wrap:wrap;gap:40px 80px"><div style="flex:1 1 360px;max-width:440px"><div class="kick">Sound familiar?</div><h2 style="margin-top:16px">When do you need this?</h2></div><div style="flex:1.4 1 480px"><div class="list"><div class="chk" style="font-size:20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0FA88E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>Employees use AI tools without clear agreements</span></div><div class="chk" style="font-size:20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0FA88E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>You use AI for HR, customer contact or decision-making</span></div><div class="chk" style="font-size:20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0FA88E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>You want to know which AI Act obligations apply to you</span></div><div class="chk" style="font-size:20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0FA88E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg><span>You develop AI yourself or build it into your product</span></div></div></div></div></section><section><div class="wrap pad"><div class="kick">What you get</div><h2 style="margin-top:16px;max-width:820px">Concrete and working, not a report for the drawer</h2><div class="tbl" style="margin-top:36px"><div class="tr"><span class="num" style="flex:0 0 48px">01</span><span class="l" style="flex:0 0 320px">AI register</span><span class="d">An overview of all AI applications in your organisation.</span></div><div class="tr"><span class="num" style="flex:0 0 48px">02</span><span class="l" style="flex:0 0 320px">Risk classification</span><span class="d">Determining for each application which AI Act risk category it falls into.</span></div><div class="tr"><span class="num" style="flex:0 0 48px">03</span><span class="l" style="flex:0 0 320px">FRIA and DPIA</span><span class="d">Fundamental rights and privacy impact assessments where needed.</span></div><div class="tr"><span class="num" style="flex:0 0 48px">04</span><span class="l" style="flex:0 0 320px">Policy and agreements</span><span class="d">AI policy and usage agreements that employees understand.</span></div><div class="tr"><span class="num" style="flex:0 0 48px">05</span><span class="l" style="flex:0 0 320px">AI literacy</span><span class="d">Training so employees know what they can and cannot do.</span></div></div></div></section><section style="background:#F4F7FB"><div class="wrap pad"><div class="kick">How we work</div><h2 style="margin-top:16px;max-width:820px">Step by step, together</h2><div class="steps" style="margin-top:40px"><div><span class="num">01</span><h3 style="margin-top:12px">Explore</h3><p class="mut" style="margin-top:8px;font-size:16px">A short conversation and a first look at what is already in place. Where do you stand and where are the risks?</p></div><div><span class="num">02</span><h3 style="margin-top:12px">Proposal</h3><p class="mut" style="margin-top:8px;font-size:16px">You receive a concrete proposal with priorities, effort and a fixed price.</p></div><div><span class="num">03</span><h3 style="margin-top:12px">Build together</h3><p class="mut" style="margin-top:8px;font-size:16px">We tackle the priorities. I do the work alongside you, not just the advice.</p></div><div><span class="num">04</span><h3 style="margin-top:12px">Embed</h3><p class="mut" style="margin-top:8px;font-size:16px">We record who does what, so that it keeps working. Even when I am not there.</p></div></div></div></section><section><div class="wrap pad"><div style="display:flex;flex-wrap:wrap;gap:36px 80px"><div style="flex:1 1 300px;max-width:380px"><div class="kick">FAQ</div><h2 style="margin-top:16px">Frequently asked questions</h2></div><div style="flex:2 1 520px;border-top:2px solid #0B1F3A"><details style="border-bottom:1px solid #E4E8EF"><summary style="display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 0;font-size:19px;font-weight:600"><span>Does the AI Act apply if I only use AI tools?</span><span class="plus">+</span></summary><p class="mut" style="padding:0 0 26px;max-width:760px">Yes. Users of AI have obligations too, for example around transparency and AI literacy. How heavy they are depends on the risk of the application.</p></details><details style="border-bottom:1px solid #E4E8EF"><summary style="display:flex;justify-content:space-between;gap:20px;align-items:center;padding:24px 0;font-size:19px;font-weight:600"><span>What does it cost?</span><span class="plus">+</span></summary><p class="mut" style="padding:0 0 26px;max-width:760px">That depends on what you need. After the intro call you receive a fixed proposal, with no surprises afterwards.</p></details></div></div></div></section><section><div class="wrap" style="padding-bottom:clamp(56px,7vw,112px)"><div class="card" style="border-color:#D5DDEA"><div style="padding:clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between"><div style="flex:1 1 440px"><div class="kick">Get in touch</div><h2 style="margin-top:16px">Want to talk it through?</h2><p class="lead" style="margin-top:14px">Book a free 30-minute intro call. You outline your situation and I give you a first assessment. No sales pitch.</p></div><div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start"><a class="b b-p" href="/en/contact/">Book an intro call<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span class="mut" style="font-size:14px">Or email contact@dcbs.nl</span></div></div><svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wv wv-c" aria-hidden="true"><defs><linearGradient id="wA11" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F4FD1"></stop><stop offset="1" stop-color="#0FA88E"></stop></linearGradient><linearGradient id="wB11" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0FA88E" stop-opacity="0.35"></stop><stop offset="1" stop-color="#1F4FD1" stop-opacity="0.35"></stop></linearGradient></defs><path d="M0 80 C 300 0, 540 160, 840 90 S 1260 20, 1440 70 L 1440 200 L 0 200 Z" fill="url(#wB11)"></path><path d="M0 120 C 360 50, 600 190, 910 120 S 1300 70, 1440 110 L 1440 200 L 0 200 Z" fill="url(#wA11)"></path></svg></div></div></section><footer style="background:#fff;border-top:1px solid #E4E8EF"><div class="wrap" style="padding-top:clamp(48px,6vw,80px);padding-bottom:40px"><div style="display:flex;flex-wrap:wrap;gap:40px 64px;justify-content:space-between"><div style="flex:1 1 300px;max-width:400px"><img src="/assets/dcbs-logo-full.png" alt="The Data Compliance Builders" style="display:block;height:48px;width:auto"><p class="mut" style="margin-top:20px;font-size:15px">Privacy, AI, NIS2 and information security, demonstrably in order. Independent, based in Apeldoorn, the Netherlands.</p></div><div style="display:flex;flex-wrap:wrap;gap:40px 72px;font-size:15px;line-height:2"><div style="display:flex;flex-direction:column"><span class="th" style="margin-bottom:8px">Services</span><a href="/en/diensten/avg-compliance/">Privacy compliance</a><a href="/en/diensten/ai-act-compliance/">AI compliance</a><a href="/en/diensten/nis2/">NIS2 / Cybersecurity Act</a><a href="/en/diensten/information-security/">Information security</a><a href="/en/diensten/quantum-readiness/">Quantum-readiness</a><a href="/en/diensten/dpo-as-a-service/">DPO-as-a-Service</a><a href="/en/diensten/privacy-officer-as-a-service/">Privacy Officer as a Service</a><a href="/en/diensten/security-officer-as-a-service/">Security Officer as a Service</a><a href="/en/diensten/tprm-contractmanagement/">TPRM and contract management</a></div><div style="display:flex;flex-direction:column"><span class="th" style="margin-bottom:8px">Firm</span><a href="/en/over-ons/">About</a><a href="/en/cases/">Cases</a><a href="/en/nieuws/">News</a><a href="/en/contact/">Contact</a></div><div style="display:flex;flex-direction:column"><span class="th" style="margin-bottom:8px">Contact</span><a href="mailto:contact@dcbs.nl">contact@dcbs.nl</a><a href="tel:+31615234409">+31 (0)6 15 23 44 09</a><span>Berkenlaan 6, Apeldoorn</span><span class="mut">KVK 66569346</span></div></div></div></div><div class="wrap mut" style="padding-bottom:28px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px"><span>© 2026 The Data Compliance Builders B.V.</span><a href="/en/privacy-statement/">Privacy policy</a><a href="/en/privacy-statement/">Cookies</a></div><svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wv wv-f" aria-hidden="true"><defs><linearGradient id="wA12" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F4FD1"></stop><stop offset="1" stop-color="#0FA88E"></stop></linearGradient><linearGradient id="wB12" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0FA88E" stop-opacity="0.35"></stop><stop offset="1" stop-color="#1F4FD1" stop-opacity="0.35"></stop></linearGradient></defs><path d="M0 80 C 300 0, 540 160, 840 90 S 1260 20, 1440 70 L 1440 200 L 0 200 Z" fill="url(#wB12)"></path><path d="M0 120 C 360 50, 600 190, 910 120 S 1300 70, 1440 110 L 1440 200 L 0 200 Z" fill="url(#wA12)"></path></svg></footer>
 </div>
-
-<main id="news-content" style="padding-top:72px">
-<div class="ph rev">
-  <p class="crumb"><a href="/en/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/en/diensten/" style="color:var(--mu);text-decoration:none">Services</a> / EU AI Act</p>
-  <h2>EU AI Act Compliance and <span class="g">AI Governance</span></h2>
-  <p class="sub">AI system risk classification, AI governance frameworks, FRIA impact assessments and ISO 42001 implementation. Practical and legally grounded.</p>
+<div id="cookie-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:50;align-items:center;justify-content:space-between;gap:16px 32px;background:#fff;border:1px solid #E4E8EF;border-radius:16px;box-shadow:0 16px 40px rgba(11,31,58,.16);padding:20px 24px;flex-wrap:wrap">
+<p class="mut" style="font-size:14px;line-height:1.6;max-width:70ch">We always place functionally necessary cookies. With your consent, we also place a Google Ads advertising cookie to measure the effect of our campaigns.</p>
+<div style="display:flex;gap:12px;flex:none"><button id="cb-decline" class="b b-o" type="button">Necessary only</button><button id="cb-accept" class="b b-p" type="button">Accept</button></div>
 </div>
-
-<section class="sec rev">
-  <div style="max-width:780px">
-    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem;margin-bottom:1.2rem">The EU AI Act is in force and the first obligations are already active. Inventorying an AI portfolio, classifying risks, putting an AI governance framework in place and &mdash; for high-risk systems &mdash; running a Fundamental Rights Impact Assessment: this is no longer optional. It is the legal reality for organisations that deploy or supply AI.</p>
-    <p style="color:var(--bd);line-height:1.85;font-size:1.05rem">DCBS combines legal analysis of the AI Act text with operational implementation through ISO 42001 as a management system. For further reading: see the article on <a href="/en/nieuws/fria-fundamental-rights-impact-assessment/" style="color:var(--tl);text-decoration:none;font-weight:700">FRIA execution under the EU AI Act</a>.</p>
-  </div>
-</section>
-
-<section class="sec rev2">
-  <span class="ew">01 &mdash; What it covers</span>
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-bottom:3rem">
-    <div>
-      <h2 class="sh">AI Act <span class="g">in practice</span></h2>
-      <p style="color:var(--bd);line-height:1.85;font-size:1rem">Five building blocks: risk classification, AI governance framework, FRIA, ISO 42001 management system and ongoing AI compliance advice. Designed to align with your existing GDPR and data governance structure.</p>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:2px;background:var(--br)">
-      <div class="sc" style="cursor:default"><div class="sct">AI system risk classification</div><p class="scb">Systematic classification of AI systems under the AI Act: prohibited, high-risk, limited risk or minimal risk. Includes AI Act high-risk classification for Annex III systems and GPAI assessment for general-purpose AI.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">AI governance framework setup</div><p class="scb">AI governance framework with policy, role allocation (AI owner, technical lead, DPO), inventory processes and escalation paths. Scalable from one AI system to a portfolio of dozens.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">FRIA: high-risk AI impact assessment</div><p class="scb">Fundamental Rights Impact Assessment for high-risk AI systems: identification of affected fundamental rights, risk assessment, mitigations and accountability. In line with AI Act Article 27.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">ISO 42001 implementation</div><p class="scb">ISO 42001 AI management system &mdash; the international management system for responsible AI. Implementation that builds on ISO 27001 or existing management cycles. Audit-ready without duplicate documentation tracks.</p></div>
-      <div class="sc" style="cursor:default"><div class="sct">AI compliance advice and monitoring</div><p class="scb">Ongoing AI compliance advice on new AI implementations: vendor assessment, contract review, deployment-impact and accountability towards supervision. Includes preparation for AI Act enforcement.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec rev">
-  <span class="ew">02 &mdash; When DCBS is relevant to you</span>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;margin-top:2rem">
-    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
-      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">AI portfolio not classified</h3>
-      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">A growing number of AI systems are deployed in operations, but there is no inventory, no risk classification and no clear view of which systems fall under which AI Act category.</p>
-    </div>
-    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
-      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">High-risk AI system before go-live</h3>
-      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">An AI system under Annex III (critical infrastructure, education, employment, access to public services, law enforcement) is approaching go-live and requires a FRIA plus high-risk obligations met before market introduction.</p>
-    </div>
-    <div style="border-left:3px solid var(--tl);padding:.5rem 0 .5rem 1.5rem">
-      <h3 style="font-size:1.1rem;font-weight:900;color:var(--wh);margin:0 0 .8rem">ISO 42001 track under consideration</h3>
-      <p style="color:var(--bd);line-height:1.7;font-size:.95rem">Clients or the organisation itself want a demonstrable AI management system. ISO 42001 implementation is the direction, but help is needed on gap analysis and alignment with existing ISO 27001 structure.</p>
-    </div>
-  </div>
-</section>
-
-<section class="sec rev2">
-  <div class="svc-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
-    <div>
-      <span class="ew">03 &mdash; What you get</span>
-      <h2 class="sh" style="margin-top:.8rem">Concrete <span class="g">deliverables</span></h2>
-      <ul style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem">
-        <li style="margin-bottom:.6rem">AI portfolio inventory with per-system risk classification</li>
-        <li style="margin-bottom:.6rem">AI governance framework: policy, role allocation, escalation paths</li>
-        <li style="margin-bottom:.6rem">FRIA report for high-risk systems, in line with AI Act Article 27</li>
-        <li style="margin-bottom:.6rem">ISO 42001 gap analysis + implementation roadmap</li>
-        <li style="margin-bottom:.6rem">AI literacy training material for key staff</li>
-        <li>Ongoing advisory line for new AI deployments</li>
-      </ul>
-    </div>
-    <div>
-      <span class="ew">04 &mdash; Approach</span>
-      <h2 class="sh" style="margin-top:.8rem">Four <span class="g">steps</span></h2>
-      <ol style="color:var(--bd);line-height:1.85;font-size:1rem;padding-left:1.2rem;margin-top:1rem;list-style:decimal">
-        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Discovery &amp; portfolio scan</strong> &mdash; inventory of AI systems in use, including shadow AI (productivity tools, embedded AI in SaaS). First-pass classification under AI Act categories.</li>
-        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Risk classification &amp; prioritisation</strong> &mdash; final per-system classification with corresponding obligations. Prioritisation by risk and go-live date.</li>
-        <li style="margin-bottom:.8rem"><strong style="color:var(--wh)">Governance implementation &amp; FRIAs</strong> &mdash; setting up the governance framework, executing FRIAs for high-risk systems, deploying ISO 42001 controls.</li>
-        <li><strong style="color:var(--wh)">Embedding &amp; AI literacy</strong> &mdash; ongoing monitoring, AI literacy training for relevant staff, preparation for AI Act enforcement and possible audits.</li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<section class="sec rev">
-  <span class="ew">05 &mdash; For whom</span>
-  <h2 class="sh" style="margin-top:.8rem">Organisations that <span class="g">deploy or supply AI</span></h2>
-  <p style="color:var(--bd);line-height:1.85;font-size:1rem;margin-top:1rem;max-width:780px">DCBS works for organisations with AI systems in production or in the pipeline: financial institutions, (semi-)public sector organisations, organisations deploying AI in customer-facing processes, and international corporates. AI providers and AI deployers with obligations under the EU AI Act find here the combination of legal analysis and operational implementation. For specific case examples &mdash; see <a href="/en/cases/" style="color:var(--tl);text-decoration:none;font-weight:700">our cases</a>.</p>
-</section>
-
-<section class="sec rev2" style="padding-bottom:5rem">
-  <div style="background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.05);padding:3rem 2.5rem;border-radius:12px;text-align:center;max-width:780px;margin:0 auto">
-    <h2 style="font-size:1.8rem;font-weight:900;color:var(--wh);margin:0 0 1rem">Set up AI Act compliance?</h2>
-    <p style="color:var(--bd);line-height:1.7;font-size:1.05rem;margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto">Free 30-minute intake call. The conversation explores where your AI portfolio stands under the Act &mdash; and which priorities are feasible.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
-      <a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="btn bp plausible-event-name=Calendly+Click">Book intake &rarr;</a>
-      <a href="/en/contact/" class="btn bg">Contact via form</a>
-    </div>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="fi">
-    <div class="fb">
-      <div class="fbr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:38px;width:auto;display:block">
-  <defs><linearGradient id="lgf" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#6b6ef5"/><stop offset="100%" stop-color="#1de9d4"/>
-  </linearGradient></defs>
-  <rect width="90" height="90" rx="18" fill="url(#lgf)"/>
-  <rect x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg></div>
-      <p>Independent consultancy for privacy, AI and data management compliance. Based in Apeldoorn, the Netherlands.</p>
-    </div>
-    <div class="fcol"><h4>Services</h4><ul>
-      <li><a href="/en/diensten/dpo-as-a-service/">External DPO</a></li>
-      <li><a href="/en/diensten/gdpr-compliance/">GDPR Consultancy</a></li>
-      <li><a href="/en/diensten/ai-act-compliance/">EU AI Act Advice</a></li>
-      <li><a href="/en/diensten/data-management/">Data Management</a></li>
-      <li><a href="/en/diensten/gdpr-compliance/#dpia">DPIA execution</a></li>
-      <li><a href="/en/diensten/gdpr-compliance/#bc-5701">BC 5701 certification</a></li>
-      <li><a href="/en/diensten/ai-act-compliance/">ISO 42001 implementation</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Company</h4><ul>
-      <li><a href="/en/over-ons/">About us</a></li>
-      <li><a href="/en/cases/">Cases</a></li>
-      <li><a href="/en/nieuws/">News</a></li>
-      <li><a href="/en/contact/">Contact</a></li>
-      <li><a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="plausible-event-name=Calendly+Click">Book a meeting</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Contact</h4><ul>
-      <li><a href="mailto:contact@dcbs.nl" class="plausible-event-name=Email+Click">contact@dcbs.nl</a></li>
-      <li><a href="tel:+31615234409" class="plausible-event-name=Phone+Click">+31 (0)6 15 23 44 09</a></li>
-      <li>Berkenlaan 6, Apeldoorn</li>
-      <li>Dutch Chamber of Commerce: 66569346</li>
-      <li><a href="https://linkedin.com/company/the-data-compliance-builders/" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
-    </ul></div>
-  </div>
-  <div class="fbot">
-    <span class="fcp">&copy; <span data-copyright-year>2026</span> The Data Compliance Builders B.V. &middot; Apeldoorn &middot; <a href="/en/privacy-statement/" style="color:var(--mu);text-decoration:none">Privacy Statement</a></span>
-  </div>
-</footer>
-
-
-
-<div id="cookie-banner" role="dialog" aria-label="Cookie notice">
-  <p>We don't use tracking or advertising cookies. Only functionally necessary cookies for the website to operate. <a href="/en/privacy-statement/" style="cursor:pointer">More information</a></p>
-  <div class="cookie-btns">
-    <button class="cookie-decline" onclick="cookieDecline()">Only necessary</button>
-    <button class="cookie-accept" onclick="cookieAccept()">Accept</button>
-  </div>
-</div>
-
-<script src="/assets/js/main.js" defer></script>
-
 </body>
 </html>
