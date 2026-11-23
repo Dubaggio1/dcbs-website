@@ -102,3 +102,84 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus,textarea:
 #nieuws-lijst .nieuwsrij img,#nieuws-lijst .nieuwsrij>div{border-radius:14px}
 #nieuws-lijst .nieuwsrij span span:first-child{color:#1F4FD1!important}
 @media (max-width:760px){#nieuws-lijst .nieuwsrij{grid-template-columns:1fr!important;gap:16px!important}#nieuws-lijst .nieuwsrij>span:last-child{text-align:left!important}}
+/* beeld:start */
+/* Pictogrammen en schema's: beeld dat het onderwerp van een pagina laat zien */
+.pic{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border-radius:12px;background:#EAF0FC;color:#1F4FD1}
+.tr .pic{align-self:center}
+.card .pic{align-self:flex-start}
+.vis{flex:1 1 380px;max-width:470px;min-width:0}
+.vk{background:#fff;border:1px solid #E4E8EF;border-radius:24px;padding:26px;box-shadow:0 24px 60px rgba(11,31,58,.10)}
+.rol{display:flex;gap:16px;align-items:center;padding:16px 18px;border:1px solid #E4E8EF;border-radius:16px;background:#fff}
+.rol b{display:block;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.rol b+span{display:block;font-size:14.5px;color:#3A4A63;margin-top:2px}
+.rol.kern{background:linear-gradient(120deg,#1F4FD1,#0FA88E);border-color:transparent;color:#fff;box-shadow:0 12px 28px rgba(31,79,209,.28)}
+.rol.kern b+span{color:rgba(255,255,255,.9)}
+.rol.kern .pic{background:rgba(255,255,255,.18);color:#fff}
+.stapel{display:flex;flex-direction:column;gap:10px}
+.lijn{display:flex;align-items:center;gap:10px;height:46px;margin-left:41px;padding-left:20px;border-left:2px dashed #CBD3E1;font-size:13px;font-weight:600;color:#3A4A63}
+.lijn svg{color:#1F4FD1;flex:0 0 auto}
+.streep{height:22px;margin-left:41px;border-left:2px dashed #CBD3E1}
+.tegels{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tegel{display:flex;flex-direction:column;gap:12px;padding:16px;border:1px solid #E4E8EF;border-radius:16px;font-size:15px;line-height:1.25;min-width:0;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+.vk-voet{display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 16px;border-radius:12px;background:var(--grad);color:#fff;font-weight:700;font-size:14px;letter-spacing:.04em}
+.piramide{display:flex;flex-direction:column;align-items:center;gap:8px}
+.piramide div{color:#fff;border-radius:12px;padding:12px 10px;text-align:center}
+.piramide b{display:block;font-size:15.5px}
+.piramide span{font-size:13px;opacity:.9}
+.piramide .p1{width:62%;background:#0B1F3A}
+.piramide .p2{width:74%;background:#1F4FD1}
+.piramide .p3{width:87%;background:#1A7FB4}
+.piramide .p4{width:100%;background:#0FA88E}
+.tijd .t{display:flex;align-items:center;gap:16px}
+.tijd .wanneer{flex:0 0 92px;text-align:center;padding:11px 0;border-radius:12px;background:#EAF0FC;color:#1A43B3;font-weight:800;font-size:15px}
+.tijd .t.kern .wanneer{background:var(--grad);color:#fff}
+.tijd b{display:block;font-size:17px}
+.tijd b+span{display:block;font-size:14px;color:#3A4A63;margin-top:2px}
+.tijd .streep{margin-left:45px}
+.trap{display:flex;flex-direction:column;gap:8px}
+.trap>div{display:flex;align-items:center;gap:12px;padding:13px 16px;border:1px solid #E4E8EF;border-radius:14px;font-size:15.5px;background:#fff}
+.trap .n{color:#1F4FD1;font-weight:800;font-size:14px}
+.trap .s1{margin-right:24%}
+.trap .s2{margin-left:6%;margin-right:18%}
+.trap .s3{margin-left:12%;margin-right:12%}
+.trap .s4{margin-left:18%;margin-right:6%}
+.trap .s5{margin-left:24%;background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 12px 28px rgba(31,79,209,.28)}
+.ring{position:relative;width:200px;height:200px;border-radius:50%;margin:0 auto;background:conic-gradient(#1F4FD1 0 25%,#1C6FC4 25% 50%,#178FA8 50% 75%,#0FA88E 75% 100%)}
+.ring:before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(#fff 0 1.2deg,transparent 1.2deg 88.8deg,#fff 88.8deg 91.2deg,transparent 91.2deg 178.8deg,#fff 178.8deg 181.2deg,transparent 181.2deg 268.8deg,#fff 268.8deg 271.2deg,transparent 271.2deg 358.8deg,#fff 358.8deg)}
+.ring:after{content:"";position:absolute;inset:44px;border-radius:50%;background:#fff}
+.ring span{position:absolute;z-index:1;transform:translate(-50%,-50%);color:#fff;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.ring i{position:absolute;inset:0;z-index:1;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:21px;letter-spacing:-.01em;color:#0B1F3A}
+.legenda{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin-top:22px}
+.legenda div{font-size:14.5px;color:#3A4A63;line-height:1.35}
+.legenda b{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#1F4FD1;margin-bottom:2px}
+.lagen{display:flex;flex-direction:column;gap:12px}
+.laag{padding:14px 16px 12px;border:1px solid #E4E8EF;border-radius:16px;line-height:1}
+.laag b{display:block;font-size:16px;margin-bottom:12px}
+.laag i{display:inline-block;width:15px;height:15px;border-radius:50%;margin:0 7px 4px 0}
+.laag.l1 i{background:#0B1F3A}
+.laag.l2 i{background:#1F4FD1}
+.laag.l3 i{background:#B9C6E4}
+.tijdlijn{display:grid;grid-template-columns:repeat(5,1fr);margin-top:44px;position:relative}
+.tijdlijn:before{content:"";position:absolute;left:0;right:0;top:55px;height:4px;border-radius:2px;background:linear-gradient(90deg,#1F4FD1 0,#0FA88E 38%,#CBD3E1 40%)}
+.tp{position:relative;padding-right:28px;min-width:0}
+.tp .groep{height:28px;margin-bottom:18px}
+.tp .punt{position:relative;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid #CBD3E1}
+.tp.nu .punt{border-color:#1F4FD1;background:#1F4FD1}
+.tp .dat{margin-top:18px;font-size:15px;font-weight:800;letter-spacing:.04em;color:#3A4A63}
+.tp.nu .dat{color:#1F4FD1}
+.tp h3{font-size:17px;line-height:1.3;margin-top:8px;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+.tp p{margin:8px 0 0;font-size:15px;line-height:1.5;color:#3A4A63}
+@media (max-width:980px){
+.tijdlijn{grid-template-columns:1fr;margin-top:32px}
+.tijdlijn:before{left:9px;right:auto;top:6px;bottom:6px;width:4px;height:auto;background:linear-gradient(180deg,#1F4FD1 0,#0FA88E 38%,#CBD3E1 40%)}
+.tp{padding:0 0 30px 46px}
+.tp .groep{height:auto;margin-bottom:10px}
+.tp .groep:empty{display:none}
+.tp .punt{position:absolute;left:0}
+.tp .dat{margin-top:0;line-height:22px}
+}
+@media (max-width:700px){
+.vis{max-width:none}
+.vk{padding:18px}
+}
+/* beeld:eind */
