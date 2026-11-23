@@ -1,223 +1,46 @@
 <!DOCTYPE html>
-<html lang="nl-NL">
+<html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI2027: Superintelligente AI Binnen Twee Jaar — Compliance-Implicaties | DCBS</title>
-<meta name="description" content="Het AI2027-scenario schetst transformatieve AI binnen twee jaar. Ongeacht uw tijdlijn-overtuiging: de compliance-implicaties zijn aanzienlijk. DCBS-analyse.">
-<meta name="keywords" content="AI2027, superintelligente AI, AGI compliance, transformatieve AI compliance, AI Act voorbereiding, AI governance toekomst">
-<meta name="author" content="Jeroen Dubach, The Data Compliance Builders">
-<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI2027: Superintelligente AI binnen twee jaar — zijn we er klaar voor? | DCBS</title>
+<meta name="description" content="Het AI2027-scenario beschrijft een geloofwaardig pad naar transformatieve AI. Wat zijn de governance- en compliance-implicaties voor organisaties die vandaag al AI-systemen inzetten?">
 <link rel="canonical" href="https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/">
-
-<!-- Hreflang -->
-<link rel="alternate" hreflang="nl-NL" href="https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/">
-<link rel="alternate" hreflang="en-GB" href="https://www.dcbs.nl/en/nieuws/ai2027-superintelligente-ai/">
+<link rel="alternate" hreflang="nl" href="https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/">
+<link rel="alternate" hreflang="en" href="https://www.dcbs.nl/en/nieuws/ai2027-superintelligente-ai/">
 <link rel="alternate" hreflang="x-default" href="https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/">
-
-<!-- Open Graph -->
-<meta property="og:title" content="AI2027: Superintelligente AI Binnen Twee Jaar — Compliance-Implicaties">
-<meta property="og:description" content="Het AI2027-scenario schetst transformatieve AI binnen twee jaar. Ongeacht uw tijdlijn-overtuiging: de compliance-implicaties zijn aanzienlijk. DCBS-analyse.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/">
-<meta property="og:locale" content="nl_NL">
+<link rel="icon" type="image/png" href="/assets/dcbs-icon.png">
+<meta property="og:type" content="article">
 <meta property="og:site_name" content="The Data Compliance Builders">
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="AI2027: Superintelligente AI Binnen Twee Jaar — Compliance-Implicaties">
-<meta name="twitter:description" content="Het AI2027-scenario schetst transformatieve AI binnen twee jaar. Ongeacht uw tijdlijn-overtuiging: de compliance-implicaties zijn aanzienlijk. DCBS-analyse.">
-
-<!-- Icons -->
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA5MCA5MCI+CiAgPGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJmZyIgeDE9IjAiIHkxPSIwIiB4Mj0iMSIgeTI9IjEiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZiNmVmNSIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzFkZTlkNCIvPgogIDwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPgogIDxyZWN0IHdpZHRoPSI5MCIgaGVpZ2h0PSI5MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2ZnKSIvPgogIDxyZWN0IHg9IjE0IiB5PSIxNCIgd2lkdGg9IjU0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSIzMSIgd2lkdGg9IjMyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjUwIiB5PSIzMSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI0OCIgd2lkdGg9IjQyIiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjE0IiB5PSI2NSIgd2lkdGg9IjI0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgogIDxyZWN0IHg9IjQyIiB5PSI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjExIiByeD0iNS41IiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4=">
-
-<!-- Stylesheet -->
-<link rel="stylesheet" href="/assets/css/main.css">
-
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "AI2027: Superintelligente AI Binnen Twee Jaar — Compliance-Implicaties",
-  "description": "Het AI2027-scenario schetst transformatieve AI binnen twee jaar. Ongeacht uw tijdlijn-overtuiging: de compliance-implicaties zijn aanzienlijk. DCBS-analyse.",
-  "author": {
-    "@type": "Person",
-    "name": "Jeroen Dubach"
-  },
-  "publisher": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders",
-    "url": "https://www.dcbs.nl"
-  },
-  "inLanguage": "nl-NL",
-  "url": "https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/"
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "The Data Compliance Builders",
-  "url": "https://www.dcbs.nl",
-  "publisher": {
-    "@type": "ProfessionalService",
-    "name": "The Data Compliance Builders"
-  }
-}
-</script>
-
-<!-- Plausible Analytics (cookieless, EU-hosted) -->
+<meta property="og:title" content="AI2027: Superintelligente AI binnen twee jaar — zijn we er klaar voor?">
+<meta property="og:description" content="Het AI2027-scenario beschrijft een geloofwaardig pad naar transformatieve AI. Wat zijn de governance- en compliance-implicaties voor organisaties die vandaag al AI-systemen inzetten?">
+<meta property="og:url" content="https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/">
+<meta property="og:image" content="https://www.dcbs.nl/assets/nieuws/ai2027-superintelligente-ai.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/v6.css?v=1794589259">
 <script defer data-domain="dcbs.nl" src="https://plausible.io/js/script.js"></script>
+<script>window.__dcbsMobile = true;</script>
+<script src="/site.js?v=54320776177" defer></script>
+<script type="application/ld+json" id="ld-dcbs">{"@context":"https://schema.org","@graph":[{"@type":"Article","@id":"https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/#artikel","headline":"AI2027: Superintelligente AI binnen twee jaar — zijn we er klaar voor?","description":"Het AI2027-scenario beschrijft een geloofwaardig pad naar transformatieve AI. Wat zijn de governance- en compliance-implicaties voor organisaties die vandaag al AI-systemen inzetten?","inLanguage":"nl-NL","mainEntityOfPage":"https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/","articleSection":"AI compliance","author":{"@type":"Person","name":"Jeroen Dubach","url":"https://www.dcbs.nl/over-ons/"},"publisher":{"@type":"Organization","@id":"https://www.dcbs.nl/#organisatie","name":"The Data Compliance Builders","logo":{"@type":"ImageObject","url":"https://www.dcbs.nl/assets/dcbs-logo-full.png"}},"image":["https://www.dcbs.nl/assets/nieuws/ai2027-superintelligente-ai.png"],"dateModified":"2026-11-23"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dcbs.nl/"},{"@type":"ListItem","position":2,"name":"Nieuws","item":"https://www.dcbs.nl/nieuws/"},{"@type":"ListItem","position":3,"name":"AI2027: Superintelligente AI binnen twee jaar — zijn we er klaar voor?","item":"https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/"}]}]}</script>
 </head>
 <body>
-<nav>
-  <a href="/" class="nlogo" style="cursor:pointer;text-decoration:none">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:44px;width:auto;display:block">
-  <defs>
-    <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#6b6ef5"/>
-      <stop offset="100%" stop-color="#1de9d4"/>
-    </linearGradient>
-  </defs>
-  <rect width="90" height="90" rx="18" fill="url(#lg)"/>
-  <rect class="lb" style="animation-delay:0s"    x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.18s"  x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.36s"  x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.54s"  x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.72s"  x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:.90s"  x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect class="lb" style="animation-delay:1.08s" x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg>
-  </a>
-
-  <!-- Desktop navigatie -->
-  <div class="nav-inner" style="margin-left:auto;align-items:center;gap:2rem">
-    <div class="nav-links" id="nav-links">
-      <a href="/" data-path="/">Home</a>
-      <a href="/over-ons/" data-path="/over-ons/">Over ons</a>
-      <a href="/diensten/" data-path="/diensten/">Diensten</a>
-      <a href="/cases/" data-path="/cases/">Cases</a>
-      <a href="/nieuws/" data-path="/nieuws/">Nieuws</a>
-      <a href="/contact/" data-path="/contact/" class="ncta plausible-event-name=Gratis+Consult+Click">Gratis consult</a>
-    </div>
-    <div class="lang-sw">
-      <button class="lbtn act" id="btn-nl" onclick="setLang('nl')">NL</button>
-      <button class="lbtn " id="btn-en" onclick="setLang('en')">EN</button>
-    </div>
-  </div>
-
-  <!-- Hamburger knop (mobiel) -->
-  <button class="hamburger" id="hamburger" type="button" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- Mobiel menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="/" data-path="/">Home</a>
-  <a href="/over-ons/" data-path="/over-ons/">Over ons</a>
-  <a href="/diensten/" data-path="/diensten/">Diensten</a>
-  <a href="/cases/" data-path="/cases/">Cases</a>
-  <a href="/nieuws/" data-path="/nieuws/">Nieuws</a>
-  <a href="/contact/" data-path="/contact/" style="color:var(--tl)">Gratis consult &rarr;</a>
-  <div class="mob-lang">
-    <button class="lbtn act" id="mob-btn-nl" onclick="setLang('nl')">NL</button>
-    <button class="lbtn " id="mob-btn-en" onclick="setLang('en')">EN</button>
-  </div>
+<div style="width:100%;background:#fff;color:#0B1F3A">
+<header style="background:#fff;border-bottom:1px solid #E4E8EF;position:relative;z-index:10"><div class="wrap" style="min-height:80px;padding-top:12px;padding-bottom:12px;display:flex;gap:16px;justify-content:space-between;align-items:center"><a href="/"><img src="/assets/dcbs-logo-full.png" alt="The Data Compliance Builders" style="display:block;height:48px;width:auto"></a><nav class="nav nav-d" aria-label="Hoofdmenu" style="flex-wrap:wrap;gap:6px 30px;align-items:center;font-size:15px;font-weight:500"><a href="/diensten/">Diensten</a><a href="/over-ons/">Over ons</a><a href="/cases/">Cases</a><a href="/nieuws/" class="on">Nieuws</a><a href="/contact/">Contact</a><span data-taal="d" style="font-size:13px;font-weight:600;color:#3A4A63"><span style="color:#0B1F3A">NL</span> / <a href="/en/nieuws/ai2027-superintelligente-ai/" hreflang="en" data-taal>EN</a></span><a class="b b-p" href="/contact/">Gratis kennismaking</a></nav><details class="nav-m"><summary aria-label="Menu openen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>Menu</summary><nav class="menu" aria-label="Hoofdmenu mobiel"><a href="/diensten/">Diensten</a><a href="/over-ons/">Over ons</a><a href="/cases/">Cases</a><a href="/nieuws/">Nieuws</a><a href="/contact/">Contact</a><a href="/en/nieuws/ai2027-superintelligente-ai/" hreflang="en" data-taal>NL / EN</a><a class="b b-p" href="/contact/">Gratis kennismaking</a></nav></details></div></header>
+<article><div class="wrap" style="padding-top:clamp(48px,6vw,88px)"><div style="max-width:720px;margin:0 auto"><a href="/nieuws/" class="mut" style="font-size:15px;display:inline-flex;gap:6px;align-items:center">&#8592; Alle artikelen</a><div class="kick" style="margin-top:28px">AI compliance</div><h1 style="margin-top:20px;font-size:clamp(30px,3.4vw,44px);line-height:1.1">AI2027: Superintelligente AI binnen twee jaar — zijn we er klaar voor?</h1><p class="mut" style="margin-top:18px;font-size:16px">Jeroen Dubach &#183; Maart 2025</p></div></div><div class="wrap" style="padding-top:36px"><figure class="cover"><img src="/assets/nieuws/ai2027-superintelligente-ai.png" alt=""></figure><div class="prose"><p>Het AI2027-scenario schetst een aannemelijk pad naar transformatieve AI-systemen in 2027. Of u die tijdlijn geloofwaardig vindt of niet: de compliance-implicaties zijn aanzienlijk en grotendeels onafhankelijk van het exacte tempo van ontwikkeling.</p>
+<h2>Waarom compliance-professionals nu moeten handelen</h2>
+<p>De EU AI Act is van kracht. Verplichtingen voor hoog-risico AI-systemen — waaronder risicobeheersystemen, technische documentatie, menselijk toezicht en post-market monitoring — gelden nu. AI2027 vertegenwoordigt niet alleen een technisch scenario, maar ook een governance-uitdaging.</p>
+<blockquote><p>&quot;De vraag is niet of uw AI-systemen vandaag compliant zijn — het is of uw governance-structuren kunnen meegroeien wanneer die systemen capabeler worden.&quot;</p></blockquote>
+<h2>Drie praktische stappen voor vooruitziende AI-governance</h2>
+<ul><li><strong>Inventariseer uw AI-systemen nu.</strong> Weet wat u runt, de risicocategorie onder de AI Act en de huidige toezichtmechanismen.</li><li><strong>Bouw adaptieve governance.</strong> Implementeer een AI-managementsysteem (ISO/IEC 42001) met reguliere beoordelingscycli.</li><li><strong>Voer proactief FRIA's uit.</strong> Fundamental Rights Impact Assessments identificeren hoe uw AI-systemen mensen beïnvloeden.</li></ul>
+<p>De organisaties die het beste gepositioneerd zijn voor het AI-landschap van 2027, zijn diegenen die vandaag robuuste governance-frameworks bouwen.</p><p class="mut" style="margin-top:32px;font-size:15px">Ook verschenen op <a href="https://lnkd.in/p/eQKdgQqB" target="_blank" rel="noopener">LinkedIn</a>.</p></div></div></article>
+<section><div class="wrap" style="padding-bottom:clamp(56px,7vw,112px)"><div class="card" style="border-color:#D5DDEA"><div style="padding:clamp(32px,5vw,64px);display:flex;flex-wrap:wrap;gap:28px 48px;align-items:center;justify-content:space-between"><div style="flex:1 1 440px"><div class="kick">Kennismaken</div><h2 style="margin-top:16px">Even sparren?</h2><p class="lead" style="margin-top:14px">Plan een gratis kennismaking van 30 minuten. Je schetst je situatie en ik geef je een eerste beoordeling. Geen verkooppraatje.</p></div><div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start"><a class="b b-p" href="/contact/">Plan een kennismaking<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a><span class="mut" style="font-size:14px">Of mail naar contact@dcbs.nl</span></div></div><svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wv wv-c" aria-hidden="true"><defs><linearGradient id="wA45" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F4FD1"></stop><stop offset="1" stop-color="#0FA88E"></stop></linearGradient><linearGradient id="wB45" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0FA88E" stop-opacity="0.35"></stop><stop offset="1" stop-color="#1F4FD1" stop-opacity="0.35"></stop></linearGradient></defs><path d="M0 80 C 300 0, 540 160, 840 90 S 1260 20, 1440 70 L 1440 200 L 0 200 Z" fill="url(#wB45)"></path><path d="M0 120 C 360 50, 600 190, 910 120 S 1300 70, 1440 110 L 1440 200 L 0 200 Z" fill="url(#wA45)"></path></svg></div></div></section><footer style="background:#fff;border-top:1px solid #E4E8EF"><div class="wrap" style="padding-top:clamp(48px,6vw,80px);padding-bottom:40px"><div style="display:flex;flex-wrap:wrap;gap:40px 64px;justify-content:space-between"><div style="flex:1 1 300px;max-width:400px"><img src="/assets/dcbs-logo-full.png" alt="The Data Compliance Builders" style="display:block;height:48px;width:auto"><p class="mut" style="margin-top:20px;font-size:15px">Privacy, AI, NIS2 en informatiebeveiliging, aantoonbaar geregeld. Onafhankelijk, vanuit Apeldoorn.</p></div><div style="display:flex;flex-wrap:wrap;gap:40px 72px;font-size:15px;line-height:2"><div style="display:flex;flex-direction:column"><span class="th" style="margin-bottom:8px">Diensten</span><a href="/diensten/avg-compliance/">Privacy compliance</a><a href="/diensten/ai-act-compliance/">AI compliance</a><a href="/diensten/nis2/">NIS2 / Cyberbeveiligingswet</a><a href="/diensten/information-security/">Information security</a><a href="/diensten/quantum-readiness/">Quantum-readiness</a><a href="/diensten/dpo-as-a-service/">DPO-as-a-Service</a><a href="/diensten/privacy-officer-as-a-service/">Privacy Officer as a Service</a><a href="/diensten/security-officer-as-a-service/">Security Officer as a Service</a><a href="/diensten/tprm-contractmanagement/">TPRM- en contractmanagement</a></div><div style="display:flex;flex-direction:column"><span class="th" style="margin-bottom:8px">Bureau</span><a href="/over-ons/">Over ons</a><a href="/cases/">Cases</a><a href="/nieuws/">Nieuws</a><a href="/contact/">Contact</a></div><div style="display:flex;flex-direction:column"><span class="th" style="margin-bottom:8px">Contact</span><a href="mailto:contact@dcbs.nl">contact@dcbs.nl</a><a href="tel:+31615234409">+31 (0)6 15 23 44 09</a><span>Berkenlaan 6, Apeldoorn</span><span class="mut">KVK 66569346</span></div></div></div></div><div class="wrap mut" style="padding-bottom:28px;display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px"><span>&#169; 2026 The Data Compliance Builders B.V.</span><a href="/privacybeleid/">Privacybeleid</a><a href="/privacybeleid/">Cookies</a></div><svg viewBox="0 0 1440 200" preserveAspectRatio="none" class="wv wv-f" aria-hidden="true"><defs><linearGradient id="wA46" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F4FD1"></stop><stop offset="1" stop-color="#0FA88E"></stop></linearGradient><linearGradient id="wB46" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0FA88E" stop-opacity="0.35"></stop><stop offset="1" stop-color="#1F4FD1" stop-opacity="0.35"></stop></linearGradient></defs><path d="M0 80 C 300 0, 540 160, 840 90 S 1260 20, 1440 70 L 1440 200 L 0 200 Z" fill="url(#wB46)"></path><path d="M0 120 C 360 50, 600 190, 910 120 S 1300 70, 1440 110 L 1440 200 L 0 200 Z" fill="url(#wA46)"></path></svg></footer>
 </div>
-
-<main id="news-content" style="padding-top:72px">
-<div class="ph rev">
-  <p class="crumb"><a href="/" style="color:var(--mu);text-decoration:none">Home</a> / <a href="/nieuws/" style="color:var(--mu);text-decoration:none">Nieuws</a> / Artikel</p>
-  <span class="ntag tai" style="margin-bottom:1.5rem;display:inline-block">AI Compliance</span>
-  <h2>AI2027: Superintelligente AI binnen twee jaar &mdash; zijn we er klaar voor?</h2>
-  <p class="sub" style="font-size:.9rem;margin-top:1rem">Maart 2025 &middot; Door Jeroen Dubach</p>
+<div id="cookie-banner" style="display:none;position:fixed;left:16px;right:16px;bottom:16px;z-index:50;align-items:center;justify-content:space-between;gap:16px 32px;background:#fff;border:1px solid #E4E8EF;border-radius:16px;box-shadow:0 16px 40px rgba(11,31,58,.16);padding:20px 24px;flex-wrap:wrap">
+<p class="mut" style="font-size:14px;line-height:1.6;max-width:70ch">Functioneel noodzakelijke cookies plaatsen we altijd. Met je toestemming plaatsen we daarnaast een advertentiecookie van Google Ads om het effect van onze campagnes te meten.</p>
+<div style="display:flex;gap:12px;flex:none"><button id="cb-decline" class="b b-o" type="button">Alleen noodzakelijk</button><button id="cb-accept" class="b b-p" type="button">Akkoord</button></div>
 </div>
-<section class="sec rev"><div class="art"><p>Het AI2027-scenario schetst een aannemelijk pad naar transformatieve AI-systemen in 2027. Of u die tijdlijn geloofwaardig vindt of niet: de compliance-implicaties zijn aanzienlijk en grotendeels onafhankelijk van het exacte tempo van ontwikkeling.</p>
-<h3>Waarom compliance-professionals nu moeten handelen</h3>
-<p>De EU AI Act is van kracht. Verplichtingen voor hoog-risico AI-systemen &mdash; waaronder risicobeheersystemen, technische documentatie, menselijk toezicht en post-market monitoring &mdash; gelden nu. AI2027 vertegenwoordigt niet alleen een technisch scenario, maar ook een governance-uitdaging.</p>
-<blockquote>"De vraag is niet of uw AI-systemen vandaag compliant zijn &mdash; het is of uw governance-structuren kunnen meegroeien wanneer die systemen capabeler worden."</blockquote>
-<h3>Drie praktische stappen voor vooruitziende AI-governance</h3>
-<ul>
-  <li><strong>Inventariseer uw AI-systemen nu.</strong> Weet wat u runt, de risicocategorie onder de AI Act en de huidige toezichtmechanismen.</li>
-  <li><strong>Bouw adaptieve governance.</strong> Implementeer een AI-managementsysteem (ISO/IEC 42001) met reguliere beoordelingscycli.</li>
-  <li><strong>Voer proactief FRIA&apos;s uit.</strong> Fundamental Rights Impact Assessments identificeren hoe uw AI-systemen mensen be&iuml;nvloeden.</li>
-</ul>
-<p>De organisaties die het beste gepositioneerd zijn voor het AI-landschap van 2027, zijn diegenen die vandaag robuuste governance-frameworks bouwen.</p>
-  <div class="atags"><span class="atag">AI2027</span><span class="atag">EU AI Act</span><span class="atag">AI Governance</span><span class="atag">ISO/IEC 42001</span><span class="atag">FRIA</span></div>
-  <div style="display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap">
-    <a href="https://calendly.com/dubach-legal/30min" target="_blank" class="btn bp plausible-event-name=Calendly+Click">Bespreek met Jeroen &rarr;</a>
-    <a href="/nieuws/" class="btn bg">&larr; Terug naar overzicht</a>
-  </div>
-</div></section>
-</main>
-
-<footer>
-  <div class="fi">
-    <div class="fb">
-      <div class="fbr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 90" style="height:38px;width:auto;display:block">
-  <defs><linearGradient id="lgf" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%" stop-color="#6b6ef5"/><stop offset="100%" stop-color="#1de9d4"/>
-  </linearGradient></defs>
-  <rect width="90" height="90" rx="18" fill="url(#lgf)"/>
-  <rect x="14" y="14" width="54" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="31" width="32" height="11" rx="5.5" fill="white"/>
-  <rect x="50" y="31" width="26" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="48" width="42" height="11" rx="5.5" fill="white"/>
-  <rect x="60" y="48" width="16" height="11" rx="5.5" fill="white"/>
-  <rect x="14" y="65" width="24" height="11" rx="5.5" fill="white"/>
-  <rect x="42" y="65" width="34" height="11" rx="5.5" fill="white"/>
-  <text x="106" y="34"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">The <tspan font-weight="900">Data</tspan></text>
-  <text x="106" y="61"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" font-weight="900" fill="white">Compliance</text>
-  <text x="106" y="87"  font-family="HN,Helvetica Neue,Helvetica,sans-serif" font-size="24" fill="white">Builders</text>
-</svg></div>
-      <p>Onafhankelijk adviesbureau voor privacy, AI en data management compliance. Gevestigd in Apeldoorn.</p>
-    </div>
-    <div class="fcol"><h4>Diensten</h4><ul>
-      <li><a href="/diensten/dpo-as-a-service/">Externe DPO</a></li>
-      <li><a href="/diensten/avg-compliance/">AVG Consultancy</a></li>
-      <li><a href="/diensten/ai-act-compliance/">EU AI Act Advies</a></li>
-      <li><a href="/diensten/data-management/">Data Management</a></li>
-      <li><a href="/diensten/avg-compliance/#dpia">DPIA uitvoeren</a></li>
-      <li><a href="/diensten/avg-compliance/#bc-5701">BC 5701 certificering</a></li>
-      <li><a href="/diensten/ai-act-compliance/">ISO 42001 implementatie</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Bedrijf</h4><ul>
-      <li><a href="/over-ons/">Over ons</a></li>
-      <li><a href="/cases/">Cases</a></li>
-      <li><a href="/nieuws/">Nieuws</a></li>
-      <li><a href="/contact/">Contact</a></li>
-      <li><a href="https://calendly.com/dubach-legal/30min" target="_blank" rel="noopener" class="plausible-event-name=Calendly+Click">Afspraak plannen</a></li>
-    </ul></div>
-    <div class="fcol"><h4>Contact</h4><ul>
-      <li><a href="mailto:contact@dcbs.nl" class="plausible-event-name=Email+Click">contact@dcbs.nl</a></li>
-      <li><a href="tel:+31615234409" class="plausible-event-name=Phone+Click">+31 (0)6 15 23 44 09</a></li>
-      <li>Berkenlaan 6, Apeldoorn</li>
-      <li>KVK: 66569346</li>
-      <li><a href="https://linkedin.com/company/the-data-compliance-builders/" target="_blank" rel="noopener">LinkedIn &rarr;</a></li>
-    </ul></div>
-  </div>
-  <div class="fbot">
-    <span class="fcp">&copy; <span data-copyright-year>2026</span> The Data Compliance Builders B.V. &middot; Apeldoorn &middot; <a href="/privacybeleid/" style="color:var(--mu);text-decoration:none">Privacybeleid</a></span>
-  </div>
-</footer>
-
-
-
-<div id="cookie-banner" role="dialog" aria-label="Cookie-melding">
-  <p>Wij gebruiken geen tracking- of advertentiecookies. Alleen functioneel noodzakelijke cookies voor de werking van de website. <a href="/privacybeleid/" style="cursor:pointer">Meer informatie</a></p>
-  <div class="cookie-btns">
-    <button class="cookie-decline" onclick="cookieDecline()">Alleen noodzakelijk</button>
-    <button class="cookie-accept" onclick="cookieAccept()">Akkoord</button>
-  </div>
-</div>
-
-<script src="/assets/js/main.js" defer></script>
-
 </body>
 </html>

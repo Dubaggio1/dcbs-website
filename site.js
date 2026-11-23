@@ -212,7 +212,25 @@
   // Bron: window.DCBS_ARTICLES uit /nieuws-data.js (bovenaan = nieuwste). Dat bestand wordt beheerd
   // via de nieuwspagina (/nieuws/#beheer), die het via de GitHub-API publiceert; zie initBeheer hieronder.
   function nieuwsEsc(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
-  function alleArtikelen(){ return window.DCBS_ARTICLES || []; }
+  // ---- Tweetalig: de Engelse pagina's staan onder /en/, met dezelfde paden als de Nederlandse ----
+  // Een artikel heeft een Engelse versie als het een veld en = { title, summary } heeft; de Engelse
+  // pagina staat dan op /en/nieuws/<slug>/. Onderwerp en datum worden hieronder vertaald.
+  var EN = typeof location !== 'undefined' && /^\/en(\/|$)/.test(location.pathname);
+  function T(nl, en){ return EN ? en : nl; }
+  var MAANDEN_EN = { januari: 'January', februari: 'February', maart: 'March', april: 'April', mei: 'May', juni: 'June', juli: 'July',
+    augustus: 'August', september: 'September', oktober: 'October', november: 'November', december: 'December' };
+  function datumEn(d){ return String(d || '').replace(/[A-Za-z]+/g, function(w){ return MAANDEN_EN[w.toLowerCase()] || w; }); }
+  var CAT_EN = { 'NIS2 / Cyberbeveiligingswet': 'NIS2 / Cybersecurity Act', 'TPRM- en contractmanagement': 'TPRM and contract management' };
+  function catEn(c){ return CAT_EN[c] || c; }
+  function artikelEn(a){
+    var e = { id: a.id, cat: catEn(a.cat), catNl: a.cat, date: datumEn(a.date), link: a.link || '', title: a.en.title, summary: a.en.summary, slug: a.slug, url: '/en' + a.url };
+    if (a.img) e.img = a.img;
+    if (a.pub) e.pub = a.pub;
+    if (a.mod) e.mod = a.mod;
+    return e;
+  }
+  function lijstEn(list){ return list.filter(function(a){ return a.en && a.url && a.url.charAt(0) === '/'; }).map(artikelEn); }
+  function alleArtikelen(){ var l = window.DCBS_ARTICLES || []; return EN ? lijstEn(l) : l; }
 
   // ---- Nieuws: statische versie voor zoekmachines ---------------------------
   // De artikellijst staat ook als gewone HTML in /nieuws/index.html en /index.html (tussen de
@@ -262,29 +280,53 @@
   // Sitemap: alleen artikelen met een eigen pagina op de site. mod/pub = datum (jjjj-mm-dd).
   function sitemapArtikelen(list){
     return '\n' + list.filter(function(a){ return a.url && a.url.charAt(0) === '/'; }).map(function(a){
-      var d = a.mod || a.pub;
-      return '  <url><loc>https://www.dcbs.nl' + mdEsc(a.url) + '</loc>' + (d ? '<lastmod>' + mdEsc(d) + '</lastmod>' : '') + '</url>\n';
+      var d = a.mod || a.pub, lm = d ? '<lastmod>' + mdEsc(d) + '</lastmod>' : '';
+      return '  <url><loc>https://www.dcbs.nl' + mdEsc(a.url) + '</loc>' + lm + '</url>\n' +
+        (a.en ? '  <url><loc>https://www.dcbs.nl/en' + mdEsc(a.url) + '</loc>' + lm + '</url>\n' : '');
     }).join('') + '  ';
   }
   // Structured data (schema.org) voor een artikelpagina. Komt in het sjabloon op de plek van <!--JSONLD-->.
-  function artikelJsonLd(item){
-    var url = 'https://www.dcbs.nl/nieuws/' + item.slug + '/', org = 'https://www.dcbs.nl/#organisatie';
-    var art = { '@type': 'Article', '@id': url + '#artikel', headline: item.title, description: item.summary, inLanguage: 'nl-NL',
+  function artikelJsonLd(item, lang){   // item = het artikel in de taal van de pagina (voor Engels: artikelEn(a))
+    var en = lang === 'en', basis = 'https://www.dcbs.nl' + (en ? '/en' : '');
+    var url = basis + '/nieuws/' + item.slug + '/', org = 'https://www.dcbs.nl/#organisatie';
+    var art = { '@type': 'Article', '@id': url + '#artikel', headline: item.title, description: item.summary, inLanguage: en ? 'en' : 'nl-NL',
       mainEntityOfPage: url, articleSection: item.cat,
-      author: { '@type': 'Person', name: 'Jeroen Dubach', url: 'https://www.dcbs.nl/over-ons/' },
+      author: { '@type': 'Person', name: 'Jeroen Dubach', url: basis + '/over-ons/' },
       publisher: { '@type': 'Organization', '@id': org, name: 'The Data Compliance Builders',
         logo: { '@type': 'ImageObject', url: 'https://www.dcbs.nl/assets/dcbs-logo-full.png' } } };
     if (item.img) art.image = ['https://www.dcbs.nl' + item.img];
     if (item.pub) art.datePublished = item.pub;
     if (item.mod) art.dateModified = item.mod;
     var kruimel = { '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.dcbs.nl/' },
-      { '@type': 'ListItem', position: 2, name: 'Nieuws', item: 'https://www.dcbs.nl/nieuws/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: basis + '/' },
+      { '@type': 'ListItem', position: 2, name: en ? 'News' : 'Nieuws', item: basis + '/nieuws/' },
       { '@type': 'ListItem', position: 3, name: item.title, item: url } ] };
     return '<script type="application/ld+json" id="ld-dcbs">' +
       JSON.stringify({ '@context': 'https://schema.org', '@graph': [art, kruimel] }).replace(/</g, '\\u003c') + '</' + 'script>';
   }
+  // Artikelpagina maken uit het sjabloon (/nieuws/_template.html of /en/nieuws/_template.html).
+  // tweetalig = er bestaat ook een pagina in de andere taal: dan komen de hreflang-verwijzingen erin
+  // en wijst de taalwissel in de kop naar het artikel zelf in plaats van naar het overzicht.
+  // De plekken <!--JSONLD--> en <!--HREFLANG--> zijn commentaren, zodat een browser met een oudere
+  // site.js in de cache hooguit een onzichtbaar commentaar laat staan.
+  function artikelPagina(tpl, item, md, lang, tweetalig){
+    var e = mdEsc, en = lang === 'en', pad = '/nieuws/' + item.slug + '/', url = 'https://www.dcbs.nl' + (en ? '/en' : '') + pad;
+    var cover = item.img ? '<figure class="cover"><img src="' + e(item.img) + '" alt=""></figure>' : '';
+    var og = item.img ? 'https://www.dcbs.nl' + item.img : 'https://www.dcbs.nl/assets/dcbs-logo-full.png';
+    var lk = item.link ? '<a href="' + e(item.link) + '" target="_blank" rel="noopener">LinkedIn</a>' : '';
+    var li = item.link ? '<p class="mut" style="margin-top:32px;font-size:15px">' + (en ? 'Also published on ' + lk + ' (in Dutch).' : 'Ook verschenen op ' + lk + '.') + '</p>' : '';
+    var hreflang = tweetalig
+      ? '<link rel="alternate" hreflang="nl" href="https://www.dcbs.nl' + pad + '">\n<link rel="alternate" hreflang="en" href="https://www.dcbs.nl/en' + pad + '">\n<link rel="alternate" hreflang="x-default" href="https://www.dcbs.nl' + pad + '">'
+      : '';
+    var vervang = { TITLE: e(item.title), DESC: e(item.summary), URL: url, OGIMG: e(og), CAT: e(item.cat), DATE: e(item.date), COVER: cover, BODY: mdNaarHtml(md) + li };
+    var html = tpl.replace(/\{\{(TITLE|DESC|URL|OGIMG|CAT|DATE|COVER|BODY)\}\}/g, function(m, k){ return vervang[k]; })
+      .replace('<!--JSONLD-->', function(){ return artikelJsonLd(item, lang); })
+      .replace('<!--HREFLANG-->', function(){ return hreflang; });
+    if (tweetalig) html = html.replace(/href="((?:\/en)?\/nieuws\/)"([^>]*\bdata-taal\b)/g, function(m, basis, rest){ return 'href="' + basis + item.slug + '/"' + rest; });
+    return html;
+  }
   window.DCBS_STATISCH = { rij: nieuwsRij, lijst: nieuwsLijstHtml, kaart: nieuwsKaart, home: nieuwsHomeHtml,
+    artikelen: alleArtikelen, lijstEn: lijstEn, artikelEn: artikelEn, catEn: catEn, datumEn: datumEn, pagina: artikelPagina, md: mdNaarHtml,
     sitemap: sitemapArtikelen, artikelJsonLd: artikelJsonLd, vervangTussen: vervangTussen,
     ST_START: ST_START, ST_EIND: ST_EIND, SM_START: SM_START, SM_EIND: SM_EIND };
 
@@ -323,7 +365,7 @@
     ['Security Officer as a Service', '/diensten/security-officer-as-a-service/'],
     ['TPRM- en contractmanagement', '/diensten/tprm-contractmanagement/']
   ];
-  function catVolgorde(cat){ for (var i = 0; i < NIEUWS_CATS.length; i++) if (NIEUWS_CATS[i][0] === cat) return i; return 99; }
+  function catVolgorde(cat){ for (var i = 0; i < NIEUWS_CATS.length; i++) if (NIEUWS_CATS[i][0] === cat || catEn(NIEUWS_CATS[i][0]) === cat) return i; return 99; }
   function catSlug(cat){ return String(cat || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
   (function(){
     var st = document.createElement('style');
@@ -347,14 +389,14 @@
   // ---- Dienstpagina's: "Lees ook" met de nieuwste artikelen over dat onderwerp ----------------
   // Zonder artikelen over het onderwerp verschijnt er niets. Staat boven het kennismakingsblok.
   function initLeesOok(){
-    var pad = location.pathname.replace(/index\.html$/, '');
+    var pad = location.pathname.replace(/index\.html$/, '').replace(/^\/en(?=\/)/, '');   // Engelse pagina's: zelfde pad onder /en/
     if (pad.charAt(pad.length - 1) !== '/') pad += '/';
     var cat = '';
     NIEUWS_CATS.forEach(function(c){ if (c[1] === pad) cat = c[0]; });
     if (pad === '/diensten/leveranciersrisico-as-a-service/') cat = 'TPRM- en contractmanagement';
     if (!cat) return;
     function toon(){
-      var alleCat = alleArtikelen().filter(function(a){ return a.cat === cat; });
+      var alleCat = alleArtikelen().filter(function(a){ return (a.catNl || a.cat) === cat; });
       var items = alleCat.filter(function(a){ return a.url || a.link; }).slice(0, 3);   // alleen artikelen die ergens naartoe gaan
       if (!items.length) return;
       var secties = document.querySelectorAll('section');
@@ -366,8 +408,9 @@
       sec.style.background = '#F4F7FB';
       sec.style.marginBottom = 'clamp(40px,6vw,88px)';
       sec.innerHTML = '<div class="wrap pad"><div style="display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end">' +
-        '<div><div class="kick">Lees ook</div><h2 style="margin-top:16px">Artikelen over dit onderwerp</h2></div>' +
-        '<a class="b b-o" href="/nieuws/' + (meer ? '?onderwerp=' + encodeURIComponent(catSlug(cat)) : '') + '">' + (meer ? 'Alle ' + alleCat.length + ' artikelen' : 'Alle artikelen') + '</a></div>' +
+        '<div><div class="kick">' + T('Lees ook', 'Read more') + '</div><h2 style="margin-top:16px">' + T('Artikelen over dit onderwerp', 'Articles on this topic') + '</h2></div>' +
+        '<a class="b b-o" href="' + T('/nieuws/', '/en/nieuws/') + (meer ? '?onderwerp=' + encodeURIComponent(catSlug(T(cat, catEn(cat)))) : '') + '">' +
+        (meer ? T('Alle ' + alleCat.length + ' artikelen', 'All ' + alleCat.length + ' articles') : T('Alle artikelen', 'All articles')) + '</a></div>' +
         '<div class="leesook">' + items.map(function(a){
           var dest = a.url || a.link, ext = /^https?:/i.test(dest);
           return '<a class="card" href="' + e(dest) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
@@ -405,7 +448,7 @@
     var balk = document.createElement('div');
     balk.id = 'nieuws-filter';
     balk.setAttribute('role', 'group');
-    balk.setAttribute('aria-label', 'Filter op onderwerp');
+    balk.setAttribute('aria-label', T('Filter op onderwerp', 'Filter by topic'));
     lijst.parentNode.insertBefore(balk, lijst);
     (function(){
       var m = /[?&]onderwerp=([^&#]+)/.exec(location.search);
@@ -424,7 +467,7 @@
         var aan = filterCat === cat;
         return '<button type="button" class="nf' + (aan ? ' aan' : '') + '" data-cat="' + esc(cat) + '" aria-pressed="' + (aan ? 'true' : 'false') + '">' + esc(label) + ' <span>' + n + '</span></button>';
       }
-      balk.innerHTML = knop('', 'Alles', alle.length) + cats.map(function(c){ return knop(c, c, telling[c]); }).join('');
+      balk.innerHTML = knop('', T('Alles', 'All'), alle.length) + cats.map(function(c){ return knop(c, c, telling[c]); }).join('');
     }
     balk.addEventListener('click', function(e){
       var b = e.target.closest ? e.target.closest('button[data-cat]') : null;
@@ -442,7 +485,7 @@
       renderFilter(alle);
       var list = filterCat ? alle.filter(function(a){ return a.cat === filterCat; }) : alle;
       if (!list.length){
-        lijst.innerHTML = '<p style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.4;color:#4E5552;margin:0;padding:36px 0;border-top:1px solid #14181A">Er zijn nog geen artikelen gepubliceerd. Nieuwe artikelen verschijnen hier automatisch.</p>';
+        lijst.innerHTML = '<p style="font-family:\'Petrona\',Georgia,serif;font-size:24px;line-height:1.4;color:#4E5552;margin:0;padding:36px 0;border-top:1px solid #14181A">' + T('Er zijn nog geen artikelen gepubliceerd. Nieuwe artikelen verschijnen hier automatisch.', 'No articles have been published yet. New articles will appear here automatically.') + '</p>';
         return;
       }
       lijst.innerHTML = list.map(function(a, i){ return rij(a, i, list.length); }).join('');
@@ -483,6 +526,7 @@
       function serialize(list){
         return '// DCBS nieuwsartikelen — beheerd via https://www.dcbs.nl/nieuws/#beheer (niet met de hand bewerken).\n' +
                '// Bovenaan = nieuwste. cat = een van de diensten. url = artikelpagina op de site. link = LinkedIn-post (optioneel). img = omslagafbeelding.\n' +
+               '// en = Engelse titel en samenvatting (de Engelse pagina staat op /en + url). pub/mod = datum van publicatie en laatste wijziging.\n' +
                'window.DCBS_ARTICLES = [\n' + list.map(function(a){ return '  ' + JSON.stringify(a); }).join(',\n') + '\n];\n';
       }
       function api(method, pad, body){
@@ -558,21 +602,12 @@
         };
         return probeer(0);
       }
-      function bouwPagina(item, md){
-        return fetch('/nieuws/_template.html?t=' + Date.now()).then(function(r){
-          if (!r.ok) throw new Error('artikelsjabloon ontbreekt (/nieuws/_template.html)');
+      function bouwPagina(item, md, lang, tweetalig){
+        var bron = (lang === 'en' ? '/en' : '') + '/nieuws/_template.html';
+        return fetch(bron + '?t=' + Date.now()).then(function(r){
+          if (!r.ok) throw new Error('artikelsjabloon ontbreekt (' + bron + ')');
           return r.text();
-        }).then(function(tpl){
-          var e = mdEsc, url = 'https://www.dcbs.nl/nieuws/' + item.slug + '/';
-          var cover = item.img ? '<figure class="cover"><img src="' + e(item.img) + '" alt=""></figure>' : '';
-          var og = item.img ? 'https://www.dcbs.nl' + item.img : 'https://www.dcbs.nl/assets/dcbs-logo-full.png';
-          var li = item.link ? '<p class="mut" style="margin-top:32px;font-size:15px">Ook verschenen op <a href="' + e(item.link) + '" target="_blank" rel="noopener">LinkedIn</a>.</p>' : '';
-          var vervang = { TITLE: e(item.title), DESC: e(item.summary), URL: url, OGIMG: e(og), CAT: e(item.cat), DATE: e(item.date), COVER: cover, BODY: mdNaarHtml(md) + li };
-          // De structured data komt op de plek van <!--JSONLD--> in het sjabloon. Een commentaar, zodat een
-          // browser met een oudere site.js in de cache hooguit een onzichtbaar commentaar laat staan.
-          return tpl.replace(/\{\{(TITLE|DESC|URL|OGIMG|CAT|DATE|COVER|BODY)\}\}/g, function(m, k){ return vervang[k]; })
-                    .replace('<!--JSONLD-->', function(){ return artikelJsonLd(item); });
-        });
+        }).then(function(tpl){ return artikelPagina(tpl, lang === 'en' ? artikelEn(item) : item, md, lang, tweetalig); });
       }
       // ---- Statische artikellijsten en sitemap bijwerken (voor zoekmachines) ----
       // Na elke publicatie, bewerking of verwijdering. Eén bestand tegelijk, zodat GitHub geen
@@ -589,6 +624,8 @@
       function werkStatischBij(list){
         return werkBlokBij('nieuws/index.html', ST_START, ST_EIND, nieuwsLijstHtml(list), 'Nieuws: statische artikellijst bijgewerkt')
           .then(function(){ return werkBlokBij('index.html', ST_START, ST_EIND, nieuwsHomeHtml(list), 'Nieuws: artikelen op homepage bijgewerkt'); })
+          .then(function(){ return werkBlokBij('en/nieuws/index.html', ST_START, ST_EIND, nieuwsLijstHtml(lijstEn(list)), 'Nieuws: Engelse artikellijst bijgewerkt'); })
+          .then(function(){ return werkBlokBij('en/index.html', ST_START, ST_EIND, nieuwsHomeHtml(lijstEn(list)), 'Nieuws: artikelen op Engelse homepage bijgewerkt'); })
           .then(function(){ return werkBlokBij('sitemap.xml', SM_START, SM_EIND, sitemapArtikelen(list), 'Nieuws: sitemap bijgewerkt'); })
           .then(function(){ return true; }, function(){ return false; });
       }
@@ -717,14 +754,20 @@
         } catch(e){ fout(e); }
       });
 
+      var enBlok = $('artikel-en');
       var publiceerKnop = $('artikel-publiceer'), imgVerwijderWrap = $('artikel-imgverwijder-wrap'), imgHuidig = $('artikel-img-huidig');
       function resetForm(){
         form.reset(); fld('id').value = '';
+        if (enBlok) enBlok.open = false;
         if (formtitel) formtitel.textContent = 'Nieuw artikel';
         if (annuleren) annuleren.style.display = 'none';
         if (imgVerwijderWrap) imgVerwijderWrap.style.display = 'none';
         if (publiceerKnop) publiceerKnop.textContent = 'Publiceren';
         if (voorbeeld){ voorbeeld.style.display = 'none'; voorbeeld.innerHTML = ''; }
+      }
+      function verwijderEn(sl){
+        return verwijderBestand('en/nieuws/' + sl + '/index.html', 'Nieuws: Engelse artikelpagina verwijderd ' + sl)
+          .then(function(){ return verwijderBestand('en/nieuws/' + sl + '/artikel.md', 'Nieuws: Engelse artikeltekst verwijderd ' + sl); });
       }
       function bewerk(id){
         var a = beheer && beheer.items.filter(function(x){ return x.id === id; })[0];
@@ -732,6 +775,11 @@
         form.reset();
         fld('id').value = a.id; fld('cat').value = a.cat || ''; fld('date').value = a.date || '';
         fld('title').value = a.title || ''; fld('summary').value = a.summary || ''; fld('link').value = a.link || '';
+        if (fld('title_en')){
+          fld('title_en').value = a.en ? a.en.title || '' : ''; fld('summary_en').value = a.en ? a.en.summary || '' : ''; fld('body_en').value = '';
+          if (enBlok) enBlok.open = !!a.en;
+          if (a.en && a.slug) api('GET', 'en/nieuws/' + a.slug + '/artikel.md').then(function(j){ fld('body_en').value = j ? b64dec(j.content) : ''; }).catch(fout);
+        }
         if (formtitel) formtitel.textContent = 'Artikel bewerken';
         if (imgVerwijderWrap){ imgVerwijderWrap.style.display = a.img ? 'flex' : 'none'; if (imgHuidig) imgHuidig.textContent = a.img || ''; }
         if (annuleren) annuleren.style.display = '';
@@ -754,6 +802,7 @@
         publiceer(beheer.items.filter(function(x){ return x.id !== id; }), 'Nieuws: verwijderd: ' + a.title)
           .then(function(){ return verwijderAfbeelding(a.img); })
           .then(function(){ if (a.slug) return verwijderBestand('nieuws/' + a.slug + '/index.html', 'Nieuws: artikelpagina verwijderd ' + a.slug).then(function(){ return verwijderBestand('nieuws/' + a.slug + '/artikel.md', 'Nieuws: artikeltekst verwijderd ' + a.slug); }); })
+          .then(function(){ if (a.slug && a.en) return verwijderEn(a.slug); })
           .then(function(){ return werkStatischBij(beheer.items); })
           .then(function(){ if (fld('id').value === id) resetForm(); melding('Verwijderd en gepubliceerd. De site is binnen 1 tot 3 minuten bijgewerkt.'); })
           .catch(fout).then(function(){ bezig(false); });
@@ -774,24 +823,39 @@
         if (oudeImg && !imgWeg) item.img = oudeImg;
         var fileInput = form.querySelector('input[type="file"]'), file = fileInput && fileInput.files && fileInput.files[0];
         if (file && file.size > 1500000){ fout('afbeelding is te groot (max 1,5 MB); kies een kleinere afbeelding'); return; }
-        bezig(true); melding(file ? 'Afbeelding uploaden…' : 'Publiceren…');
         var md = bodyVeld ? bodyVeld.value.trim() : '';
         if (!md && !item.link){ fout('vul de artikeltekst in, of een link naar LinkedIn'); return; }
+        // Engelse versie: alle drie de velden of geen. Zonder Nederlandse artikeltekst is er geen Engelse pagina.
+        var enT = (f.get('title_en') || '').trim(), enS = (f.get('summary_en') || '').trim(), enMd = (f.get('body_en') || '').trim();
+        var metEn = !!(enT || enS || enMd);
+        if (metEn && !(enT && enS && enMd)){ fout('vul voor de Engelse versie de titel, de samenvatting en de tekst in, of laat ze alle drie leeg'); return; }
+        if (metEn && !md){ fout('een Engelse versie kan alleen bij een artikel met een eigen artikeltekst'); return; }
+        if (metEn) item.en = { title: enT, summary: enS };
+        var hadEn = !!(bestaand && bestaand.en && bestaand.slug);
+        bezig(true); melding(file ? 'Afbeelding uploaden…' : 'Publiceren…');
         (file ? uploadAfbeelding(file, item.title).then(function(p){ item.img = p; }) : Promise.resolve())
           .then(function(){
             if (!md){
               if (bestaand && bestaand.slug){   // tekst leeggemaakt: artikelpagina weghalen
                 return verwijderBestand('nieuws/' + bestaand.slug + '/index.html', 'Nieuws: artikelpagina verwijderd ' + bestaand.slug)
-                  .then(function(){ return verwijderBestand('nieuws/' + bestaand.slug + '/artikel.md', 'Nieuws: artikeltekst verwijderd ' + bestaand.slug); });
+                  .then(function(){ return verwijderBestand('nieuws/' + bestaand.slug + '/artikel.md', 'Nieuws: artikeltekst verwijderd ' + bestaand.slug); })
+                  .then(function(){ if (hadEn) return verwijderEn(bestaand.slug); });
               }
               return;
             }
             melding('Artikelpagina maken…');
             return vrijeSlug(slug(item.title), bestaand && bestaand.slug).then(function(sl){
               item.slug = sl; item.url = '/nieuws/' + sl + '/';
-              return bouwPagina(item, md).then(function(html){
+              return bouwPagina(item, md, 'nl', metEn).then(function(html){
                 return zetBestand('nieuws/' + sl + '/artikel.md', md + '\n', 'Nieuws: artikeltekst ' + sl)
                   .then(function(){ return zetBestand('nieuws/' + sl + '/index.html', html, 'Nieuws: artikelpagina ' + sl); });
+              }).then(function(){
+                if (!metEn) return hadEn ? verwijderEn(sl) : null;   // Engelse versie leeggemaakt: Engelse pagina weghalen
+                melding('Engelse artikelpagina maken…');
+                return bouwPagina(item, enMd, 'en', true).then(function(html){
+                  return zetBestand('en/nieuws/' + sl + '/artikel.md', enMd + '\n', 'Nieuws: Engelse artikeltekst ' + sl)
+                    .then(function(){ return zetBestand('en/nieuws/' + sl + '/index.html', html, 'Nieuws: Engelse artikelpagina ' + sl); });
+                });
               });
             });
           })

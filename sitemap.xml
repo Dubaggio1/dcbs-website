@@ -1,23 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.dcbs.nl/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/avg-compliance/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/avg-compliance/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/ai-act-compliance/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/ai-act-compliance/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/nis2/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/nis2/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/information-security/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/information-security/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/quantum-readiness/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/quantum-readiness/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/dpo-as-a-service/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/dpo-as-a-service/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/privacy-officer-as-a-service/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/privacy-officer-as-a-service/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/security-officer-as-a-service/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/security-officer-as-a-service/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/diensten/tprm-contractmanagement/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/diensten/tprm-contractmanagement/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/over-ons/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/over-ons/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/cases/</loc><lastmod>2026-11-23</lastmod></url>
-  <url><loc>https://www.dcbs.nl/nieuws/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/cases/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://www.dcbs.nl/contact/</loc><lastmod>2026-11-23</lastmod></url>
-  <url><loc>https://www.dcbs.nl/privacybeleid/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/contact/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/nieuws/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/nieuws/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/privacybeleid/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/privacy-statement/</loc><lastmod>2026-11-23</lastmod></url>
   <!--artikelen-->
   <url><loc>https://www.dcbs.nl/nieuws/val-ik-onder-de-cyberbeveiligingswet/</loc><lastmod>2026-11-19</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/nieuws/val-ik-onder-de-cyberbeveiligingswet/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://www.dcbs.nl/nieuws/dpo-as-a-service-een-ervaren-privacyprofessional-z/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/nieuws/dpo-as-a-service-een-ervaren-privacyprofessional-z/</loc><lastmod>2026-11-13</lastmod></url>
+  <url><loc>https://www.dcbs.nl/nieuws/ai2027-superintelligente-ai/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/nieuws/ai2027-superintelligente-ai/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/nieuws/vodafone-boete-45-miljoen/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/nieuws/vodafone-boete-45-miljoen/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/nieuws/zeven-jaar-avg-handhaving-nederland/</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://www.dcbs.nl/en/nieuws/zeven-jaar-avg-handhaving-nederland/</loc><lastmod>2026-11-23</lastmod></url>
   <!--/artikelen-->
 </urlset>

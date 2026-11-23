@@ -2,7 +2,8 @@
 document.addEventListener('DOMContentLoaded', function(){
   var grid = document.getElementById('v6-nieuws-home');
   if (!grid) return;
-  var items = (window.DCBS_ARTICLES || []).slice(0, 3);
+  // Via site.js: op de Engelse pagina's alleen de artikelen met een Engelse versie, in het Engels.
+  var items = (window.DCBS_STATISCH ? window.DCBS_STATISCH.artikelen() : []).slice(0, 3);
   var sectie = document.getElementById('v6-nieuws-sectie');
   if (!items.length) { if (sectie) sectie.style.display = 'none'; return; }
   // De kaarten komen uit site.js (DCBS_STATISCH.home), dezelfde functie die de statische versie
