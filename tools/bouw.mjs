@@ -38,8 +38,11 @@ vm.createContext(dataCtx);
 vm.runInContext(lees('nieuws-data.js'), dataCtx);
 const ARTIKELEN = dataCtx.window.DCBS_ARTICLES;
 const ARTIKELEN_EN = S.lijstEn(ARTIKELEN);
-// Versienummer achter site.js en v6.js: verandert alleen als een van die twee bestanden verandert.
-const VERSIE = String(parseInt(crypto.createHash('sha1').update(lees('site.js') + lees('assets/js/v6.js')).digest('hex').slice(0, 9), 16));
+// Versienummers achter site.js, v6.js en v6.css: veranderen alleen als het bestand zelf verandert.
+const hash = s => String(parseInt(crypto.createHash('sha1').update(s).digest('hex').slice(0, 9), 16));
+const VERSIE = hash(lees('site.js') + lees('assets/js/v6.js')), VERSIE_CSS = hash(lees('assets/css/v6.css'));
+const versies = html => html.replace(/\/site\.js\?v=\d+/g, '/site.js?v=' + VERSIE).replace(/\/assets\/js\/v6\.js\?v=\d+/g, '/assets/js/v6.js?v=' + VERSIE)
+  .replace(/\/assets\/css\/v6\.css\?v=\d+/g, '/assets/css/v6.css?v=' + VERSIE_CSS);
 
 // ---- pagina's ----
 const DIENSTEN = [
@@ -119,12 +122,56 @@ const ont = s => decodeer(s.replace(/<[^>]+>/g, '')).replace(/\s+/g, ' ').trim()
 const description = html => { const m = html.match(/<meta name="description" content="([^"]*)"/); return m ? ont(m[1]) : ''; };
 const kaal = html => html.replace(/<script type="application\/ld\+json" id="ld-dcbs">[\s\S]*?<\/script>\n?/g, '').replace(/<link rel="alternate" hreflang="[^"]*" href="[^"]*">\n?/g, '');
 const ldScript = graph => '<script type="application/ld+json" id="ld-dcbs">' + JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c') + '</script>';
-function zetHead(html, p, graph) {
+// Deelafbeelding per pagina (1200x630), gemaakt door tools/deelafbeeldingen.mjs. Pagina's zonder eigen afbeelding gebruiken die van de homepage.
+const MET_DEELAFBEELDING = p => p !== 'bedankt/' && p !== 'privacybeleid/';
+const deelNaam = p => !MET_DEELAFBEELDING(p) || p === '' ? 'home' : p.replace(/\/$/, '').replace(/\//g, '-');
+function zetHead(html, p, graph, lang) {
   if ((html.match(/<\/head>/g) || []).length !== 1) throw new Error('verwacht precies één </head> in ' + p);
+  const en = lang === 'en', d = description(html);
+  html = html.replace(/<meta (?:property="og:(?:type|url|description|image|image:width|image:height|locale)"|name="twitter:card") content="[^"]*">\n?/g, '');
+  if (!/<meta property="og:title" content="[^"]*">\n/.test(html)) throw new Error('og:title ontbreekt in ' + p);
+  html = html.replace(/(<meta property="og:title" content="[^"]*">\n)/, '$1' +
+    `<meta property="og:type" content="website">\n<meta property="og:url" content="${BASIS}/${en ? enPad(p) : p}">\n` +
+    (d ? `<meta property="og:description" content="${codeerAttr(d)}">\n` : '') +
+    `<meta property="og:image" content="${BASIS}/assets/deel/${en ? 'en' : 'nl'}/${deelNaam(p)}.jpg">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n` +
+    `<meta property="og:locale" content="${en ? 'en_GB' : 'nl_NL'}">\n<meta name="twitter:card" content="summary_large_image">\n`);
   const hl = `<link rel="alternate" hreflang="nl" href="${BASIS}/${p}">\n<link rel="alternate" hreflang="en" href="${BASIS}/${enPad(p)}">\n<link rel="alternate" hreflang="x-default" href="${BASIS}/${p}">\n`;
   html = html.replace(/(<link rel="canonical" href="[^"]*">\n)/, '$1' + hl);
   if (graph && graph.length) html = html.replace('</head>', ldScript(graph) + '\n</head>');
-  return html.replace(/\/site\.js\?v=\d+/g, '/site.js?v=' + VERSIE).replace(/\/assets\/js\/v6\.js\?v=\d+/g, '/assets/js/v6.js?v=' + VERSIE);
+  return versies(html);
+}
+
+// ---- dienstpagina's: verwante diensten en "Lees ook" als gewone HTML, vóór de afsluitende oproep ----
+const VERWANT = {
+  'avg-compliance': ['dpo-as-a-service', 'privacy-officer-as-a-service', 'tprm-contractmanagement'],
+  'ai-act-compliance': ['avg-compliance', 'information-security'],
+  'nis2': ['information-security', 'security-officer-as-a-service', 'tprm-contractmanagement'],
+  'information-security': ['security-officer-as-a-service', 'nis2', 'quantum-readiness'],
+  'quantum-readiness': ['information-security', 'nis2'],
+  'dpo-as-a-service': ['privacy-officer-as-a-service', 'avg-compliance'],
+  'privacy-officer-as-a-service': ['dpo-as-a-service', 'avg-compliance', 'tprm-contractmanagement'],
+  'security-officer-as-a-service': ['information-security', 'nis2'],
+  'tprm-contractmanagement': ['privacy-officer-as-a-service', 'nis2', 'security-officer-as-a-service'],
+};
+// naam en omschrijving van elke dienst komen uit het overzicht op /diensten/
+// (de expertisegebieden staan daar als rij, de as-a-service-diensten als kaart)
+const dienstenHtml = lees('diensten/index.html');
+const DIENST_TEKST = Object.fromEntries([
+  ...[...dienstenHtml.matchAll(/<a class="tr" href="\/diensten\/([a-z0-9-]+)\/">(?:<span class="num"[^>]*>[^<]*<\/span>)?<span class="l">([^<]*)<\/span><span class="d">([^<]*)<\/span>/g)],
+  ...[...dienstenHtml.matchAll(/<a class="card" href="\/diensten\/([a-z0-9-]+)\/"[^>]*>[\s\S]*?<h3>([^<]*)<\/h3><p[^>]*>([^<]*)<\/p>/g)],
+].map(m => [m[1], [m[2], m[3]]]));
+for (const [s] of DIENSTEN) if (!DIENST_TEKST[s]) throw new Error('omschrijving van dienst niet gevonden op /diensten/: ' + s);
+const PIJL = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>';
+const V_START = '<!--verwant-->', V_EIND = '<!--/verwant-->', L_START = '<!--leesook-->', L_EIND = '<!--/leesook-->';
+const leesOokSectie = (naam, lijst, en) => { const h = S.leesOok(naam, lijst, en); return h ? '<section id="lees-ook" style="background:#F4F7FB;margin-bottom:clamp(40px,6vw,88px)">' + h + '</section>' : ''; };
+function dienstBlokken(html, slug) {   // Nederlandse bronpagina: beide blokken (opnieuw) plaatsen
+  for (const [a, b] of [[V_START, V_EIND], [L_START, L_EIND]]) { const i = html.indexOf(a), j = html.indexOf(b); if (i >= 0 && j > i) html = html.slice(0, i) + html.slice(j + b.length); }
+  const plek = html.lastIndexOf('<section', html.indexOf('<footer'));
+  if (plek < 0) throw new Error('afsluitende sectie niet gevonden op diensten/' + slug);
+  const rijen = VERWANT[slug].map((s, i) => `<a class="tr" href="/diensten/${s}/"><span class="num" style="flex:0 0 48px">0${i + 1}</span><span class="l">${DIENST_TEKST[s][0]}</span><span class="d">${DIENST_TEKST[s][1]}</span><span class="arr">${PIJL}</span></a>`).join('');
+  const verwant = `<section><div class="wrap" style="padding-bottom:clamp(56px,7vw,112px)"><div class="kick">Past hierbij</div><h2 style="margin-top:16px">Verwante diensten</h2><div class="tbl" style="margin-top:32px">${rijen}</div></div></section>`;
+  const naam = DIENSTEN.find(([s]) => s === slug)[1];
+  return html.slice(0, plek) + V_START + verwant + V_EIND + L_START + leesOokSectie(naam, ARTIKELEN, false) + L_EIND + html.slice(plek);
 }
 function structuredData(html, lang, p) {
   const en = lang === 'en', t = s => en ? tr(s, 'structured data') : s;
@@ -190,6 +237,8 @@ for (const p of PAGINAS) {
   const f = p + 'index.html';
   let nl = taalwissel(kaal(lees(f)), 'nl', p, enPad(p));
   if (p === 'nieuws/') nl = nl.replace('<div id="beheer-paneel" style="display:none">', '<div id="beheer-paneel" data-nosnippet style="display:none">');
+  const dienst = DIENSTEN.find(([s]) => p === `diensten/${s}/`);
+  if (dienst) nl = dienstBlokken(nl, dienst[0]);
   // Engels: vertalen vanaf de Nederlandse pagina, vóór de taalafhankelijke onderdelen erin gaan
   let bron = nl;
   if (p === 'nieuws/') {   // het beheer staat alleen op de Nederlandse pagina
@@ -198,15 +247,18 @@ for (const p of PAGINAS) {
     bron = bron.slice(0, a) + bron.slice(b);
   }
   if (S.vervangTussen(bron, S.ST_START, S.ST_EIND, '') !== null) bron = S.vervangTussen(bron, S.ST_START, S.ST_EIND, '');
+  if (dienst) bron = S.vervangTussen(bron, L_START, L_EIND, '');   // artikeltitels staan niet in het woordenboek: Engelse versie komt hieronder
   let en = taalwissel(vertaal(bron, f), 'en', p, enPad(p));
+  if (dienst) en = S.vervangTussen(en, L_START, L_EIND, leesOokSectie(dienst[1], ARTIKELEN_EN, true));
   nl = statisch(nl, p, ARTIKELEN);
   en = statisch(en, p, ARTIKELEN_EN);
-  schrijf(f, zetHead(nl, p, structuredData(nl, 'nl', p)));
-  schrijf(enPad(p) + 'index.html', zetHead(en, p, structuredData(en, 'en', p)));
+  schrijf(f, zetHead(nl, p, structuredData(nl, 'nl', p), 'nl'));
+  schrijf(enPad(p) + 'index.html', zetHead(en, p, structuredData(en, 'en', p), 'en'));
 }
 
 // ---- 3. Artikelsjablonen en artikelpagina's ----
-let tplNl = taalwissel(lees('nieuws/_template.html'), 'nl', 'nieuws/', 'en/nieuws/').replace(/\/site\.js\?v=\d+/g, '/site.js?v=' + VERSIE);
+let tplNl = versies(taalwissel(lees('nieuws/_template.html'), 'nl', 'nieuws/', 'en/nieuws/'));
+schrijf('404.html', versies(lees('404.html')));
 schrijf('nieuws/_template.html', tplNl);
 const tplEn = taalwissel(vertaal(tplNl, 'nieuws/_template.html'), 'en', 'nieuws/', 'en/nieuws/');
 schrijf('en/nieuws/_template.html', tplEn);

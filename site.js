@@ -5,6 +5,10 @@
   // ---- Consent Mode v2 ----------------------------------------------------
   // Google Ads-tag: vervang AW-XXXXXXXXXX door uw conversie-ID en verwijder de
   // commentaartekens in loadAds() hieronder.
+  // ADS_ACTIEF: zolang de Ads-code uit staat, wordt er geen advertentiecookie geplaatst en is er
+  // niets om toestemming voor te vragen. De cookiebanner blijft dan verborgen. Zet dit op true
+  // op het moment dat loadAds() wordt ingeschakeld, en werk dan ook het privacybeleid bij.
+  var ADS_ACTIEF = false;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag;
@@ -26,7 +30,7 @@
   }
   var consent = null;
   try { consent = localStorage.getItem('dcbs-consent'); } catch(e){}
-  if (consent) applyConsent(consent);
+  if (consent && ADS_ACTIEF) applyConsent(consent);
 
   document.addEventListener('DOMContentLoaded', function(){
     // ---- Mobiele opschoning (alleen <=720px; desktop ongewijzigd) ----
@@ -34,7 +38,7 @@
 
     // ---- Cookiebanner ----
     var banner = document.getElementById('cookie-banner');
-    if (banner && !consent) banner.style.display = 'flex';
+    if (banner && ADS_ACTIEF && !consent) banner.style.display = 'flex';
     function choose(v){
       try { localStorage.setItem('dcbs-consent', v); } catch(e){}
       if (banner) banner.style.display = 'none';
@@ -326,7 +330,7 @@
     return html;
   }
   window.DCBS_STATISCH = { rij: nieuwsRij, lijst: nieuwsLijstHtml, kaart: nieuwsKaart, home: nieuwsHomeHtml,
-    artikelen: alleArtikelen, lijstEn: lijstEn, artikelEn: artikelEn, catEn: catEn, datumEn: datumEn, pagina: artikelPagina, md: mdNaarHtml,
+    artikelen: alleArtikelen, leesOok: leesOokHtml, lijstEn: lijstEn, artikelEn: artikelEn, catEn: catEn, datumEn: datumEn, pagina: artikelPagina, md: mdNaarHtml,
     sitemap: sitemapArtikelen, artikelJsonLd: artikelJsonLd, vervangTussen: vervangTussen,
     ST_START: ST_START, ST_EIND: ST_EIND, SM_START: SM_START, SM_EIND: SM_EIND };
 
@@ -388,6 +392,26 @@
 
   // ---- Dienstpagina's: "Lees ook" met de nieuwste artikelen over dat onderwerp ----------------
   // Zonder artikelen over het onderwerp verschijnt er niets. Staat boven het kennismakingsblok.
+  // Inhoud van het blok "Lees ook" op een dienstpagina: de drie nieuwste artikelen over die dienst.
+  // lijst = de artikelen in de taal van de pagina; cat = de Nederlandse naam van de dienst.
+  // Het bouwscript zet dezelfde HTML alvast in de pagina, zodat zoekmachines de links ook zien.
+  function leesOokHtml(cat, lijst, en){
+    var t = function(nl, e){ return en ? e : nl; }, e = mdEsc;
+    var alleCat = lijst.filter(function(a){ return (a.catNl || a.cat) === cat; });
+    var items = alleCat.filter(function(a){ return a.url || a.link; }).slice(0, 3);   // alleen artikelen die ergens naartoe gaan
+    if (!items.length) return '';
+    var meer = alleCat.length > items.length;
+    return '<div class="wrap pad"><div style="display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end">' +
+      '<div><div class="kick">' + t('Lees ook', 'Read more') + '</div><h2 style="margin-top:16px">' + t('Artikelen over dit onderwerp', 'Articles on this topic') + '</h2></div>' +
+      '<a class="b b-o" href="' + t('/nieuws/', '/en/nieuws/') + (meer ? '?onderwerp=' + encodeURIComponent(catSlug(t(cat, catEn(cat)))) : '') + '">' +
+      (meer ? t('Alle ' + alleCat.length + ' artikelen', 'All ' + alleCat.length + ' articles') : t('Alle artikelen', 'All articles')) + '</a></div>' +
+      '<div class="leesook">' + items.map(function(a){
+        var dest = a.url || a.link, ext = /^https?:/i.test(dest);
+        return '<a class="card" href="' + e(dest) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
+          (a.img ? '<img src="' + e(a.img) + '" alt="" loading="lazy">' : '') +
+          '<span class="lo-t"><span class="lo-d">' + e(a.date) + '</span><span class="lo-k">' + e(a.title) + '</span></span></a>';
+      }).join('') + '</div></div>';
+  }
   function initLeesOok(){
     var pad = location.pathname.replace(/index\.html$/, '').replace(/^\/en(?=\/)/, '');   // Engelse pagina's: zelfde pad onder /en/
     if (pad.charAt(pad.length - 1) !== '/') pad += '/';
@@ -396,27 +420,18 @@
     if (pad === '/diensten/leveranciersrisico-as-a-service/') cat = 'TPRM- en contractmanagement';
     if (!cat) return;
     function toon(){
-      var alleCat = alleArtikelen().filter(function(a){ return (a.catNl || a.cat) === cat; });
-      var items = alleCat.filter(function(a){ return a.url || a.link; }).slice(0, 3);   // alleen artikelen die ergens naartoe gaan
-      if (!items.length) return;
+      var html = leesOokHtml(cat, alleArtikelen(), EN);
+      var sec = document.getElementById('lees-ook');   // staat al in de pagina (statische versie): verversen
+      if (sec){ if (html) sec.innerHTML = html; else sec.parentNode.removeChild(sec); return; }
+      if (!html) return;
       var secties = document.querySelectorAll('section');
       var cta = secties[secties.length - 1];
       if (!cta || !cta.parentNode) return;
-      var e = nieuwsEsc, meer = alleCat.length > items.length;
-      var sec = document.createElement('section');
+      sec = document.createElement('section');
       sec.id = 'lees-ook';
       sec.style.background = '#F4F7FB';
       sec.style.marginBottom = 'clamp(40px,6vw,88px)';
-      sec.innerHTML = '<div class="wrap pad"><div style="display:flex;flex-wrap:wrap;gap:16px 32px;justify-content:space-between;align-items:flex-end">' +
-        '<div><div class="kick">' + T('Lees ook', 'Read more') + '</div><h2 style="margin-top:16px">' + T('Artikelen over dit onderwerp', 'Articles on this topic') + '</h2></div>' +
-        '<a class="b b-o" href="' + T('/nieuws/', '/en/nieuws/') + (meer ? '?onderwerp=' + encodeURIComponent(catSlug(T(cat, catEn(cat)))) : '') + '">' +
-        (meer ? T('Alle ' + alleCat.length + ' artikelen', 'All ' + alleCat.length + ' articles') : T('Alle artikelen', 'All articles')) + '</a></div>' +
-        '<div class="leesook">' + items.map(function(a){
-          var dest = a.url || a.link, ext = /^https?:/i.test(dest);
-          return '<a class="card" href="' + e(dest) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' +
-            (a.img ? '<img src="' + e(a.img) + '" alt="" loading="lazy">' : '') +
-            '<span class="lo-t"><span class="lo-d">' + e(a.date) + '</span><span class="lo-k">' + e(a.title) + '</span></span></a>';
-        }).join('') + '</div></div>';
+      sec.innerHTML = html;
       cta.parentNode.insertBefore(sec, cta);
     }
     if (window.DCBS_ARTICLES) return toon();
