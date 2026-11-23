@@ -108,6 +108,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus,textarea:
 .tr .pic{align-self:center}
 .card .pic{align-self:flex-start}
 .vis{flex:1 1 380px;max-width:470px;min-width:0}
+.wrap:has(>.vis) h1{font-size:clamp(36px,4.5vw,62px);line-height:1.06}
 .vk{background:#fff;border:1px solid #E4E8EF;border-radius:24px;padding:26px;box-shadow:0 24px 60px rgba(11,31,58,.10)}
 .rol{display:flex;gap:16px;align-items:center;padding:16px 18px;border:1px solid #E4E8EF;border-radius:16px;background:#fff}
 .rol b{display:block;font-size:18px;font-weight:700;letter-spacing:-.01em}
