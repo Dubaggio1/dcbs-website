@@ -102,3 +102,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus,textarea:
 #nieuws-lijst .nieuwsrij img,#nieuws-lijst .nieuwsrij>div{border-radius:14px}
 #nieuws-lijst .nieuwsrij span span:first-child{color:#1F4FD1!important}
 @media (max-width:760px){#nieuws-lijst .nieuwsrij{grid-template-columns:1fr!important;gap:16px!important}#nieuws-lijst .nieuwsrij>span:last-child{text-align:left!important}}
+
+/* Beeld in de kop van een dienstpagina: schema dat het onderwerp van de pagina laat zien */
+.vis{flex:1 1 380px;max-width:470px;min-width:0}
+.rollen{background:#fff;border:1px solid #E4E8EF;border-radius:24px;padding:26px;box-shadow:0 24px 60px rgba(11,31,58,.10)}
+.rol{display:flex;gap:16px;align-items:center;padding:16px 18px;border:1px solid #E4E8EF;border-radius:16px;background:#fff}
+.rol .ic{flex:0 0 48px;height:48px;border-radius:12px;background:#EAF0FC;color:#1F4FD1;display:grid;place-items:center}
+.rol b{display:block;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.rol b+span{display:block;font-size:14.5px;color:#3A4A63;margin-top:2px}
+.rol.kern{background:linear-gradient(120deg,#1F4FD1,#0FA88E);border-color:transparent;color:#fff;box-shadow:0 12px 28px rgba(31,79,209,.28)}
+.rol.kern b+span{color:rgba(255,255,255,.9)}
+.rol.kern .ic{background:rgba(255,255,255,.18);color:#fff}
+.lijn{display:flex;align-items:center;gap:10px;height:46px;margin-left:41px;padding-left:20px;border-left:2px dashed #CBD3E1;font-size:13px;font-weight:600;color:#3A4A63}
+.lijn svg{color:#1F4FD1;flex:0 0 auto}
+@media (max-width:700px){.vis{max-width:none}}
