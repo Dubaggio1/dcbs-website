@@ -16,6 +16,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
+import { pic, DIENST_PIC } from './pictogrammen.mjs';
 
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const ALLEEN_ONTBREEKT = process.argv.includes('--ontbreekt');
@@ -157,7 +158,7 @@ const VERWANT = {
 // (de expertisegebieden staan daar als rij, de as-a-service-diensten als kaart)
 const dienstenHtml = lees('diensten/index.html');
 const DIENST_TEKST = Object.fromEntries([
-  ...[...dienstenHtml.matchAll(/<a class="tr" href="\/diensten\/([a-z0-9-]+)\/">(?:<span class="num"[^>]*>[^<]*<\/span>)?<span class="l">([^<]*)<\/span><span class="d">([^<]*)<\/span>/g)],
+  ...[...dienstenHtml.matchAll(/<a class="tr" href="\/diensten\/([a-z0-9-]+)\/">(?:<span class="(?:num|pic)"[^>]*>[\s\S]*?<\/span>)?<span class="l">([^<]*)<\/span><span class="d">([^<]*)<\/span>/g)],
   ...[...dienstenHtml.matchAll(/<a class="card" href="\/diensten\/([a-z0-9-]+)\/"[^>]*>[\s\S]*?<h3>([^<]*)<\/h3><p[^>]*>([^<]*)<\/p>/g)],
 ].map(m => [m[1], [m[2], m[3]]]));
 for (const [s] of DIENSTEN) if (!DIENST_TEKST[s]) throw new Error('omschrijving van dienst niet gevonden op /diensten/: ' + s);
@@ -168,7 +169,7 @@ function dienstBlokken(html, slug) {   // Nederlandse bronpagina: beide blokken 
   for (const [a, b] of [[V_START, V_EIND], [L_START, L_EIND]]) { const i = html.indexOf(a), j = html.indexOf(b); if (i >= 0 && j > i) html = html.slice(0, i) + html.slice(j + b.length); }
   const plek = html.lastIndexOf('<section', html.indexOf('<footer'));
   if (plek < 0) throw new Error('afsluitende sectie niet gevonden op diensten/' + slug);
-  const rijen = VERWANT[slug].map((s, i) => `<a class="tr" href="/diensten/${s}/"><span class="num" style="flex:0 0 48px">0${i + 1}</span><span class="l">${DIENST_TEKST[s][0]}</span><span class="d">${DIENST_TEKST[s][1]}</span><span class="arr">${PIJL}</span></a>`).join('');
+  const rijen = VERWANT[slug].map((s, i) => `<a class="tr" href="/diensten/${s}/">${pic(DIENST_PIC[s])}<span class="l">${DIENST_TEKST[s][0]}</span><span class="d">${DIENST_TEKST[s][1]}</span><span class="arr">${PIJL}</span></a>`).join('');
   const verwant = `<section><div class="wrap" style="padding-bottom:clamp(56px,7vw,112px)"><div class="kick">Past hierbij</div><h2 style="margin-top:16px">Verwante diensten</h2><div class="tbl" style="margin-top:32px">${rijen}</div></div></section>`;
   const naam = DIENSTEN.find(([s]) => s === slug)[1];
   return html.slice(0, plek) + V_START + verwant + V_EIND + L_START + leesOokSectie(naam, ARTIKELEN, false) + L_EIND + html.slice(plek);
