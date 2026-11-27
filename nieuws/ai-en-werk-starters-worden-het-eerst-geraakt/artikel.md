@@ -48,7 +48,13 @@ Ervaring lijkt dus te beschermen, maar niet alle onderzoekers zijn het daarover 
 
 Het CBS publiceerde op 26 november nieuwe cijfers. Van de Nederlandse bedrijven gebruikt nu 41% AI, tegen 18% een jaar eerder. Het gebruik groeit het sterkst in het mkb.
 
-![Bijschrift (optioneel)](/assets/nieuws/ai-en-werk-starters-worden-het-eerst-geraakt-tekst-mwyol7px.png)
+AI-gebruik per bedrijfsgrootte, 2025 en 2026:
+
+- 2 tot 10 werkzame personen: van 15% naar 37%
+- 10 tot 50 werkzame personen: van 28% naar 55%
+- 50 tot 250 werkzame personen: van 46% naar 75%
+- 250 of meer werkzame personen: van 67% naar 89%
+- Alle bedrijven: van 18% naar 41%
 
 Bron: CBS, 26 november 2026. De cijfers over 2026 zijn voorlopig.
 
