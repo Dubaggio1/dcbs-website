@@ -22,31 +22,41 @@ Hoe het verder gaat, weet niemand. Anthropic rekende in september scenario's doo
 
 Hoe jonger je bent, hoe groter het effect. Wie al langer werkt, merkt er tot nu toe weinig van.
 
-Leeftijd
+### Starters, tot ongeveer 25 jaar
 
-Wat het onderzoek laat zien
+In de VS werken 22- tot 25-jarigen in beroepen waar AI veel kan overnemen 19% minder dan je zou verwachten, blijkt uit onderzoek van Stanford van augustus 2026. Ervaren collega's in dezelfde beroepen hebben daar geen last van. Het effect loopt via minder aannemen, niet via ontslag.
 
-Starters, tot ongeveer 25 jaar
+De werkloosheid onder Amerikaanse afgestudeerden van 20 tot 24 jaar is hoger dan in ruim 60% van de maanden sinds 2003. Wie een studie deed die sterk aan AI is blootgesteld, zoals informatica, vindt sinds 2022 ongeveer 5 procentpunt minder vaak binnen drie maanden een baan dan afgestudeerden van andere studies. Wie wel werk vindt, verdient zo'n 13% minder (Burning Glass Institute, november 2026).
 
-In de VS werken 22- tot 25-jarigen in beroepen waar AI veel kan overnemen 19% minder dan verwacht (Stanford, augustus 2026). De werkloosheid onder afgestudeerden van 20 tot 24 jaar is hoger dan in ruim 60% van de maanden sinds 2003. Wie een studie deed die sterk aan AI is blootgesteld, zoals informatica, vindt sinds 2022 ongeveer 5 procentpunt minder vaak binnen drie maanden een baan dan afgestudeerden van andere studies, en verdient daarna zo'n 13% minder (Burning Glass Institute, november 2026). Van de Nederlandse jongeren tussen 18 en 29 jaar verwacht 38% dat een baan vinden moeilijker wordt, en ruim 40% vreest minder stages en startersbanen (Salesforce, november 2026).
+Nederlandse jongeren maken zich daar ook zorgen over. Van de Nederlanders tussen 18 en 29 jaar verwacht 38% dat een baan vinden moeilijker wordt, en ruim 40% vreest minder stages en startersbanen (Salesforce, november 2026).
 
-Jonge professionals, 25 tot 35 jaar
+### Jonge professionals, 25 tot 35 jaar
 
-Ook in deze groep is de werkloosheid onder afgestudeerden hoger dan gebruikelijk, op hetzelfde niveau als bij de starters (Burning Glass Institute, november 2026).
+Ook in deze groep is de werkloosheid onder Amerikaanse afgestudeerden hoger dan gebruikelijk, op hetzelfde niveau als bij de starters (Burning Glass Institute, november 2026).
 
-Middengroep, 35 tot 55 jaar
+### Middengroep, 35 tot 55 jaar
 
-De werkloosheid onder afgestudeerden ligt hier juist lager dan gebruikelijk (Burning Glass Institute). In de VS is de groep van 30 tot 50 jaar na corona volledig hersteld op de arbeidsmarkt (Stripe, november 2026).
+In deze groep ligt de werkloosheid onder afgestudeerden juist lager dan gebruikelijk (Burning Glass Institute). Amerikaanse werkenden van 30 tot 50 jaar zijn na corona volledig hersteld op de arbeidsmarkt (Stripe, november 2026).
 
-Ouderen, 55 jaar en ouder
+### Ouderen, 55 jaar en ouder
 
-Afgestudeerden van 55 tot 64 jaar zijn nu minder vaak werkloos dan in ongeveer twee derde van de maanden sinds 2003 (Burning Glass Institute). Wel raken ouderen in de VS sinds de komst van ChatGPT iets vaker werkloos dan daarvoor, vooral programmeurs (Center for Retirement Research, juni 2026).
+Afgestudeerden van 55 tot 64 jaar zijn nu minder vaak werkloos dan in ongeveer twee derde van de maanden sinds 2003 (Burning Glass Institute). Toch is er een kanttekening. Ouderen zijn net zo blootgesteld aan AI als de middengroep, en in de VS raken zij sinds de komst van ChatGPT iets vaker werkloos dan daarvoor. Dat geldt vooral voor programmeurs (Center for Retirement Research, juni 2026).
 
 Ervaring lijkt dus te beschermen, maar niet alle onderzoekers zijn het daarover eens. Het IMF vond in vacaturedata nog geen hard bewijs dat jongeren zwaarder worden geraakt dan ervaren krachten.
 
 ## Nederland
 
-Het CBS publiceerde op 26 november nieuwe cijfers. Van de Nederlandse bedrijven gebruikt nu 41% AI, tegen 18% een jaar eerder. Het gebruik groeit het sterkst in het mkb. Bij bedrijven met 2 tot 10 mensen ging het van 15% naar 37%, bij bedrijven met 50 tot 250 mensen van 46% naar 75%. Bedrijven gebruiken AI vooral voor marketing, administratie en de boekhouding. Ruim de helft zegt productiever te zijn geworden, en 16% zegt minder personeel nodig te hebben.
+Het CBS publiceerde op 26 november nieuwe cijfers. Van de Nederlandse bedrijven gebruikt nu 41% AI, tegen 18% een jaar eerder. Het gebruik groeit het sterkst in het mkb.
+
+![Bijschrift (optioneel)](/assets/nieuws/ai-en-werk-starters-worden-het-eerst-geraakt-tekst-mwyol7px.png)
+
+Bron: CBS, 26 november 2026. De cijfers over 2026 zijn voorlopig.
+
+Tussen sectoren zijn de verschillen groot. In de ICT gebruikt 80% van de bedrijven AI en in de media 75%. In de bouw (23%), de horeca (28%) en vervoer en opslag (28%) is dat veel minder, al verviervoudigde het gebruik in de horeca en het vervoer wel. Ook zzp'ers doen mee: ongeveer 60% van hen gebruikt AI.
+
+Bedrijven zetten AI het vaakst in voor marketing en verkoop (42%), gevolgd door bedrijfsadministratie (35%) en boekhouding en financieel beheer (30%, vorig jaar 17%). Juist administratief werk krimpt in de VS al het hardst, dus dat is een ontwikkeling om in de gaten te houden. Het genereren van tekst, spraak of code steeg van 8% naar 28% van de bedrijven.
+
+Wat levert het op? Ruim de helft van de bedrijven die AI gebruiken (54%) zegt productiever te zijn geworden. Daarnaast zegt 16% minder personeel nodig te hebben, terwijl 4% nieuwe functies noemt.
 
 Voor de meeste starters is er nog weinig veranderd. Femke Cnossen van de Rijksuniversiteit Groningen onderzocht de gegevens van 2,2 miljoen afgestudeerden. Zij publiceerde in juli dat vooral universitair afgestudeerden iets minder vaak werk vinden dan voorheen, ongeveer 1 procentpunt. Dat zit vooral bij bedrijfskundige studies. Mbo'ers met een vergelijkbare opleiding vonden juist vaker werk.
 
@@ -65,6 +75,8 @@ Gebruikt je organisatie AI bij werving, selectie of beoordeling van personeel? D
 Tot slot een nuchtere noot over omscholing. Onderzoek naar omscholingsprogramma's laat zien dat ze gemiddeld weinig opleveren: deelnemers hebben 2 tot 3 procentpunt meer kans op werk. Leren op de eigen werkplek ligt daarom meer voor de hand.
 
 Meer weten over AI-governance in je organisatie? Stuur me een bericht.
+
+De robot neemt je baan dus nog niet over. Hij solliciteert alleen wel op die van je stagiair.
 
 ## Bronnen
 
